@@ -3,28 +3,14 @@ using MatrixTransformations.Math;
 
 namespace MatrixTransformations.World
 {
-    public class Camera
-    {
-        public Matrix GetMatrix()
-        {
-            return Matrix.CreateLookAt(Position, LookAt, UpVector);
-        }
-
-        public Vector UpVector = new Vector(0, 1, 0);
-
-        public Vector LookAt { get; set; } = new Vector(0,0,0);
-        
-        public Vector Position { get; set; } =  new Vector(0, 0, 3);
-    }
-
     public class Render
     {
+        public Camera Camera { get; }
+
         public Render(Camera camera)
         {
             Camera= camera;
         }
-
-        public Camera Camera { get; set; }
 
         public IReadOnlyList<Vector> Transform(IReadOnlyList<Vector> objectCoordinates, float width, float height, Vector scale, Vector rotate, Vector translate)
         {
@@ -33,12 +19,12 @@ namespace MatrixTransformations.World
             var modelMatrix = ModelTransformation(scale, rotate, translate);
             var viewMatrix = Camera.GetMatrix();
 
-            for (var i = 0; i < objectCoordinates.Count; i++)
+            foreach (var model in objectCoordinates)
             {
-                Vector model = objectCoordinates[i];
-                model.w = 1;
+                var vector = model;
+                vector.w = 1;
                 
-                var world = Vector.Transform(model, modelMatrix);
+                var world = Vector.Transform(vector, modelMatrix);
                 world.w = 1;
                 
                 var view = Vector.Transform(world, viewMatrix);

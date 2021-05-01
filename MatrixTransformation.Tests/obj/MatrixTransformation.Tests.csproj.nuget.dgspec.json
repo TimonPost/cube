@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Timon\\Documents\\cube-3d\\MatrixTransformation.Tests\\MatrixTransformation.Tests.csproj": {}
+    "E:\\programming\\cube-3d\\MatrixTransformation.Tests\\MatrixTransformation.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Timon\\Documents\\cube-3d\\MatrixTransformation.Tests\\MatrixTransformation.Tests.csproj": {
+    "E:\\programming\\cube-3d\\MatrixTransformation.Tests\\MatrixTransformation.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Timon\\Documents\\cube-3d\\MatrixTransformation.Tests\\MatrixTransformation.Tests.csproj",
+        "projectUniqueName": "E:\\programming\\cube-3d\\MatrixTransformation.Tests\\MatrixTransformation.Tests.csproj",
         "projectName": "MatrixTransformation.Tests",
-        "projectPath": "C:\\Users\\Timon\\Documents\\cube-3d\\MatrixTransformation.Tests\\MatrixTransformation.Tests.csproj",
+        "projectPath": "E:\\programming\\cube-3d\\MatrixTransformation.Tests\\MatrixTransformation.Tests.csproj",
         "packagesPath": "C:\\Users\\Timon\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Timon\\Documents\\cube-3d\\MatrixTransformation.Tests\\obj\\",
+        "outputPath": "E:\\programming\\cube-3d\\MatrixTransformation.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Timon\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -29,8 +29,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\Timon\\Documents\\cube-3d\\MatrixTransformations\\MatrixTransformations.csproj": {
-                "projectPath": "C:\\Users\\Timon\\Documents\\cube-3d\\MatrixTransformations\\MatrixTransformations.csproj"
+              "E:\\programming\\cube-3d\\MatrixTransformations\\MatrixTransformations.csproj": {
+                "projectPath": "E:\\programming\\cube-3d\\MatrixTransformations\\MatrixTransformations.csproj"
               }
             }
           }
@@ -77,15 +77,15 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Timon\\Documents\\cube-3d\\MatrixTransformations\\MatrixTransformations.csproj": {
+    "E:\\programming\\cube-3d\\MatrixTransformations\\MatrixTransformations.csproj": {
       "restore": {
-        "projectUniqueName": "C:\\Users\\Timon\\Documents\\cube-3d\\MatrixTransformations\\MatrixTransformations.csproj",
+        "projectUniqueName": "E:\\programming\\cube-3d\\MatrixTransformations\\MatrixTransformations.csproj",
         "projectName": "MatrixTransformations",
-        "projectPath": "C:\\Users\\Timon\\Documents\\cube-3d\\MatrixTransformations\\MatrixTransformations.csproj"
+        "projectPath": "E:\\programming\\cube-3d\\MatrixTransformations\\MatrixTransformations.csproj"
       },
       "frameworks": {
         "net472": {}

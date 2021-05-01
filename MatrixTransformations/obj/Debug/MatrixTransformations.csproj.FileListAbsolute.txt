@@ -17,3 +17,13 @@ C:\Users\Timon\Documents\cube-3d\MatrixTransformations\bin\Debug\MatrixTransform
 C:\Users\Timon\Documents\cube-3d\MatrixTransformations\bin\Debug\MatrixTransformations.exe
 C:\Users\Timon\Documents\cube-3d\MatrixTransformations\bin\Debug\MatrixTransformations.pdb
 C:\Users\Timon\Documents\cube-3d\MatrixTransformations\obj\Debug\MatrixTransformations.From1.resources
+E:\programming\cube-3d\MatrixTransformations\bin\Debug\MatrixTransformations.exe.config
+E:\programming\cube-3d\MatrixTransformations\bin\Debug\MatrixTransformations.exe
+E:\programming\cube-3d\MatrixTransformations\bin\Debug\MatrixTransformations.pdb
+E:\programming\cube-3d\MatrixTransformations\obj\Debug\MatrixTransformations.From1.resources
+E:\programming\cube-3d\MatrixTransformations\obj\Debug\MatrixTransformations.Properties.Resources.resources
+E:\programming\cube-3d\MatrixTransformations\obj\Debug\MatrixTransformations.csproj.GenerateResource.cache
+E:\programming\cube-3d\MatrixTransformations\obj\Debug\MatrixTransformations.csproj.CoreCompileInputs.cache
+E:\programming\cube-3d\MatrixTransformations\obj\Debug\MatrixTransformations.exe
+E:\programming\cube-3d\MatrixTransformations\obj\Debug\MatrixTransformations.pdb
+E:\programming\cube-3d\MatrixTransformations\obj\Debug\MatrixTransformations.csprojAssemblyReference.cache

@@ -71,7 +71,7 @@ namespace MatrixTransformations
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            _cube.Draw(e.Graphics, GetNextTransform(_cube.vertexbuffer));
+            _cube.Draw(e.Graphics, GetNextTransform(_cube.Vertexbuffer));
             _worldCoordinateSystem.Draw(e.Graphics, _render, Width, Height);
             _windesheimLogo.Draw(e.Graphics, GetNextTransform(_windesheimLogo.Vertexbuffer));
 
@@ -142,25 +142,23 @@ namespace MatrixTransformations
 
             // Camera x
             if (e.KeyCode == Keys.Q && ((e.Modifiers & Keys.Shift) != 0))
-                _render.Camera.Position.x += _cameraDelta;
+                _render.Camera.Position += new Vector(_cameraDelta, 0, 0);
             else if (e.KeyCode == Keys.Q)
-                _render.Camera.Position.x -= _cameraDelta;
+                _render.Camera.Position -= new Vector(_cameraDelta, 0, 0);
 
             // Camera y
             if (e.KeyCode == Keys.W && ((e.Modifiers & Keys.Shift) != 0))
-                _render.Camera.Position.y += _cameraDelta;
+                _render.Camera.Position += new Vector(0, _cameraDelta, 0);
             else if (e.KeyCode == Keys.W)
-                _render.Camera.Position.y -= _cameraDelta;
+                _render.Camera.Position -= new Vector(0, _cameraDelta, 0);
 
             // Camera z
             if (e.KeyCode == Keys.E && ((e.Modifiers & Keys.Shift) != 0))
-                _render.Camera.Position.z += _cameraDelta;
+                _render.Camera.Position += new Vector(0, 0, _cameraDelta);
             else if (e.KeyCode == Keys.E)
-                _render.Camera.Position.z -= _cameraDelta;
+                _render.Camera.Position -= new Vector(0, 0, _cameraDelta);
         }
-
-
-
+        
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (_animationEnabled)

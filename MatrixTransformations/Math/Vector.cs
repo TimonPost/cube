@@ -2,13 +2,11 @@
 {
     public class Vector
     {
-        public float x, y, z, w;
-
-        public Vector() : this(0, 0, 0)
-        {
-        }
-
-        public Vector(float x, float y, float z, float w = 0)
+        public float x, y, z;
+            
+        public float w { get; set; }
+        
+        public Vector(float x = 0, float y = 0, float z = 0, float w = 0)
         {
             this.x = x;
             this.y = y;

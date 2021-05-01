@@ -55,6 +55,7 @@
     <Compile Include="CoordinateSystem\AxisX.cs" />
     <Compile Include="CoordinateSystem\AxisY.cs" />
     <Compile Include="CoordinateSystem\AxisZ.cs" />
+    <Compile Include="World\Camera.cs" />
     <Compile Include="World\Render.cs" />
     <Compile Include="CoordinateSystem\CoordinateSystem.cs" />
     <Compile Include="World\Cube.cs" />
