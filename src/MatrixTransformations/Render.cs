@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using MatrixTransformations.Math;
+using MatrixTransformations.World;
 
-namespace MatrixTransformations.World
+namespace MatrixTransformations
 {
     public class Render
     {
@@ -9,7 +10,7 @@ namespace MatrixTransformations.World
 
         public Render(Camera camera)
         {
-            Camera= camera;
+            Camera = camera;
         }
 
         public IReadOnlyList<Vector> Transform(IReadOnlyList<Vector> objectCoordinates, float width, float height, Vector scale, Vector rotate, Vector translate)
@@ -23,14 +24,14 @@ namespace MatrixTransformations.World
             {
                 var vector = model;
                 vector.w = 1;
-                
+
                 var world = Vector.Transform(vector, modelMatrix);
                 world.w = 1;
-                
+
                 var view = Vector.Transform(world, viewMatrix);
 
                 var projection = ProjectionTransformation(2, view.z);
-                
+
                 Vector projected = Vector.Transform(view, projection);
 
                 //Scale to screen

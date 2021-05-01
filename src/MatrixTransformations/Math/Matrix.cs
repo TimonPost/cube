@@ -40,6 +40,18 @@
             mat[3, 3] = m44;
         }
 
+        public static Matrix CreateProjection(float distance, float z)
+        {
+            float projectedZ = 1 / (distance - z);
+            var projectionMatrix = new Matrix(
+                projectedZ, 0, 0, 0,
+                0, projectedZ, 0, 0,
+                0, 0, 1, 0,
+                0, 0, 0, 1
+            );
+            return projectionMatrix;
+        }
+
         public static Matrix CreateLookAt(Vector cameraPosition, Vector cameraTarget, Vector cameraUpVector)
         {
             Vector zaxis = Vector.Normalize(cameraPosition - cameraTarget);

@@ -13,6 +13,8 @@
             this.z = z;
             this.w = w;
         }
+
+        public static Vector NullVector { get; } = new Vector(0, 0, 0, 1);
         
         public static Vector operator +(Vector v1, Vector v2)
         {

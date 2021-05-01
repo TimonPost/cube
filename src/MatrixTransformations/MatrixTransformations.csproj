@@ -51,27 +51,27 @@
     <Compile Include="Animation\IPhase.cs" />
     <Compile Include="Animation\SecondPhase.cs" />
     <Compile Include="Animation\ThirdPhase.cs" />
-    <Compile Include="CoordinateSystem\Axis.cs" />
-    <Compile Include="CoordinateSystem\AxisX.cs" />
-    <Compile Include="CoordinateSystem\AxisY.cs" />
-    <Compile Include="CoordinateSystem\AxisZ.cs" />
-    <Compile Include="World\Camera.cs" />
-    <Compile Include="World\Render.cs" />
-    <Compile Include="CoordinateSystem\CoordinateSystem.cs" />
-    <Compile Include="World\Cube.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Render.cs" />
+    <Compile Include="Scene\CoordinateSystem\Axis.cs" />
+    <Compile Include="Input.cs" />
+    <Compile Include="Scene\Scene.cs" />
+    <Compile Include="Scene\Mesh.cs" />
+    <Compile Include="Scene\MeshSceneObject.cs" />
+    <Compile Include="Scene\Camera.cs" />
+    <Compile Include="Scene\CoordinateSystem\CoordinateSystem.cs" />
+    <Compile Include="Scene\SceneObject.cs" />
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Math\Matrix.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Math\Vector.cs" />
-    <Compile Include="World\WindesheimLogo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
