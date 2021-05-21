@@ -15,8 +15,11 @@ namespace MatrixTransformations
 
         public MainForm()
         {
+            var renderer = new Renderer(Width, Height);
+
             InitializeComponent();
             _scene.Add(new CoordinateSystem.CoordinateSystem());
+            _scene.Add(new MeshSceneObject(Mesh.Cube, renderer));
         }
         
         /// <summary>

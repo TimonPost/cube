@@ -23,7 +23,7 @@ namespace MatrixTransformations.CoordinateSystem
 
         public override void Update()
         {
-            
+            // Ignore
         }
     }
 }

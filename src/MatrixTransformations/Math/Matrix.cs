@@ -52,6 +52,16 @@
             return projectionMatrix;
         }
 
+        public static Matrix ModelTransformation(Vector scale, Vector rotate, Vector translate)
+        {
+            var scaleMatrix = Matrix.Scale(scale);
+            var rotationMatrixX = Matrix.RotateX(rotate.x);
+            var rotationMatrixY = Matrix.RotateY(rotate.y);
+            var rotationMatrixZ = Matrix.RotateZ(rotate.z);
+            var translateMatrix = Matrix.CreateTranslation(translate);
+            return translateMatrix * scaleMatrix * rotationMatrixX * rotationMatrixY * rotationMatrixZ;
+        }
+
         public static Matrix CreateLookAt(Vector cameraPosition, Vector cameraTarget, Vector cameraUpVector)
         {
             Vector zaxis = Vector.Normalize(cameraPosition - cameraTarget);

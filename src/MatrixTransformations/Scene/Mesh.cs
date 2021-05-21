@@ -6,23 +6,32 @@ namespace MatrixTransformations.World
 {
     public class Mesh
     {
-        public Mesh(Vector[] vertexBuffer, int[] indexBuffer)
+        public Mesh(IReadOnlyList<Vector> vertexBuffer, IReadOnlyList<int> indexBuffer)
         {
             VertexBuffer = vertexBuffer;
             IndexBuffer = indexBuffer;
         }
 
-        public IReadOnlyCollection<Vector> VertexBuffer { get; }
-        public IReadOnlyCollection<int> IndexBuffer { get; }
+        public IReadOnlyList<Vector> VertexBuffer { get; }
+        public IReadOnlyList<int> IndexBuffer { get; }
 
         #region Cube
 
         /// <summary>
         /// Singleton cube mesh
         /// </summary>
-        private readonly Lazy<Mesh> _lazyCube = new Lazy<Mesh>(() =>
+        private static readonly Lazy<Mesh> LazyCube = new Lazy<Mesh>(() =>
         {
-            IReadOnlyList<MatrixTransformations.Math.Vector> vertexbuffer = new List<Vector>
+            //          7----------4
+            //         /|         /|
+            //        / |        / |                y
+            //       /  6-------/--5                |
+            //      3----------0  /                 ----x
+            //      | /        | /                 /
+            //      |/         |/                  z
+            //      2----------1
+
+            IReadOnlyList<Vector> vertexbuffer = new List<Vector>
             {
                 new Vector( 1.0f,  1.0f, 1.0f),     //0
                 new Vector( 1.0f, -1.0f, 1.0f),     //1
@@ -35,16 +44,28 @@ namespace MatrixTransformations.World
                 new Vector(-1.0f,  1.0f, -1.0f),    //7
             };
 
-            IReadOnlyCollection<int> indexBuffer = new List<int>()
+            IReadOnlyList<int> indexBuffer = new List<int>()
             {
+                1,2, // Front
+                2,3,
+                3,0,
+                0,1,
 
+                5,6, // Back
+                6,7,
+                7,4,
+                4,5,
+
+                5,1, // Lines between front and back
+                6,2,
+                7,3,
+                4,0
             };
 
-            Mesh mesh = new Mesh(null, null);
-            return mesh;
+            return new Mesh(vertexbuffer, indexBuffer);
         });
 
-        public Mesh Cube => _lazyCube.Value;
+        public static Mesh Cube => LazyCube.Value;
 
         #endregion
     }
