@@ -1,24 +1,38 @@
-﻿using MatrixTransformations.Math;
+﻿using System;
+using MatrixTransformations.Math;
 
 namespace MatrixTransformations.Animation
 {
-    public class SecondPhase : IPhase
+    public class SecondPhase : IState
     {
         public float StepSize { get; set; } = (float)System.Math.PI / 60;
+
+        public States State => States.Phase2;
+
+        public void Enter()
+        {
+            Console.WriteLine("enter phase 2");
+        }
+
+        public void Leave()
+        {
+            Console.WriteLine("exit phase 2");
+        }
+
+        public virtual bool Tick(CubeAnimationData cubeAnimationData)
+        {
+            PerformAction(cubeAnimationData);
+            return cubeAnimationData.Rotate.x >= ToRadians(45);
+        }
         
-        public void Advance(Vector rotate, Vector scale, Vector translate)
-        {
-            rotate.x += StepSize;
-        }
-
-        public virtual bool Finished(Vector rotate, Vector scale, Vector translate)
-        {
-            return rotate.x >= ToRadians(45);
-        }
-
         public static double ToRadians(double val)
         {
             return (System.Math.PI / 180) * val;
+        }
+
+        protected void PerformAction(CubeAnimationData cubeAnimationData)
+        {
+            cubeAnimationData.Rotate.x += StepSize;
         }
     }
 
@@ -28,10 +42,10 @@ namespace MatrixTransformations.Animation
         {
             StepSize = -StepSize;
         }
-        
-        public override bool Finished(Vector rotate, Vector scale, Vector translate)
+        public override bool Tick(CubeAnimationData cubeAnimationData)
         {
-            return rotate.x <= ToRadians(0);
+            PerformAction(cubeAnimationData);
+            return cubeAnimationData.Rotate.x <= ToRadians(0);
         }
     }
 }
