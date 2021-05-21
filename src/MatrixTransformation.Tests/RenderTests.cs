@@ -12,7 +12,7 @@ namespace MatrixTransformation.Tests
         [TestMethod]
         public void TestProjectionTransformation()
         {
-            var projectionMatrix = Render.ProjectionTransformation(10, 5);
+            var projectionMatrix = Renderer.ProjectionTransformation(10, 5);
             
             Assert.AreEqual(Math.Round(projectionMatrix[0, 0], 1), 0.2);
             Assert.AreEqual(Math.Round(projectionMatrix[1, 1], 1), 0.2);
@@ -30,7 +30,7 @@ namespace MatrixTransformation.Tests
                 13, 14, 15, 16
             );
             
-            var transformMatrix = Render.ModelTransformation(new Vector(2,2,2), new Vector(0,0,0), new Vector(0,0,0));
+            var transformMatrix = Renderer.ModelTransformation(new Vector(2,2,2), new Vector(0,0,0), new Vector(0,0,0));
 
             var result = matrix1* transformMatrix;
 
@@ -58,7 +58,7 @@ namespace MatrixTransformation.Tests
         [TestMethod]
         public void TestModelTransformationRotation()
         {
-            var result = Render.ModelTransformation(new Vector(1,1,1), new Vector(90, 90, 90), new Vector(0, 0, 0));
+            var result = Renderer.ModelTransformation(new Vector(1,1,1), new Vector(90, 90, 90), new Vector(0, 0, 0));
 
             Assert.AreEqual(Math.Round(result[0, 0], 3), 0.201);
             Assert.AreEqual(Math.Round(result[0, 1],3), 0.401);
@@ -79,7 +79,7 @@ namespace MatrixTransformation.Tests
         [TestMethod]
         public void TestModelTransformationTranslate()
         {
-            var result = Render.ModelTransformation(new Vector(1, 1, 1), new Vector(0, 0, 0), new Vector(5, 5, 5));
+            var result = Renderer.ModelTransformation(new Vector(1, 1, 1), new Vector(0, 0, 0), new Vector(5, 5, 5));
 
             Assert.AreEqual(Math.Round(result[0, 0], 3), 1);
             Assert.AreEqual(Math.Round(result[0, 1], 3), 0);
