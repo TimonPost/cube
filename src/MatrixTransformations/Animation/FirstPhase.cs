@@ -19,7 +19,7 @@ namespace MatrixTransformations.Animation
 
         public virtual bool Tick(CubeAnimationData cubeAnimationData)
         {
-            return true;
+            return false;
         }
     }
 

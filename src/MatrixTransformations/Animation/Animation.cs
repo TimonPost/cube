@@ -101,6 +101,8 @@ namespace MatrixTransformations.Animation
             };
 
             _meshSceneObject = meshSceneObject;
+
+            EnterNotActive();
         }
 
         private void EnterPhaseOne()
