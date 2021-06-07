@@ -1,5 +1,5 @@
 ﻿using System.Drawing;
-using MatrixTransformations.Math;
+using MatrixTransformations.MathCustom;
 
 namespace MatrixTransformations
 {

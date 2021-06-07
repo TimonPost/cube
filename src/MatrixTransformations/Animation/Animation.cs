@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MatrixTransformations.Math;
+using MatrixTransformations.MathCustom;
 using MatrixTransformations.World;
 
 namespace MatrixTransformations.Animation
@@ -24,16 +24,19 @@ namespace MatrixTransformations.Animation
         Phase1Inverse,
         Phase2Inverse,
         Phase3Inverse,
-        NotActive
+        NotActive,
+        InvertAnimation
     }
 
     public class CubeAnimationData
     {
         public MeshSceneObject MeshSceneObject { get; }
+        public Camera Camera { get; }
 
-        public CubeAnimationData(MeshSceneObject meshSceneObject)
+        public CubeAnimationData(MeshSceneObject meshSceneObject, Camera camera)
         {
             MeshSceneObject = meshSceneObject;
+            Camera = camera;
         }
     }
 
@@ -76,27 +79,30 @@ namespace MatrixTransformations.Animation
         private readonly Action[,] _fsm;
 
         private MeshSceneObject _meshSceneObject;
+        private readonly Camera _camera;
 
         /// <summary>
         ///     The state that is currently active.
         /// </summary>
         private IState ActiveState { get; set; }
 
-        public AnimationFiniteStateMachine(MeshSceneObject meshSceneObject)
+        public AnimationFiniteStateMachine(MeshSceneObject meshSceneObject, Camera camera)
         {
-            _fsm = new Action[7, 3]
+            _fsm = new Action[8, 3]
             {
                 // Start, Finish, Stop
                 {null, EnterPhaseTwo, EnterNotActive}, // PhaseOne
                 {null, EnterPhaseThree, EnterNotActive}, // PhaseTwo
-                {null, EnterPhaseThreeInverse, EnterNotActive}, // PhaseThree
+                {null, InverseAnimation, EnterNotActive}, // PhaseThree
                 {null, EnterPhaseOne, EnterNotActive}, // PhaseOneInverse 
                 {null, EnterPhaseOneInverse, EnterNotActive}, // PhaseTwoInverse
                 {null, EnterPhaseTwoInverse, EnterNotActive}, // PhaseThreeInverse 
                 {null, EnterNotActive, EnterNotActive}, // NotActive 
+                {null, EnterPhaseOne, EnterNotActive}, // InverseAnimation 
             };
 
             _meshSceneObject = meshSceneObject;
+            _camera = camera;
 
             EnterNotActive();
         }
@@ -136,6 +142,11 @@ namespace MatrixTransformations.Animation
             EnterState(new NotActiveState());
         }
 
+        private void InverseAnimation()
+        {
+            EnterState(new InvertAnimationState());
+        }
+
         /// <summary>
         ///     Starts the finite state-machine.
         ///     This will make the shark look for a vetex to go to.
@@ -151,7 +162,7 @@ namespace MatrixTransformations.Animation
         public void Tick()
         {
             // If some state is finished, try to advance.
-            if (ActiveState?.Tick(new CubeAnimationData(_meshSceneObject)) ?? false) ProcessEvent(Events.Finished);
+            if (ActiveState?.Tick(new CubeAnimationData(_meshSceneObject, _camera)) ?? false) ProcessEvent(Events.Finished);
         }
 
         /// <summary>

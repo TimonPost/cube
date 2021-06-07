@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
-using MatrixTransformations.Math;
+using MatrixTransformations.MathCustom;
 using MatrixTransformations.World;
-using Matrix = MatrixTransformations.Math.Matrix;
+using Matrix = MatrixTransformations.MathCustom.Matrix;
 
 namespace MatrixTransformations
 {
@@ -42,7 +42,7 @@ namespace MatrixTransformations
             vector.w = 1;
 
             var transformed = Vector.Transform(vector, modelViewMatrix);
-            var projection = ProjectionTransformation(2, transformed.z);
+            var projection = ProjectionTransformation(5, transformed.z);
             Vector projected = Vector.Transform(transformed, projection);
 
             //Scale to screen

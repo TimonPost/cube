@@ -1,5 +1,5 @@
 ﻿using System;
-using MatrixTransformations.Math;
+using MatrixTransformations.MathCustom;
 
 namespace MatrixTransformations.Animation
 {
@@ -33,6 +33,7 @@ namespace MatrixTransformations.Animation
         protected void PerformAction(CubeAnimationData cubeAnimationData)
         {
             cubeAnimationData.MeshSceneObject.Rotation.x += StepSize;
+            cubeAnimationData.Camera.THETA -= 0.030f;
         }
     }
 

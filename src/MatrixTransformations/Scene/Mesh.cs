@@ -5,7 +5,8 @@ using System.IO;
 using System.Linq;
 using System.Numerics;
 using OBJ3DWavefrontLoader;
-using Vector = MatrixTransformations.Math.Vector;
+using MatrixTransformations.MathCustom;
+using Vector = MatrixTransformations.MathCustom.Vector;
 
 namespace MatrixTransformations.World
 {
@@ -26,7 +27,7 @@ namespace MatrixTransformations.World
         {
             var vertexes = new List<Vertex>();
             var indexes = new List<int>();
-
+            
             SimpleMesh objMesh;
             using (var reader = new StreamReader(path))
             {

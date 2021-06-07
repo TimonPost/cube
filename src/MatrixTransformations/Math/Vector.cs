@@ -1,4 +1,4 @@
-﻿namespace MatrixTransformations.Math
+﻿namespace MatrixTransformations.MathCustom
 {
     public struct Vector
     {

@@ -1,5 +1,5 @@
 using System;
-using MatrixTransformations.Math;
+using MatrixTransformations.MathCustom;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MatrixTransformation.Tests
@@ -244,6 +244,19 @@ namespace MatrixTransformation.Tests
             Assert.AreEqual(matrix1[3, 1], 69);
             Assert.AreEqual(matrix1[3, 2], 58);
             Assert.AreEqual(matrix1[3, 3], 48);
+        }
+
+        [TestMethod]
+        public void MatrixInversion()
+        {
+            var matrix1 = new Matrix(
+                1, 1, 1, -1,
+                1, 1, -1, 1,
+                1, -1, 1, 1,
+                -1, 1, 1, 1
+            );
+
+            var a = matrix1.Invert();
         }
     }
 }

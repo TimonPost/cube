@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-using MatrixTransformations.Math;
+using MatrixTransformations.MathCustom;
 using MatrixTransformations.World;
 
 namespace MatrixTransformations.CoordinateSystem
