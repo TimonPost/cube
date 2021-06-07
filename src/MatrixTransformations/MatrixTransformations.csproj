@@ -51,6 +51,7 @@
     <Compile Include="Animation\IPhase.cs" />
     <Compile Include="Animation\SecondPhase.cs" />
     <Compile Include="Animation\ThirdPhase.cs" />
+    <Compile Include="KeyManager.cs" />
     <Compile Include="Renderer.cs" />
     <Compile Include="Scene\CoordinateSystem\Axis.cs" />
     <Compile Include="Input.cs" />
