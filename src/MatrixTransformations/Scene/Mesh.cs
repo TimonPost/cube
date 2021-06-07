@@ -80,13 +80,13 @@ namespace MatrixTransformations.World
 
             IReadOnlyList<Vertex> vertexbuffer = new List<Vertex>
             {
-               new Vertex(new Vector( 1.0f,  1.0f, 1.0f), Color.Blue),     //0
-               new Vertex( new Vector( 1.0f, -1.0f, 1.0f),Color.Green),     //1
-               new Vertex( new Vector(-1.0f, -1.0f, 1.0f),Color.Red),     //2
-               new Vertex( new Vector(-1.0f,  1.0f, 1.0f),Color.Blue),     //3
+               new Vertex(new Vector( 1.0f,  1.0f, 1.0f), Color.Red),     //0
+               new Vertex( new Vector( 1.0f, -1.0f, 1.0f),Color.Lime),     //1
+               new Vertex( new Vector(-1.0f, -1.0f, 1.0f),Color.Lime),     //2
+               new Vertex( new Vector(-1.0f,  1.0f, 1.0f),Color.Red),     //3
               
-               new Vertex( new Vector( 1.0f,  1.0f, -1.0f),Color.Blue),    //4
-               new Vertex( new Vector( 1.0f, -1.0f, -1.0f),Color.Green),    //5
+               new Vertex( new Vector( 1.0f,  1.0f, -1.0f),Color.Lime),    //4
+               new Vertex( new Vector( 1.0f, -1.0f, -1.0f),Color.Blue),    //5
                new Vertex( new Vector(-1.0f, -1.0f, -1.0f),Color.Red),    //6
                new Vertex( new Vector(-1.0f,  1.0f, -1.0f),Color.Blue),    //7
             };

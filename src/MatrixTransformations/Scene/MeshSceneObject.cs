@@ -6,17 +6,17 @@ namespace MatrixTransformations.World
 {
     public class MeshSceneObject : SceneObject
     {
-        private readonly Renderer _renderer;
+        protected readonly Renderer Renderer;
         
         public MeshSceneObject(Mesh mesh, Renderer renderer)
         {
-            _renderer = renderer;
+            Renderer = renderer;
             Mesh = mesh;
         }
 
         public override void Draw(Graphics graphics, Matrix viewMatrix)
         {
-            _renderer.Draw(graphics, Mesh.VertexBuffer, Mesh.IndexBuffer, Matrix.ModelTransformation(Scale, Rotation, Position) * viewMatrix);
+            Renderer.Draw(graphics, Mesh.VertexBuffer, Mesh.IndexBuffer, Matrix.ModelTransformation(Scale, Rotation, Position) * viewMatrix);
         }
 
         public override void Update()

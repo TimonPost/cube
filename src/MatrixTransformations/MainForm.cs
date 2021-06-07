@@ -19,9 +19,11 @@ namespace MatrixTransformations
         {
             InitializeComponent();
 
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
+
             var renderer = new Renderer(Canvas.Width, Canvas.Height);
 
-            var cube = new MeshSceneObject(Mesh.Cube, renderer);
+            var cube = new VertexLabeledMeshSceneObject(Mesh.Cube, renderer);
             
             _scene.Add(new CoordinateSystem.CoordinateSystem(renderer));
             _scene.Add(cube);
@@ -30,7 +32,12 @@ namespace MatrixTransformations
 
             _scene.AddAnimationStateMachines(new AnimationFiniteStateMachine(cube));
         }
-        
+
+        private void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            Console.WriteLine(e.ExceptionObject);
+        }
+
         /// <summary>
         /// Calculates the time between the current frame and the previous frame.
         /// </summary>
