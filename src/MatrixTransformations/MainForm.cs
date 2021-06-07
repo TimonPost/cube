@@ -21,14 +21,10 @@ namespace MatrixTransformations
             var renderer = new Renderer(Canvas.Width, Canvas.Height);
 
             var cube = new MeshSceneObject(Mesh.Cube, renderer);
-
-            var stateMachine = new AnimationFiniteStateMachine(cube);
-            stateMachine.Start();
-
             
             _scene.Add(new CoordinateSystem.CoordinateSystem(renderer));
             _scene.Add(cube);
-            _scene.AddAnimationStateMachines(stateMachine);
+            _scene.AddAnimationStateMachines(new AnimationFiniteStateMachine(cube));
         }
         
         /// <summary>

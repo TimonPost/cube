@@ -94,7 +94,7 @@ namespace MatrixTransformations.Animation
                 {null, EnterPhaseTwo, EnterNotActive}, // PhaseOne
                 {null, EnterPhaseThree, EnterNotActive}, // PhaseTwo
                 {null, EnterPhaseThreeInverse, EnterNotActive}, // PhaseThree
-                {null, EnterNotActive, EnterNotActive}, // PhaseOneInverse 
+                {null, EnterPhaseOne, EnterNotActive}, // PhaseOneInverse 
                 {null, EnterPhaseOneInverse, EnterNotActive}, // PhaseTwoInverse
                 {null, EnterPhaseTwoInverse, EnterNotActive}, // PhaseThreeInverse 
                 {null, EnterNotActive, EnterNotActive}, // NotActive 
@@ -152,11 +152,8 @@ namespace MatrixTransformations.Animation
         /// </summary>
         public void Tick()
         {
-            // If no state is set, start the state machine.
-            if (ActiveState == null) Start();
-
             // If some state is finished, try to advance.
-            if (ActiveState.Tick(new CubeAnimationData(_meshSceneObject.Rotation, _meshSceneObject.Scale, _meshSceneObject.Position))) ProcessEvent(Events.Finished);
+            if (ActiveState?.Tick(new CubeAnimationData(_meshSceneObject.Rotation, _meshSceneObject.Scale, _meshSceneObject.Position)) ?? false) ProcessEvent(Events.Finished);
         }
 
         /// <summary>
