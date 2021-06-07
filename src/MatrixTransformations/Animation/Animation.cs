@@ -12,7 +12,8 @@ namespace MatrixTransformations.Animation
     public enum Events
     {
         Start,
-        Finished
+        Finished,
+        Stop
     }
 
     public enum States
@@ -71,7 +72,6 @@ namespace MatrixTransformations.Animation
     {
         void Tick();
         void Start();
-
     }
     public class AnimationFiniteStateMachine : IAnimationFiniteStateMachine
     {
@@ -86,16 +86,16 @@ namespace MatrixTransformations.Animation
 
         public AnimationFiniteStateMachine(MeshSceneObject meshSceneObject)
         {
-            _fsm = new Action[7, 2]
+            _fsm = new Action[7, 3]
             {
-                // Start, Finish 
-                {null, EnterPhaseTwo}, // PhaseOne
-                {null, EnterPhaseThree}, // PhaseTwo
-                {null, EnterPhaseThreeInverse}, // PhaseThree
-                {null, EnterNotActive}, // PhaseOneInverse 
-                {null, EnterPhaseOneInverse}, // PhaseTwoInverse
-                {null, EnterPhaseTwoInverse}, // PhaseThreeInverse 
-                {null, EnterNotActive}, // NotActive 
+                // Start, Finish, Stop
+                {null, EnterPhaseTwo, EnterNotActive}, // PhaseOne
+                {null, EnterPhaseThree, EnterNotActive}, // PhaseTwo
+                {null, EnterPhaseThreeInverse, EnterNotActive}, // PhaseThree
+                {null, EnterNotActive, EnterNotActive}, // PhaseOneInverse 
+                {null, EnterPhaseOneInverse, EnterNotActive}, // PhaseTwoInverse
+                {null, EnterPhaseTwoInverse, EnterNotActive}, // PhaseThreeInverse 
+                {null, EnterNotActive, EnterNotActive}, // NotActive 
             };
 
             _meshSceneObject = meshSceneObject;
@@ -144,7 +144,7 @@ namespace MatrixTransformations.Animation
         {
             EnterPhaseOne();
         }
-
+        
         /// <summary>
         ///     Update logic for the state-machine.
         /// </summary>

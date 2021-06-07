@@ -47,16 +47,12 @@ namespace MatrixTransformations
         private void CheckKeyPress()
         {
             if (Keyboard.IsKeyDown(Keys.PageUp))
-            {
                 // decrease z
                 ApplyEffect((ms) => ms.Position.z -= 2f);
-            }
 
             if (Keyboard.IsKeyDown(Keys.PageUp))
-            {
                 // increase z
                 ApplyEffect((ms) => ms.Position.z += 2f);
-            }
 
             if ((Control.ModifierKeys & Keys.Shift) != 0)
             {
@@ -96,12 +92,23 @@ namespace MatrixTransformations
                 
                 if (Keyboard.IsKeyDown(Keys.C))
                 {
-                    // reset to default
+                    ApplyEffect((ms =>
+                    {
+                        ms.Scale = new Vector(1, 1, 1);
+                        ms.Rotation = new Vector();
+                        ms.Position = new Vector();
+                    }));
+
+                   Camera.Reset();
                 }
 
                 if (Keyboard.IsKeyDown(Keys.A) )
                 {
-                    // start animation.
+                    // reset to default
+                    foreach (var animationFiniteStateMachine in _animationStateMachines)
+                    {
+                        animationFiniteStateMachine.Start();
+                    }
                 }
             }
         }
