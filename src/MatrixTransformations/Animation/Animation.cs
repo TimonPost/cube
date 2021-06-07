@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MatrixTransformations.Math;
+using MatrixTransformations.MathCustom;
 using MatrixTransformations.World;
 
 namespace MatrixTransformations.Animation

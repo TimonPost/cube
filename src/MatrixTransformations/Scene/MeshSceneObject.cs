@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 using MatrixTransformations.Animation;
-using MatrixTransformations.Math;
+using MatrixTransformations.MathCustom;
 
 namespace MatrixTransformations.World
 {

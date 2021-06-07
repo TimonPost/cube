@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 using MatrixTransformations.Animation;
-using MatrixTransformations.Math;
+using MatrixTransformations.MathCustom;
 using MatrixTransformations.World;
 
 namespace MatrixTransformations
@@ -25,6 +25,10 @@ namespace MatrixTransformations
             _scene.Add(new CoordinateSystem.CoordinateSystem(renderer));
             _scene.Add(cube);
             _scene.AddAnimationStateMachines(new AnimationFiniteStateMachine(cube));
+
+            phiLabel.Text = $"PHI {_scene.Camera.PHI}";
+            thetaLabel.Text = $"THETA {_scene.Camera.THETA}";
+            rLabel.Text = $"R {_scene.Camera.R}";
         }
         
         /// <summary>
@@ -50,6 +54,35 @@ namespace MatrixTransformations
             var deltaTime = CalculateDeltaTime();
             _scene.Update(deltaTime);
             _scene.Draw(e.Graphics);
+        }
+
+        private void phiTrack_ValueChanged(object sender, EventArgs e)
+        {
+            _scene.Camera.PHI = ((TrackBar) sender).Value;
+            phiLabel.Text = "PHI: " + _scene.Camera.PHI;
+        }
+
+        private void thetaTrack_ValueChanged(object sender, EventArgs e)
+        {
+            _scene.Camera.THETA = ((TrackBar)sender).Value;
+            thetaLabel.Text = "THETA: " + _scene.Camera.THETA;
+        }
+
+        private void rTrack_ValueChanged(object sender, EventArgs e)
+        {
+            _scene.Camera.R = ((TrackBar)sender).Value;
+            rLabel.Text = "R: " + _scene.Camera.R;
+        }
+
+        private void dTrack_ValueChanged(object sender, EventArgs e)
+        {
+            _scene.Camera.D = ((TrackBar)sender).Value;
+            dLabel.Text = "D: " + _scene.Camera.D;
+        }
+
+        private void phiTrack_Scroll(object sender, EventArgs e)
+        {
+
         }
     }
 }

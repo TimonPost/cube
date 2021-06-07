@@ -1,5 +1,5 @@
 ﻿using System;
-using MatrixTransformations.Math;
+using MatrixTransformations.MathCustom;
 
 namespace MatrixTransformations.Animation
 {

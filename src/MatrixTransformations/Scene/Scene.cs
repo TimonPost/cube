@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using MatrixTransformations.Animation;
-using MatrixTransformations.Math;
+using MatrixTransformations.MathCustom;
 using MatrixTransformations.World;
 
 namespace MatrixTransformations
