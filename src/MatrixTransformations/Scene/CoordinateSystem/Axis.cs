@@ -17,7 +17,11 @@ namespace MatrixTransformations.CoordinateSystem
         {
             _font = new Font("Arial", 10);
             _pen = new Pen(color);
+
+            
+
             _fontBrush = new SolidBrush(color);
+
 
             Label = label;
             BaseVector = baseVector;

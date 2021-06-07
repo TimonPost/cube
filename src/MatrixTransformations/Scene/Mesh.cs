@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using MatrixTransformations.Math;
 
 namespace MatrixTransformations.World
 {
     public class Mesh
     {
-        public Mesh(IReadOnlyList<Vector> vertexBuffer, IReadOnlyList<int> indexBuffer)
+        public Mesh(IReadOnlyList<Vertex> vertexBuffer, IReadOnlyList<int> indexBuffer)
         {
             VertexBuffer = vertexBuffer;
             IndexBuffer = indexBuffer;
         }
 
-        public IReadOnlyList<Vector> VertexBuffer { get; }
+        public IReadOnlyList<Vertex> VertexBuffer { get; }
         public IReadOnlyList<int> IndexBuffer { get; }
 
         #region Cube
@@ -31,17 +32,17 @@ namespace MatrixTransformations.World
             //      |/         |/                  z
             //      2----------1
 
-            IReadOnlyList<Vector> vertexbuffer = new List<Vector>
+            IReadOnlyList<Vertex> vertexbuffer = new List<Vertex>
             {
-                new Vector( 1.0f,  1.0f, 1.0f),     //0
-                new Vector( 1.0f, -1.0f, 1.0f),     //1
-                new Vector(-1.0f, -1.0f, 1.0f),     //2
-                new Vector(-1.0f,  1.0f, 1.0f),     //3
-
-                new Vector( 1.0f,  1.0f, -1.0f),    //4
-                new Vector( 1.0f, -1.0f, -1.0f),    //5
-                new Vector(-1.0f, -1.0f, -1.0f),    //6
-                new Vector(-1.0f,  1.0f, -1.0f),    //7
+               new Vertex(new Vector( 1.0f,  1.0f, 1.0f), Color.Blue),     //0
+               new Vertex( new Vector( 1.0f, -1.0f, 1.0f),Color.Green),     //1
+               new Vertex( new Vector(-1.0f, -1.0f, 1.0f),Color.Red),     //2
+               new Vertex( new Vector(-1.0f,  1.0f, 1.0f),Color.Blue),     //3
+              
+               new Vertex( new Vector( 1.0f,  1.0f, -1.0f),Color.Blue),    //4
+               new Vertex( new Vector( 1.0f, -1.0f, -1.0f),Color.Green),    //5
+               new Vertex( new Vector(-1.0f, -1.0f, -1.0f),Color.Red),    //6
+               new Vertex( new Vector(-1.0f,  1.0f, -1.0f),Color.Blue),    //7
             };
 
             IReadOnlyList<int> indexBuffer = new List<int>()
