@@ -42,14 +42,14 @@ namespace MatrixTransformations.Animation
         public virtual bool Tick(CubeAnimationData cubeAnimationData)
         {
             PerformAction(cubeAnimationData);
-            return cubeAnimationData.Scale.x >= 1.5f;
+            return cubeAnimationData.MeshSceneObject.Scale.x >= 1.5f;
         }
 
         protected void PerformAction(CubeAnimationData cubeAnimationData)
         {
-            cubeAnimationData.Scale.x += StepSize;
-            cubeAnimationData.Scale.y += StepSize;
-            cubeAnimationData.Scale.z += StepSize;
+            cubeAnimationData.MeshSceneObject.Scale.x += StepSize;
+            cubeAnimationData.MeshSceneObject.Scale.y += StepSize;
+            cubeAnimationData.MeshSceneObject.Scale.z += StepSize;
         }
     }
 
@@ -65,7 +65,7 @@ namespace MatrixTransformations.Animation
         public override bool Tick(CubeAnimationData cubeAnimationData)
         {
             PerformAction(cubeAnimationData);
-            return cubeAnimationData.Scale.x <= 1.0f;
+            return cubeAnimationData.MeshSceneObject.Scale.x <= 1.0f;
         }
     }
 }

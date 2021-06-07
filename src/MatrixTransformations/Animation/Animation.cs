@@ -29,15 +29,11 @@ namespace MatrixTransformations.Animation
 
     public class CubeAnimationData
     {
-        public Vector Rotate { get; }
-        public Vector Scale { get; }
-        public Vector Translate { get; }
+        public MeshSceneObject MeshSceneObject { get; }
 
-        public CubeAnimationData(Vector rotate, Vector scale, Vector translate)
+        public CubeAnimationData(MeshSceneObject meshSceneObject)
         {
-            Rotate = rotate;
-            Scale = scale;
-            Translate = translate;
+            MeshSceneObject = meshSceneObject;
         }
     }
 
@@ -155,7 +151,7 @@ namespace MatrixTransformations.Animation
         public void Tick()
         {
             // If some state is finished, try to advance.
-            if (ActiveState?.Tick(new CubeAnimationData(_meshSceneObject.Rotation, _meshSceneObject.Scale, _meshSceneObject.Position)) ?? false) ProcessEvent(Events.Finished);
+            if (ActiveState?.Tick(new CubeAnimationData(_meshSceneObject)) ?? false) ProcessEvent(Events.Finished);
         }
 
         /// <summary>

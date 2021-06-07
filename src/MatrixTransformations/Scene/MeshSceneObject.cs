@@ -23,9 +23,9 @@ namespace MatrixTransformations.World
         {
         }
 
-        public Vector Rotation { get; set; } = new Vector();
-        public Vector Position { get; set; } = new Vector();
-        public Vector Scale { get; set; } = new Vector(1,1,1,1);
+        public Vector Rotation  = new Vector();
+        public Vector Position  = new Vector();
+        public Vector Scale = new Vector(1,1,1,1);
 
         public Mesh Mesh { get; }
     }
