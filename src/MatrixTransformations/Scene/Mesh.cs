@@ -69,5 +69,20 @@ namespace MatrixTransformations.World
         public static Mesh Cube => LazyCube.Value;
 
         #endregion
+
+        public static Mesh CreateLine(Vector position1, Color color1, Vector position2, Color color2)
+        {
+            IReadOnlyList<Vertex> vertexbuffer = new List<Vertex>
+            {
+                new Vertex(position1, color1),
+                new Vertex(position2, color2),
+            };
+
+            IReadOnlyList<int> indexBuffer = new List<int>()
+            {
+                0,1
+            };
+            return new Mesh(vertexbuffer, indexBuffer);
+        }
     }
 }

@@ -16,15 +16,17 @@ namespace MatrixTransformations
 
         public MainForm()
         {
-            var renderer = new Renderer(Width, Height);
+            InitializeComponent();
+
+            var renderer = new Renderer(Canvas.Width, Canvas.Height);
 
             var cube = new MeshSceneObject(Mesh.Cube, renderer);
 
             var stateMachine = new AnimationFiniteStateMachine(cube);
             stateMachine.Start();
 
-            InitializeComponent();
-            _scene.Add(new CoordinateSystem.CoordinateSystem());
+            
+            _scene.Add(new CoordinateSystem.CoordinateSystem(renderer));
             _scene.Add(cube);
             _scene.AddAnimationStateMachines(stateMachine);
         }

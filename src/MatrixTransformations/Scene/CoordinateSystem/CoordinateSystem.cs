@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+
 using MatrixTransformations.Math;
 using MatrixTransformations.World;
 
@@ -6,13 +7,20 @@ namespace MatrixTransformations.CoordinateSystem
 {
     public class CoordinateSystem : SceneObject
     {
-        private Axis[] _axises = new Axis[3]
+        private readonly Renderer _renderer;
+
+        public CoordinateSystem(Renderer renderer)
         {
-            new Axis("X", new Vector(1, 0, 0), Color.Red),
-            new Axis("Y", new Vector(0, 1, 0), Color.Green),
-            new Axis("Z", new Vector(0, 0, 1), Color.Blue)
-        };
-        
+            _axises = new Axis[]
+            {
+                new Axis(renderer, "X", new Vector(1, 0, 0), Color.Red),
+                new Axis(renderer, "Y", new Vector(0, 1, 0), Color.Green),
+                new Axis(renderer, "Z", new Vector(0, 0, -1), Color.Blue),
+            };
+        }
+
+        private Axis[] _axises;
+
         public override void Draw(Graphics graphics, Matrix viewMatrix)
         {
             foreach (Axis axis in _axises)
