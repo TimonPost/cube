@@ -18,7 +18,11 @@ namespace MatrixTransformations.Animation
     {
         Phase1,
         Phase2,
-        Phase3
+        Phase3,
+        Phase1Inverse,
+        Phase2Inverse,
+        Phase3Inverse,
+        NotActive
     }
 
     public class CubeAnimationData
@@ -62,7 +66,13 @@ namespace MatrixTransformations.Animation
         bool Tick(CubeAnimationData cubeAnimationData);
     }
 
-    class AnimationFiniteStateMachine
+   public interface IAnimationFiniteStateMachine
+    {
+        void Tick(CubeAnimationData cubeAnimationData);
+        void Start();
+
+    }
+    public class AnimationFiniteStateMachine : IAnimationFiniteStateMachine
     {
         private readonly Action[,] _fsm;
 
@@ -73,12 +83,16 @@ namespace MatrixTransformations.Animation
 
         public AnimationFiniteStateMachine()
         {
-            _fsm = new Action[3,2]
+            _fsm = new Action[7, 2]
             {
                 // Start, Finish 
-                {null,  EnterPhaseTwo},   // PhaseOne
-                {null,  EnterPhaseThree}, // PhaseTwo,
-                {null,  EnterPhaseOne}  // PhaseThree,   
+                {null, EnterPhaseTwo}, // PhaseOne
+                {null, EnterPhaseThree}, // PhaseTwo
+                {null, EnterPhaseThreeInverse}, // PhaseThree
+                {null, EnterNotActive}, // PhaseOneInverse 
+                {null, EnterPhaseOneInverse}, // PhaseTwoInverse
+                {null, EnterPhaseTwoInverse}, // PhaseThreeInverse 
+                {null, EnterNotActive}, // NotActive 
             };
         }
 
@@ -95,6 +109,26 @@ namespace MatrixTransformations.Animation
         private void EnterPhaseThree()
         {
             EnterState(new ThirdPhase());
+        }
+
+        private void EnterPhaseOneInverse()
+        {
+            EnterState(new FirstPhaseInverse());
+        }
+
+        private void EnterPhaseTwoInverse()
+        {
+            EnterState(new SecondPhaseInverse());
+        }
+
+        private void EnterPhaseThreeInverse()
+        {
+            EnterState(new ThirdPhaseInverse());
+        }
+
+        private void EnterNotActive()
+        {
+            EnterState(new NotActiveState());
         }
 
         /// <summary>

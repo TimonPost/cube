@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using MatrixTransformations.Animation;
 using MatrixTransformations.Math;
 using MatrixTransformations.World;
 
@@ -17,9 +18,12 @@ namespace MatrixTransformations
         {
             var renderer = new Renderer(Width, Height);
 
+            var stateMachine = new AnimationFiniteStateMachine();
+            stateMachine.Start();
+
             InitializeComponent();
             _scene.Add(new CoordinateSystem.CoordinateSystem());
-            _scene.Add(new MeshSceneObject(Mesh.Cube, renderer));
+            _scene.Add(new MeshSceneObject(Mesh.Cube, renderer, stateMachine));
         }
         
         /// <summary>
