@@ -49,59 +49,50 @@ namespace MatrixTransformations
             if (Keyboard.IsKeyDown(Keys.PageUp))
             {
                 // decrease z
+                ApplyEffect((ms) => ms.Position.z -= 2f);
             }
 
             if (Keyboard.IsKeyDown(Keys.PageUp))
             {
                 // increase z
+                ApplyEffect((ms) => ms.Position.z += 2f);
             }
 
             if ((Control.ModifierKeys & Keys.Shift) != 0)
             {
                 if (Keyboard.IsKeyDown(Keys.S))
-                {
                     // decrease scale
                     ApplyEffect((ms) => ms.Scale = ms.Scale * 0.9f);
-                }
-
-                if (Keyboard.IsKeyDown(Keys.Y))
-                {
-                    // decrease rotate y
-                }
-
-                if (Keyboard.IsKeyDown(Keys.Z))
-                {
-                    // decrease rotate z
-                }
 
                 if (Keyboard.IsKeyDown(Keys.X))
-                {
                     // decrease rotate x
-                }
+                    ApplyEffect((ms) => ms.Rotation.x -= 0.1f);
+
+                if (Keyboard.IsKeyDown(Keys.Y))
+                    // decrease rotate y
+                    ApplyEffect((ms) => ms.Rotation.y -= 0.1f);
+
+                if (Keyboard.IsKeyDown(Keys.Z))
+                    // decrease rotate z
+                    ApplyEffect((ms) => ms.Rotation.z -= 0.1f);
             }
             else
             {
                 if (Keyboard.IsKeyDown(Keys.S))
-                {
                     // increase scale
                     ApplyEffect((ms) => ms.Scale = ms.Scale * 1.1f);
-                }
-
+                
                 if (Keyboard.IsKeyDown(Keys.X))
-                {
                     // increase rotate x
-                }
-
+                    ApplyEffect((ms) => ms.Rotation.x += 0.1f);
 
                 if (Keyboard.IsKeyDown(Keys.Y))
-                {
                     // increase rotate y
-                }
+                    ApplyEffect((ms) => ms.Rotation.y += 0.1f);
                 
                 if (Keyboard.IsKeyDown(Keys.Z))
-                {
                     // increase rotate z
-                }
+                    ApplyEffect((ms) => ms.Rotation.z += 0.1f);
                 
                 if (Keyboard.IsKeyDown(Keys.C))
                 {
