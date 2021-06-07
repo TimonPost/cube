@@ -59,7 +59,7 @@ namespace MatrixTransformations
         /// <param name="color"></param>
         /// <param name="position"></param>
         /// <param name="modelViewMatrix"></param>
-        public void DrawText(Graphics graphics, string text, Color color, Vector position, Matrix modelViewMatrix)
+        public void DrawText(Graphics graphics, string text, Color color ,Vector position, Matrix modelViewMatrix)
         {
             if (_fontBrush == null)
             {
@@ -98,15 +98,15 @@ namespace MatrixTransformations
                     var point2 = new PointF(secondVector.x, secondVector.y);
 
                     // Avoid drawing zero line, because that results in an out of memory exception.
-                    if (point1 == point2)
+                    if(point1 == point2)
                         return;
-
+                    
 
                     using (var linearGradientBrush = new LinearGradientBrush(point1, point2, firstVertex.Color, secondVertex.Color))
                     {
                         if (_pen == null)
                         {
-                            _pen = new Pen(linearGradientBrush, 3f);
+                            _pen = new Pen(linearGradientBrush, 1f);
                         }
                         else
                         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 using MatrixTransformations.Animation;
@@ -24,6 +25,9 @@ namespace MatrixTransformations
             
             _scene.Add(new CoordinateSystem.CoordinateSystem(renderer));
             _scene.Add(cube);
+
+            _scene.Add(new MeshSceneObject(Mesh.FromObj("Models/Suzanne.obj", Color.Chocolate), renderer));
+
             _scene.AddAnimationStateMachines(new AnimationFiniteStateMachine(cube));
         }
         
