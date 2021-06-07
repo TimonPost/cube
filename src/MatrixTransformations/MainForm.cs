@@ -19,12 +19,15 @@ namespace MatrixTransformations
         {
             var renderer = new Renderer(Width, Height);
 
-            var stateMachine = new AnimationFiniteStateMachine();
+            var cube = new MeshSceneObject(Mesh.Cube, renderer);
+
+            var stateMachine = new AnimationFiniteStateMachine(cube);
             stateMachine.Start();
 
             InitializeComponent();
             _scene.Add(new CoordinateSystem.CoordinateSystem());
-            _scene.Add(new MeshSceneObject(Mesh.Cube, renderer, stateMachine));
+            _scene.Add(cube);
+            _scene.AddAnimationStateMachines(stateMachine);
         }
         
         /// <summary>

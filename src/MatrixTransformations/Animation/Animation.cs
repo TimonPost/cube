@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using MatrixTransformations.Math;
+using MatrixTransformations.World;
 
 namespace MatrixTransformations.Animation
 {
@@ -68,7 +69,7 @@ namespace MatrixTransformations.Animation
 
    public interface IAnimationFiniteStateMachine
     {
-        void Tick(CubeAnimationData cubeAnimationData);
+        void Tick();
         void Start();
 
     }
@@ -76,12 +77,14 @@ namespace MatrixTransformations.Animation
     {
         private readonly Action[,] _fsm;
 
+        private MeshSceneObject _meshSceneObject;
+
         /// <summary>
         ///     The state that is currently active.
         /// </summary>
         private IState ActiveState { get; set; }
 
-        public AnimationFiniteStateMachine()
+        public AnimationFiniteStateMachine(MeshSceneObject meshSceneObject)
         {
             _fsm = new Action[7, 2]
             {
@@ -94,6 +97,8 @@ namespace MatrixTransformations.Animation
                 {null, EnterPhaseTwoInverse}, // PhaseThreeInverse 
                 {null, EnterNotActive}, // NotActive 
             };
+
+            _meshSceneObject = meshSceneObject;
         }
 
         private void EnterPhaseOne()
@@ -143,13 +148,13 @@ namespace MatrixTransformations.Animation
         /// <summary>
         ///     Update logic for the state-machine.
         /// </summary>
-        public void Tick(CubeAnimationData cubeAnimationData)
+        public void Tick()
         {
             // If no state is set, start the state machine.
             if (ActiveState == null) Start();
 
             // If some state is finished, try to advance.
-            if (ActiveState.Tick(cubeAnimationData)) ProcessEvent(Events.Finished);
+            if (ActiveState.Tick(new CubeAnimationData(_meshSceneObject.Rotation, _meshSceneObject.Scale, _meshSceneObject.Position))) ProcessEvent(Events.Finished);
         }
 
         /// <summary>

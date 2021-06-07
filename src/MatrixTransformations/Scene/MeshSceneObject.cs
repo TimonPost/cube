@@ -7,12 +7,10 @@ namespace MatrixTransformations.World
     public class MeshSceneObject : SceneObject
     {
         private readonly Renderer _renderer;
-        private readonly IAnimationFiniteStateMachine _stateMachine;
-
-        public MeshSceneObject(Mesh mesh, Renderer renderer, IAnimationFiniteStateMachine stateMachine = null)
+        
+        public MeshSceneObject(Mesh mesh, Renderer renderer)
         {
             _renderer = renderer;
-            _stateMachine = stateMachine;
             Mesh = mesh;
         }
 
@@ -23,10 +21,6 @@ namespace MatrixTransformations.World
 
         public override void Update()
         {
-            if (_stateMachine != null)
-            {
-                _stateMachine.Tick(new CubeAnimationData(Rotation, Scale, Position));
-            }
         }
 
         public Vector Rotation { get; set; } = new Vector();
