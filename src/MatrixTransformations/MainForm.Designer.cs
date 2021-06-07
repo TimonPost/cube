@@ -44,9 +44,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.MainSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.Canvas = new System.Windows.Forms.PictureBox();
             this.dTrack = new System.Windows.Forms.TrackBar();
             this.rTrack = new System.Windows.Forms.TrackBar();
             this.thetaTrack = new System.Windows.Forms.TrackBar();
@@ -55,17 +52,20 @@
             this.rLabel = new System.Windows.Forms.Label();
             this.thetaLabel = new System.Windows.Forms.Label();
             this.phiLabel = new System.Windows.Forms.Label();
+            this.MainSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.Canvas = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dTrack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rTrack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thetaTrack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.phiTrack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer)).BeginInit();
             this.MainSplitContainer.Panel1.SuspendLayout();
             this.MainSplitContainer.Panel2.SuspendLayout();
             this.MainSplitContainer.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dTrack)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rTrack)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.thetaTrack)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.phiTrack)).BeginInit();
             this.SuspendLayout();
             // 
             // FrameTimer
@@ -209,7 +209,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(449, 816);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(495, 816);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // label8
@@ -262,43 +262,6 @@
             this.label1.TabIndex = 24;
             this.label1.Text = "PgUp/PgDn: decrase / increase z";
             // 
-            // MainSplitContainer
-            // 
-            this.MainSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainSplitContainer.Location = new System.Drawing.Point(0, 0);
-            this.MainSplitContainer.Name = "MainSplitContainer";
-            // 
-            // MainSplitContainer.Panel1
-            // 
-            this.MainSplitContainer.Panel1.Controls.Add(this.tableLayoutPanel2);
-            // 
-            // MainSplitContainer.Panel2
-            // 
-            this.MainSplitContainer.Panel2.Controls.Add(this.panel1);
-            this.MainSplitContainer.Size = new System.Drawing.Size(1440, 816);
-            this.MainSplitContainer.SplitterDistance = 449;
-            this.MainSplitContainer.TabIndex = 0;
-            // 
-            // panel1
-            // 
-            this.panel1.AutoScroll = true;
-            this.panel1.Controls.Add(this.Canvas);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(987, 816);
-            this.panel1.TabIndex = 1;
-            // 
-            // Canvas
-            // 
-            this.Canvas.BackColor = System.Drawing.Color.Black;
-            this.Canvas.Location = new System.Drawing.Point(0, 0);
-            this.Canvas.Name = "Canvas";
-            this.Canvas.Size = new System.Drawing.Size(800, 800);
-            this.Canvas.TabIndex = 0;
-            this.Canvas.TabStop = false;
-            this.Canvas.Paint += new System.Windows.Forms.PaintEventHandler(this.Canvas_Paint);
-            // 
             // dTrack
             // 
             this.dTrack.Location = new System.Drawing.Point(3, 207);
@@ -323,20 +286,20 @@
             // thetaTrack
             // 
             this.thetaTrack.Location = new System.Drawing.Point(3, 247);
-            this.thetaTrack.Maximum = 40;
-            this.thetaTrack.Minimum = -30;
+            this.thetaTrack.Maximum = -500;
+            this.thetaTrack.Minimum = -1000;
             this.thetaTrack.Name = "thetaTrack";
             this.thetaTrack.Size = new System.Drawing.Size(104, 14);
             this.thetaTrack.TabIndex = 32;
             this.thetaTrack.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
-            this.thetaTrack.Value = -30;
+            this.thetaTrack.Value = -1000;
             this.thetaTrack.ValueChanged += new System.EventHandler(this.thetaTrack_ValueChanged);
             // 
             // phiTrack
             // 
             this.phiTrack.Location = new System.Drawing.Point(3, 267);
-            this.phiTrack.Maximum = 0;
-            this.phiTrack.Minimum = -20;
+            this.phiTrack.Maximum = 300;
+            this.phiTrack.Minimum = -900;
             this.phiTrack.Name = "phiTrack";
             this.phiTrack.Size = new System.Drawing.Size(104, 14);
             this.phiTrack.TabIndex = 33;
@@ -381,6 +344,43 @@
             this.phiLabel.TabIndex = 37;
             this.phiLabel.Text = "label9";
             // 
+            // MainSplitContainer
+            // 
+            this.MainSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainSplitContainer.Location = new System.Drawing.Point(0, 0);
+            this.MainSplitContainer.Name = "MainSplitContainer";
+            // 
+            // MainSplitContainer.Panel1
+            // 
+            this.MainSplitContainer.Panel1.Controls.Add(this.tableLayoutPanel2);
+            // 
+            // MainSplitContainer.Panel2
+            // 
+            this.MainSplitContainer.Panel2.Controls.Add(this.panel1);
+            this.MainSplitContainer.Size = new System.Drawing.Size(1440, 816);
+            this.MainSplitContainer.SplitterDistance = 495;
+            this.MainSplitContainer.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.Canvas);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(941, 816);
+            this.panel1.TabIndex = 1;
+            // 
+            // Canvas
+            // 
+            this.Canvas.BackColor = System.Drawing.Color.Black;
+            this.Canvas.Location = new System.Drawing.Point(3, 0);
+            this.Canvas.Name = "Canvas";
+            this.Canvas.Size = new System.Drawing.Size(800, 800);
+            this.Canvas.TabIndex = 0;
+            this.Canvas.TabStop = false;
+            this.Canvas.Paint += new System.Windows.Forms.PaintEventHandler(this.Canvas_Paint);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -392,16 +392,16 @@
             this.Text = "Form1";
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dTrack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rTrack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thetaTrack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.phiTrack)).EndInit();
             this.MainSplitContainer.Panel1.ResumeLayout(false);
             this.MainSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer)).EndInit();
             this.MainSplitContainer.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dTrack)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rTrack)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.thetaTrack)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.phiTrack)).EndInit();
             this.ResumeLayout(false);
 
         }

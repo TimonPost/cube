@@ -26,13 +26,10 @@ namespace MatrixTransformations
             _scene.Add(new CoordinateSystem.CoordinateSystem(renderer));
             _scene.Add(cube);
 
-            _scene.Add(new MeshSceneObject(Mesh.FromObj("Models/Suzanne.obj", Color.Chocolate), renderer));
+           // _scene.Add(new MeshSceneObject(Mesh.FromObj("Models/Suzanne.obj", Color.Chocolate), renderer));
 
             _scene.AddAnimationStateMachines(new AnimationFiniteStateMachine(cube, _scene.Camera));
 
-            phiLabel.Text = $"PHI {_scene.Camera.PHI}";
-            thetaLabel.Text = $"THETA {_scene.Camera.THETA}";
-            rLabel.Text = $"R {_scene.Camera.R}";
         }
         
         /// <summary>
@@ -51,6 +48,14 @@ namespace MatrixTransformations
         {
             // Redraw scene
             Canvas.Invalidate();
+
+            //phiTrack.Value = (int)_scene.Camera.PHI;
+            phiLabel.Text = $"PHI {_scene.Camera.PHI}";
+            // thetaTrack.Value = (int)_scene.Camera.THETA;
+            thetaLabel.Text = $"THETA {_scene.Camera.THETA}";
+            //rTrack.Value = (int)_scene.Camera.R;
+            rLabel.Text = $"R {_scene.Camera.R}";
+
         }
 
         private void Canvas_Paint(object sender, PaintEventArgs e)

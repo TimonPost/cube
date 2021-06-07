@@ -19,11 +19,12 @@ namespace MatrixTransformations.Animation
 
         public virtual bool Tick(CubeAnimationData cubeAnimationData)
         {
-            if (cubeAnimationData.Camera.THETA < -10)
-                cubeAnimationData.Camera.THETA++;
+            if (cubeAnimationData.Camera.THETA < -100)
+                cubeAnimationData.Camera.THETA += 0.030f;
 
-            if (cubeAnimationData.Camera.THETA > -10)
-                cubeAnimationData.Camera.PHI++;
+            if (cubeAnimationData.Camera.PHI > -10)
+                cubeAnimationData.Camera.PHI -= 0.00000001f;
+
        
             return false;
         }
@@ -78,7 +79,7 @@ namespace MatrixTransformations.Animation
             cubeAnimationData.MeshSceneObject.Scale.y += StepSize;
             cubeAnimationData.MeshSceneObject.Scale.z += StepSize;
 
-            cubeAnimationData.Camera.THETA -= 1;
+            cubeAnimationData.Camera.THETA -= 0.030f;
         }
     }
 

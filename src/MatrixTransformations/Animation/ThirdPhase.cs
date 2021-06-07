@@ -33,7 +33,7 @@ namespace MatrixTransformations.Animation
         protected void PerformAction(CubeAnimationData cubeAnimationData)
         {
             cubeAnimationData.MeshSceneObject.Rotation.y += StepSize;
-            cubeAnimationData.Camera.PHI += 1;
+            cubeAnimationData.Camera.PHI += 0.00000001f;
         }
     }
 
