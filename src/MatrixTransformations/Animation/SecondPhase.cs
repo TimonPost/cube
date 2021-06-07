@@ -7,7 +7,7 @@ namespace MatrixTransformations.Animation
     {
         public float StepSize { get; set; } = (float)System.Math.PI / 60;
 
-        public States State => States.Phase2;
+        public virtual  States State => States.Phase2;
 
         public void Enter()
         {
@@ -38,6 +38,8 @@ namespace MatrixTransformations.Animation
 
     public class SecondPhaseInverse : SecondPhase
     {
+        public override States State => States.Phase2Inverse;
+
         public SecondPhaseInverse()
         {
             StepSize = -StepSize;

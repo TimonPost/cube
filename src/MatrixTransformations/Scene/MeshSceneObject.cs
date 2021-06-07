@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using MatrixTransformations.Animation;
 using MatrixTransformations.Math;
 
 namespace MatrixTransformations.World
@@ -6,10 +7,12 @@ namespace MatrixTransformations.World
     public class MeshSceneObject : SceneObject
     {
         private readonly Renderer _renderer;
+        private readonly IAnimationFiniteStateMachine _stateMachine;
 
-        public MeshSceneObject(Mesh mesh, Renderer renderer)
+        public MeshSceneObject(Mesh mesh, Renderer renderer, IAnimationFiniteStateMachine stateMachine = null)
         {
             _renderer = renderer;
+            _stateMachine = stateMachine;
             Mesh = mesh;
         }
 
@@ -20,9 +23,10 @@ namespace MatrixTransformations.World
 
         public override void Update()
         {
-            Rotation.z += 0.1f;
-            Rotation.x += 0.1f;
-            Rotation.y += 0.1f;
+            if (_stateMachine != null)
+            {
+                _stateMachine.Tick(new CubeAnimationData(Rotation, Scale, Position));
+            }
         }
 
         public Vector Rotation { get; set; } = new Vector();

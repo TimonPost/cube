@@ -12,7 +12,7 @@ namespace MatrixTransformations.Animation
             return (System.Math.PI / 180) * val;
         }
 
-        public States State => States.Phase3;
+        public virtual States State => States.Phase3;
 
         public void Enter()
         {
@@ -38,6 +38,8 @@ namespace MatrixTransformations.Animation
 
     public class ThirdPhaseInverse : ThirdPhase
     {
+        public override States State => States.Phase3Inverse;
+
         public ThirdPhaseInverse()
         {
             StepSize = -StepSize;
