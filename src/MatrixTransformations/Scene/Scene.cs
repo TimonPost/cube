@@ -69,10 +69,7 @@ namespace MatrixTransformations
                 {
                     Console.WriteLine("S");
                     // decrease scale
-                    _sceneObjects.ForEach(x =>
-                    {
-                        ApplyEffect((ms) => ms.Scale = ms.Scale * 0.9f);
-                    });
+                    ApplyEffect((ms) => ms.Scale = ms.Scale * 0.9f);
                 }
 
                 if (Keyboard.IsKeyDown(Keys.Y))
