@@ -28,7 +28,7 @@ namespace MatrixTransformations
 
             _scene.Add(new MeshSceneObject(Mesh.FromObj("Models/Suzanne.obj", Color.Chocolate), renderer));
 
-            _scene.AddAnimationStateMachines(new AnimationFiniteStateMachine(cube));
+            _scene.AddAnimationStateMachines(new AnimationFiniteStateMachine(cube, _scene.Camera));
 
             phiLabel.Text = $"PHI {_scene.Camera.PHI}";
             thetaLabel.Text = $"THETA {_scene.Camera.THETA}";

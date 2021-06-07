@@ -3,6 +3,33 @@ using MatrixTransformations.MathCustom;
 
 namespace MatrixTransformations.Animation
 {
+    public class InvertAnimationState : IState
+    {
+        public States State => States.InvertAnimation;
+
+        public void Enter()
+        {
+            Console.WriteLine("enter phase not active");
+        }
+
+        public void Leave()
+        {
+            Console.WriteLine("exit phase 1 not active");
+        }
+
+        public virtual bool Tick(CubeAnimationData cubeAnimationData)
+        {
+            if (cubeAnimationData.Camera.THETA < -10)
+                cubeAnimationData.Camera.THETA++;
+
+            if (cubeAnimationData.Camera.THETA > -10)
+                cubeAnimationData.Camera.PHI++;
+       
+            return false;
+        }
+    }
+
+
     public class NotActiveState : IState
     {
         public States State => States.NotActive;
@@ -50,6 +77,8 @@ namespace MatrixTransformations.Animation
             cubeAnimationData.MeshSceneObject.Scale.x += StepSize;
             cubeAnimationData.MeshSceneObject.Scale.y += StepSize;
             cubeAnimationData.MeshSceneObject.Scale.z += StepSize;
+
+            cubeAnimationData.Camera.THETA -= 1;
         }
     }
 

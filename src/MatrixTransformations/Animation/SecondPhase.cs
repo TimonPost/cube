@@ -33,6 +33,7 @@ namespace MatrixTransformations.Animation
         protected void PerformAction(CubeAnimationData cubeAnimationData)
         {
             cubeAnimationData.MeshSceneObject.Rotation.x += StepSize;
+            cubeAnimationData.Camera.THETA -= 1;
         }
     }
 
