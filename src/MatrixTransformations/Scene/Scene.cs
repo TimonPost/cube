@@ -58,10 +58,8 @@ namespace MatrixTransformations
 
             if ((Control.ModifierKeys & Keys.Shift) != 0)
             {
-                Console.WriteLine("SHIFT");
                 if (Keyboard.IsKeyDown(Keys.S))
                 {
-                    Console.WriteLine("S");
                     // decrease scale
                     ApplyEffect((ms) => ms.Scale = ms.Scale * 0.9f);
                 }
