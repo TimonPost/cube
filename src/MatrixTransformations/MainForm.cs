@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 using MatrixTransformations.Animation;
 using MatrixTransformations.Math;
@@ -49,6 +50,63 @@ namespace MatrixTransformations
             var deltaTime = CalculateDeltaTime();
             _scene.Update(deltaTime);
             _scene.Draw(e.Graphics);
+        }
+
+        private void tableLayoutPanel2_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.PageUp)
+            {
+                // increase z
+            } else if (e.KeyCode == Keys.PageUp)
+            {
+                // decrease z
+            }
+
+            if (e.KeyCode == Keys.S && !e.Shift)
+            {
+                // increase scale
+            }
+            else if (e.KeyCode == Keys.S && e.Shift)
+            {
+                // decrease scale
+            }
+
+            if (e.KeyCode == Keys.X && !e.Shift)
+            {
+                // increase rotate x
+            }
+            else if (e.KeyCode == Keys.X && e.Shift)
+            {
+                // decrease rotate x
+            }
+
+            if (e.KeyCode == Keys.Y && !e.Shift)
+            {
+                // increase rotate y
+            }
+            else if (e.KeyCode == Keys.Y && e.Shift)
+            {
+                // decrease rotate y
+            }
+
+            if (e.KeyCode == Keys.Z && !e.Shift)
+            {
+                // increase rotate z
+            }
+            else if (e.KeyCode == Keys.Z && e.Shift)
+            {
+                // decrease rotate z
+            }
+
+            if (e.KeyCode == Keys.C)
+            {
+                // reset to default
+            }
+
+            if (e.KeyCode == Keys.A)
+            {
+                // start animation.
+            }
         }
     }
 }
