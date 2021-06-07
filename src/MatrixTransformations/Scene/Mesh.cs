@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using MatrixTransformations.MathCustom;
+using System.IO;
+using System.Linq;
+using System.Numerics;
+using OBJ3DWavefrontLoader;
+using Vector = MatrixTransformations.Math.Vector;
 
 namespace MatrixTransformations.World
 {
@@ -17,6 +21,48 @@ namespace MatrixTransformations.World
         public IReadOnlyList<int> IndexBuffer { get; }
 
         #region Cube
+
+        public static Mesh FromObj(string path, Color vertexColor)
+        {
+            var vertexes = new List<Vertex>();
+            var indexes = new List<int>();
+
+            SimpleMesh objMesh;
+            using (var reader = new StreamReader(path))
+            {
+                objMesh = SimpleMesh.LoadFromObj(reader);
+                vertexes.AddRange(objMesh.vertices.Select(v => new Vertex(new Vector(v.X, v.Y, v.Z), vertexColor)));
+
+                var edges = new HashSet<long>();
+
+                foreach (List<int> face in objMesh.facesVertsIndxs)
+                {
+                    for (var i = 0; i < face.Count; i++)
+                    {
+                        int first = face[i] - 1; // Obj index starts at 1...
+                        int second = face[(i + 1) % face.Count] - 1;
+
+                        // We only want to render each edge once,
+                        // so we hash the indexes and check if the are already added.
+                        long hash;
+                        if (first < second)
+                        {
+                            hash = (long)first << 32 | (long)second;
+                        }
+                        else
+                        {
+                            hash = (long)second << 32 | (long)first;
+                        }
+                        if (edges.Add(hash))
+                        {
+                            indexes.Add(first);
+                            indexes.Add(second);
+                        }
+                    }
+                }
+                return new Mesh(vertexes, indexes);
+            }
+        }
 
         /// <summary>
         /// Singleton cube mesh

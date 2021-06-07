@@ -27,12 +27,12 @@ namespace MatrixTransformations.Animation
         public virtual bool Tick(CubeAnimationData cubeAnimationData)
         {
             PerformAction(cubeAnimationData);
-            return cubeAnimationData.Rotate.y >= ToRadians(45);
+            return cubeAnimationData.MeshSceneObject.Rotation.y >= ToRadians(45);
         }
 
         protected void PerformAction(CubeAnimationData cubeAnimationData)
         {
-            cubeAnimationData.Rotate.y += StepSize;
+            cubeAnimationData.MeshSceneObject.Rotation.y += StepSize;
         }
     }
 
@@ -48,7 +48,7 @@ namespace MatrixTransformations.Animation
         public override bool Tick(CubeAnimationData cubeAnimationData)
         {
            PerformAction(cubeAnimationData);
-            return cubeAnimationData.Rotate.y <= ToRadians(0);
+            return cubeAnimationData.MeshSceneObject.Rotation.y <= ToRadians(0);
         }
     }
 }

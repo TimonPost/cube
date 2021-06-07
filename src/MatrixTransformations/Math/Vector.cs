@@ -1,6 +1,6 @@
 ﻿namespace MatrixTransformations.MathCustom
 {
-    public class Vector
+    public struct Vector
     {
         public float x, y, z;
             
