@@ -28,7 +28,7 @@ namespace MatrixTransformations
             _scene.Add(new CoordinateSystem.CoordinateSystem(renderer));
             _scene.Add(cube);
 
-           // _scene.Add(new MeshSceneObject(Mesh.FromObj("Models/Suzanne.obj", Color.Chocolate), renderer));
+            _scene.Add(new MeshSceneObject(Mesh.FromObj("Models/Suzanne.obj", Color.Chocolate), renderer));
 
             _scene.AddAnimationStateMachines(new AnimationFiniteStateMachine(cube, _scene.Camera));
 
