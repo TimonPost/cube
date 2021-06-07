@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using MatrixTransformations.Math;
 using MatrixTransformations.World;
+using Matrix = MatrixTransformations.Math.Matrix;
 
 namespace MatrixTransformations
 {
     public class Renderer
     {
-        private Pen _linePen;
+        private Pen _pen;
+        private LinearGradientBrush _brush;
+
 
         private int ScreenWidth { get; set; }
         private int ScreenHeight { get; set; }
@@ -18,7 +22,6 @@ namespace MatrixTransformations
         {
             ScreenWidth = screenWidth;
             ScreenHeight = screenHeight;
-            _linePen = new Pen(Color.Black);
         }
 
         /// <summary>
@@ -28,7 +31,7 @@ namespace MatrixTransformations
         /// <param name="vertexes"></param>
         /// <param name="indexes"></param>
         /// <param name="modelMatrix"></param>
-        public void Draw(Graphics graphics, IReadOnlyList<Vector> vertexes, IReadOnlyList<int> indexes, Matrix modelViewMatrix)
+        public void Draw(Graphics graphics, IReadOnlyList<Vertex> vertexes, IReadOnlyList<int> indexes, Matrix modelViewMatrix)
         {
             Vector Transform(Vector inputVector)
             {
@@ -49,11 +52,28 @@ namespace MatrixTransformations
             {
                 while (indexEnumerator.MoveNext())
                 {
-                    Vector first = Transform(vertexes[indexEnumerator.Current]);
-                    
+                    Vertex firstVertex = vertexes[indexEnumerator.Current];
+                    Vector firstVector = Transform(firstVertex.Vector);
+
                     indexEnumerator.MoveNext();
-                    Vector second = Transform(vertexes[indexEnumerator.Current]);
-                    graphics.DrawLine(_linePen, first.x, first.y, second.x, second.y);
+                    Vertex secondVertex = vertexes[indexEnumerator.Current];
+                    Vector secondVector = Transform(secondVertex.Vector);
+
+                    var point1 = new PointF(firstVector.x, firstVector.y);
+                    var point2 = new PointF(secondVector.x, secondVector.y);
+
+                    using (var linearGradientBrush = new LinearGradientBrush(point1, point2, firstVertex.Color, secondVertex.Color))
+                    {
+                        if (_pen == null)
+                        {
+                            _pen = new Pen(linearGradientBrush, 3f);
+                        }
+                        else
+                        {
+                            _pen.Brush = linearGradientBrush;
+                        }
+                        graphics.DrawLine(_pen, point1, point2);
+                    }
                 }
             }
         }
