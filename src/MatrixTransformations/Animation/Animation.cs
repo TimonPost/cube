@@ -72,7 +72,9 @@ namespace MatrixTransformations.Animation
     {
         void Tick();
         void Start();
+        void ProcessEvent(Events theEvent);
     }
+
     public class AnimationFiniteStateMachine : IAnimationFiniteStateMachine
     {
         private readonly Action[,] _fsm;

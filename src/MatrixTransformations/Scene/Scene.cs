@@ -100,6 +100,12 @@ namespace MatrixTransformations
                     }));
 
                    Camera.Reset();
+
+                   // reset to default
+                   foreach (var animationFiniteStateMachine in _animationStateMachines)
+                   {
+                       animationFiniteStateMachine.ProcessEvent(Events.Stop);
+                   }
                 }
 
                 if (Keyboard.IsKeyDown(Keys.A) )
