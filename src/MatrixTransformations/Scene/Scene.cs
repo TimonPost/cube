@@ -46,12 +46,6 @@ namespace MatrixTransformations
 
         private void CheckKeyPress()
         {
-            if (Keyboard.IsKeyDown(Keys.S))
-                Console.WriteLine("S is pressed");
-
-
-            //Console.WriteLine(Control.ModifierKeys);
-
             if (Keyboard.IsKeyDown(Keys.PageUp))
             {
                 // decrease z
@@ -105,14 +99,12 @@ namespace MatrixTransformations
                 {
                     // increase rotate y
                 }
-
-
+                
                 if (Keyboard.IsKeyDown(Keys.Z))
                 {
                     // increase rotate z
                 }
-
-
+                
                 if (Keyboard.IsKeyDown(Keys.C))
                 {
                     // reset to default
