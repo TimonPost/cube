@@ -26,10 +26,11 @@ namespace CubeAssignment.Gui.Animation
 
         protected void PerformAction(CubeAnimationData cubeAnimationData)
         {
-            cubeAnimationData.MeshSceneObject.Scale.x -= StepSize;
-            cubeAnimationData.MeshSceneObject.Scale.y -= StepSize;
-            cubeAnimationData.MeshSceneObject.Scale.z -= StepSize;
-
+            Vector newScale = cubeAnimationData.MeshSceneObject.Scale;
+            newScale.x -= StepSize;
+            newScale.y -= StepSize;
+            newScale.z -= StepSize;
+            cubeAnimationData.MeshSceneObject.Scale = newScale;
            cubeAnimationData.Camera.Theta -= Program.THETA_STEP_SIZE;
         }
     }

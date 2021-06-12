@@ -31,7 +31,9 @@ namespace CubeAssignment.Gui.Animation
 
         protected void PerformAction(CubeAnimationData cubeAnimationData)
         {
-            cubeAnimationData.MeshSceneObject.Rotation.x += StepSize;
+            Vector newRotation = cubeAnimationData.MeshSceneObject.Rotation;
+            newRotation.x += StepSize;
+            cubeAnimationData.MeshSceneObject.Rotation = newRotation;
             cubeAnimationData.Camera.Phi -= Program.THETA_STEP_SIZE;
         }
     }

@@ -1,57 +1,23 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using CubeAssignment.Gui.Annotations;
+using PropertyChanged;
 
 namespace CubeAssignment.Gui.Scene
 {
+    [AddINotifyPropertyChangedInterface]
     public class Camera : INotifyPropertyChanged
     {
-        private float _d = 4;
-        private float _r = 10;
-        private float _theta = -100;
-        private float _phi = -10;
         public Vector Position { get; set; } = new Vector(0, 0, 3);
 
-        public float D
-        {
-            get => _d;
-            set
-            {
-                if (value.Equals(_d)) return;
-                _d = value;
-                OnPropertyChanged();
-            }
-        }
-        public float R
-        {
-            get => _r;
-            set
-            {
-                if (value.Equals(_r)) return;
-                _r = value;
-                OnPropertyChanged();
-            }
-        }
-        public float Theta
-        {
-            get => _theta;
-            set
-            {
-                if (value.Equals(_theta)) return;
-                _theta = value;
-                OnPropertyChanged();
-            }
-        }
-        public float Phi
-        {
-            get => _phi;
-            set
-            {
-                if (value.Equals(_phi)) return;
-                _phi = value;
-                OnPropertyChanged();
-            }
-        }
+        public float D { get; set; } = 5;
+
+        public float R { get; set; } = 10;
+
+        public float Theta { get; set; } = -100;
+
+        public float Phi { get; set; } = -10;
+
 
         public Matrix GetMatrix()
         {

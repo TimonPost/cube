@@ -8,7 +8,6 @@ namespace CubeAssignment.Gui
         public const float THETA_STEP_SIZE = 0.030f;
         public const float PHI_STEP_SIZE = 0.1f;
 
-
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

@@ -4,9 +4,14 @@ namespace CubeAssignment.Gui
 {
     internal static class Utils
     {
-        public static float DegreesToRadians(float val)
+        /// <summary>
+        /// Converts degrees to radians
+        /// </summary>
+        /// <param name="degrees"></param>
+        /// <returns></returns>
+        public static float DegreesToRadians(float degrees)
         {
-            return MathF.PI / 180f * val;
+            return MathF.PI / 180f * degrees;
         }
     }
 }

@@ -7,6 +7,9 @@ using Matrix = CubeAssignment.Gui.Matrix;
 
 namespace CubeAssignment.Gui
 {
+    /// <summary>
+    /// Used for rendering scene elements to the screen.
+    /// </summary>
     public class Renderer
     {
         private Pen _pen;
@@ -108,42 +111,40 @@ namespace CubeAssignment.Gui
                 while (indexEnumerator.MoveNext())
                 {
                     Vertex firstVertex = vertexes[indexEnumerator.Current];
-                    Vector firstVector = Transform(camera, firstVertex.Vector, modelMatrix);
+                    Vector firstVector = Transform(camera, firstVertex.Position, modelMatrix);
 
                     indexEnumerator.MoveNext();
                     Vertex secondVertex = vertexes[indexEnumerator.Current];
-                    Vector secondVector = Transform(camera, secondVertex.Vector, modelMatrix);
+                    Vector secondVector = Transform(camera, secondVertex.Position, modelMatrix);
 
                     var point1 = new PointF(firstVector.x, firstVector.y);
                     var point2 = new PointF(secondVector.x, secondVector.y);
-
+                    
                     // Avoid drawing zero line, because that results in an out of memory exception.
-                    if (System.Math.Abs(point1.X - point2.X) < 2.1f && System.Math.Abs(point1.Y - point2.Y) < 2.1f)
+                    if (Math.Abs(point1.X - point2.X) < 10f && Math.Abs(point1.Y - point2.Y) < 10f)
                     {
                         continue;
                     }
 
                     try
                     {
-                        using (var linearGradientBrush =
-                            new LinearGradientBrush(point1, point2, firstVertex.Color, secondVertex.Color))
+                        using var linearGradientBrush =
+                            new LinearGradientBrush(point1, point2, firstVertex.Color, secondVertex.Color);
+                        if (_pen == null)
                         {
-                            if (_pen == null)
-                            {
-                                _pen = new Pen(linearGradientBrush, 1f);
-                            }
-                            else
-                            {
-                                _pen.Brush = linearGradientBrush;
-                            }
-
-                            graphics.DrawLine(_pen, point1, point2);
+                            _pen = new Pen(linearGradientBrush, 1f);
+                        }
+                        else
+                        {
+                            _pen.Brush = linearGradientBrush;
                         }
 
+                        graphics.DrawLine(_pen, point1, point2);
                     }
-                    catch (Exception e)
+                    catch
                     {
-                        Console.WriteLine(e);
+                        // It rarely happens that a 0 length line is drawn.
+                        // This throws an exception that can be ignored.
                     }
                 }
             }

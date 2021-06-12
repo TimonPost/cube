@@ -31,11 +31,10 @@ namespace CubeAssignment.Gui.Animation
 
         protected void PerformAction(CubeAnimationData cubeAnimationData)
         {
-            float a = -10 + 0.1f;
-
-            cubeAnimationData.MeshSceneObject.Rotation.y += StepSize;
+            Vector newRotation = cubeAnimationData.MeshSceneObject.Rotation;
+            newRotation.y += StepSize;
+            cubeAnimationData.MeshSceneObject.Rotation = newRotation;
             cubeAnimationData.Camera.Phi += Program.PHI_STEP_SIZE;
-            Console.WriteLine(cubeAnimationData.Camera.Phi);
         }
     }
 }
