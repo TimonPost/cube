@@ -18,14 +18,14 @@ namespace CubeAssignment.Gui.Animation
 
         public virtual bool Tick(CubeAnimationData cubeAnimationData)
         {
-            if (cubeAnimationData.Camera.THETA < -100)
+            if (cubeAnimationData.Camera.Theta < -100)
             {
-                cubeAnimationData.Camera.THETA += Program.THETA_STEP_SIZE;
+                cubeAnimationData.Camera.Theta += Program.THETA_STEP_SIZE;
             }
 
-            if (cubeAnimationData.Camera.PHI > -10)
+            if (cubeAnimationData.Camera.Phi > -10)
             {
-                cubeAnimationData.Camera.PHI -= Program.PHI_STEP_SIZE;
+                cubeAnimationData.Camera.Phi -= Program.PHI_STEP_SIZE;
             }
 
             return false;
