@@ -14,7 +14,7 @@ namespace CubeAssignment.Gui
     {
         private Pen _pen;
         private SolidBrush _fontBrush;
-        private readonly Font _font = new Font("Arial", 10);
+        private readonly Font _font = new Font("Arial", 15);
 
         private int ScreenWidth { get; set; }
         private int ScreenHeight { get; set; }
