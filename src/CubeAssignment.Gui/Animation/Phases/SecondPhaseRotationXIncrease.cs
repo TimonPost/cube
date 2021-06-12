@@ -2,6 +2,9 @@
 
 namespace CubeAssignment.Gui.Animation
 {
+    /// <summary>
+    /// Animation phase that increases the rotation along the X and meanwhile increases the camera 'PHI'.  
+    /// </summary>
     public class SecondPhaseRotationXIncrease : IState
     {
         public float StepSize { get; set; } = (float) System.Math.PI / 60;

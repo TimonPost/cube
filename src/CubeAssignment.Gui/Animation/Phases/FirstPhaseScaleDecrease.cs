@@ -2,6 +2,9 @@
 
 namespace CubeAssignment.Gui.Animation
 {
+    /// <summary>
+    /// Animation phase that decreases the scale and meanwhile decreases the camera 'theta'.  
+    /// </summary>
     public class FirstPhaseScaleDecrease : IState
     {
         public float StepSize { get; set; } = 0.01f;
