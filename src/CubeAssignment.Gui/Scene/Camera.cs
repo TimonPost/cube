@@ -40,7 +40,7 @@ namespace CubeAssignment.Gui.Scene
             Theta = -100;
             Phi = -10;
             R = 10;
-            D = 10;
+            D = 5;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
