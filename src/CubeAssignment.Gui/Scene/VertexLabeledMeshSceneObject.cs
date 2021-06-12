@@ -14,7 +14,7 @@ namespace CubeAssignment.Gui.Scene
             for (var index = 0; index < Mesh.VertexBuffer.Count; index++)
             {
                 Vertex vertex = Mesh.VertexBuffer[index];
-                Renderer.DrawText(graphics, index.ToString(), Color.White, vertex.Vector, modeViewMatrix);
+                Renderer.DrawText(graphics, index.ToString(), Color.White, vertex.Position, modeViewMatrix);
             }
 
             base.Draw(graphics, viewMatrix);

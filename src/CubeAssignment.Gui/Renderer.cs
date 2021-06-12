@@ -6,6 +6,9 @@ using Matrix = CubeAssignment.Gui.Matrix;
 
 namespace CubeAssignment.Gui
 {
+    /// <summary>
+    /// Used for rendering scene elements to the screen.
+    /// </summary>
     public class Renderer
     {
         private Pen _pen;
@@ -86,11 +89,11 @@ namespace CubeAssignment.Gui
                 while (indexEnumerator.MoveNext())
                 {
                     Vertex firstVertex = vertexes[indexEnumerator.Current];
-                    Vector firstVector = Transform(firstVertex.Vector, modelViewMatrix);
+                    Vector firstVector = Transform(firstVertex.Position, modelViewMatrix);
 
                     indexEnumerator.MoveNext();
                     Vertex secondVertex = vertexes[indexEnumerator.Current];
-                    Vector secondVector = Transform(secondVertex.Vector, modelViewMatrix);
+                    Vector secondVector = Transform(secondVertex.Position, modelViewMatrix);
 
                     var point1 = new PointF(firstVector.x, firstVector.y);
                     var point2 = new PointF(secondVector.x, secondVector.y);

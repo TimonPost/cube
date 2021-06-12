@@ -3,6 +3,9 @@ using PropertyChanged;
 
 namespace CubeAssignment.Gui.Scene
 {
+    /// <summary>
+    /// Represents a Mesh SceneObject
+    /// </summary>
     [AddINotifyPropertyChangedInterface]
     public class MeshSceneObject : SceneObject
     {

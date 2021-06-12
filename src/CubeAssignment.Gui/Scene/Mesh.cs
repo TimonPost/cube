@@ -8,6 +8,9 @@ using Vector = CubeAssignment.Gui.Vector;
 
 namespace CubeAssignment.Gui.Scene
 {
+    /// <summary>
+    /// Represents a 3D Model
+    /// </summary>
     public class Mesh
     {
         public Mesh(IReadOnlyList<Vertex> vertexBuffer, IReadOnlyList<int> indexBuffer)
