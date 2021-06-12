@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using Matrix = CubeAssignment.Gui.Matrix;
@@ -100,19 +101,27 @@ namespace CubeAssignment.Gui
                         continue;
                     }
 
-                    using (var linearGradientBrush =
-                        new LinearGradientBrush(point1, point2, firstVertex.Color, secondVertex.Color))
+                    try
                     {
-                        if (_pen == null)
+                        using (var linearGradientBrush =
+                            new LinearGradientBrush(point1, point2, firstVertex.Color, secondVertex.Color))
                         {
-                            _pen = new Pen(linearGradientBrush, 1f);
-                        }
-                        else
-                        {
-                            _pen.Brush = linearGradientBrush;
+                            if (_pen == null)
+                            {
+                                _pen = new Pen(linearGradientBrush, 1f);
+                            }
+                            else
+                            {
+                                _pen.Brush = linearGradientBrush;
+                            }
+
+                            graphics.DrawLine(_pen, point1, point2);
                         }
 
-                        graphics.DrawLine(_pen, point1, point2);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
                     }
                 }
             }
