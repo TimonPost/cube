@@ -33,6 +33,8 @@ namespace CubeAssignment.Gui.Animation
         {
             cubeAnimationData.MeshSceneObject.Rotation.y += StepSize;
             cubeAnimationData.Camera.PHI += Program.PHI_STEP_SIZE;
+
+            Console.WriteLine(cubeAnimationData.Camera.PHI);
         }
     }
 }
