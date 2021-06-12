@@ -38,16 +38,29 @@ namespace CubeAssignment.Gui.Scene
 
         private void UpdateInput()
         {
+
+
+
             if (Keyboard.IsKeyDown(Keys.PageUp))
                 // decrease z
             {
-                ApplyEffect((ms) => ms.Position.z -= 2f);
+                ApplyEffect((ms) =>
+                {
+                    Vector newPosition = ms.Position;
+                    newPosition.z -= 2f;
+                    ms.Position = newPosition;
+                });
             }
 
             if (Keyboard.IsKeyDown(Keys.PageUp))
                 // increase z
             {
-                ApplyEffect((ms) => ms.Position.z += 2f);
+                ApplyEffect((ms) =>
+                {
+                    Vector newPosition = ms.Position;
+                    newPosition.z += 2f;
+                    ms.Position = newPosition;
+                });
             }
 
             if ((Control.ModifierKeys & Keys.Shift) != 0)
@@ -61,19 +74,34 @@ namespace CubeAssignment.Gui.Scene
                 if (Keyboard.IsKeyDown(Keys.X))
                     // decrease rotate x
                 {
-                    ApplyEffect((ms) => ms.Rotation.x -= 0.1f);
+                    ApplyEffect((ms) =>
+                    {
+                        Vector newRotation = ms.Rotation;
+                        newRotation.x -= 0.1f;
+                        ms.Rotation = newRotation;
+                    });
                 }
 
                 if (Keyboard.IsKeyDown(Keys.Y))
                     // decrease rotate y
                 {
-                    ApplyEffect((ms) => ms.Rotation.y -= 0.1f);
+                    ApplyEffect((ms) =>
+                    {
+                        Vector newRotation = ms.Rotation;
+                        newRotation.y -= 0.1f;
+                        ms.Rotation = newRotation;
+                    });
                 }
 
                 if (Keyboard.IsKeyDown(Keys.Z))
                     // decrease rotate z
                 {
-                    ApplyEffect((ms) => ms.Rotation.z -= 0.1f);
+                    ApplyEffect((ms) =>
+                    {
+                        Vector newRotation = ms.Rotation;
+                        newRotation.z -= 0.1f;
+                        ms.Rotation = newRotation;
+                    });
                 }
             }
             else
@@ -87,19 +115,34 @@ namespace CubeAssignment.Gui.Scene
                 if (Keyboard.IsKeyDown(Keys.X))
                     // increase rotate x
                 {
-                    ApplyEffect((ms) => ms.Rotation.x += 0.1f);
+                    ApplyEffect((ms) =>
+                    {
+                        Vector newRotation = ms.Rotation;
+                        newRotation.x += 0.1f;
+                        ms.Rotation = newRotation;
+                    });
                 }
 
                 if (Keyboard.IsKeyDown(Keys.Y))
                     // increase rotate y
                 {
-                    ApplyEffect((ms) => ms.Rotation.y += 0.1f);
+                    ApplyEffect((ms) =>
+                    {
+                        Vector newRotation = ms.Rotation;
+                        newRotation.y += 0.1f;
+                        ms.Rotation = newRotation;
+                    });
                 }
 
                 if (Keyboard.IsKeyDown(Keys.Z))
                     // increase rotate z
                 {
-                    ApplyEffect((ms) => ms.Rotation.z += 0.1f);
+                    ApplyEffect((ms) =>
+                    {
+                        Vector newRotation = ms.Rotation;
+                        newRotation.z += 0.1f;
+                        ms.Rotation = newRotation;
+                    });
                 }
 
                 if (Keyboard.IsKeyDown(Keys.C))

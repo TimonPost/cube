@@ -95,25 +95,22 @@ namespace CubeAssignment.Gui
                     var point2 = new PointF(secondVector.x, secondVector.y);
 
                     // Avoid drawing zero line, because that results in an out of memory exception.
-                    if (System.Math.Abs(point1.X - point2.X) < 2.1f && System.Math.Abs(point1.Y - point2.Y) < 2.1f)
+                    if (System.Math.Abs(point1.X - point2.X) < 2.1f)
                     {
                         continue;
                     }
 
-                    using (var linearGradientBrush =
-                        new LinearGradientBrush(point1, point2, firstVertex.Color, secondVertex.Color))
+                    using var linearGradientBrush = new LinearGradientBrush(point1, point2, firstVertex.Color, secondVertex.Color);
+                    if (_pen == null)
                     {
-                        if (_pen == null)
-                        {
-                            _pen = new Pen(linearGradientBrush, 1f);
-                        }
-                        else
-                        {
-                            _pen.Brush = linearGradientBrush;
-                        }
-
-                        graphics.DrawLine(_pen, point1, point2);
+                        _pen = new Pen(linearGradientBrush, 1f);
                     }
+                    else
+                    {
+                        _pen.Brush = linearGradientBrush;
+                    }
+
+                    graphics.DrawLine(_pen, point1, point2);
                 }
             }
         }

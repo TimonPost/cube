@@ -63,7 +63,7 @@
 
         public override string ToString()
         {
-            return $"X: {x}, Y:{y}, Z: {z}, W: {w}";
+            return $"X:{x:F}, Y:{y:F}, Z:{z:F}, W:{w:F}";
         }
     }
 }

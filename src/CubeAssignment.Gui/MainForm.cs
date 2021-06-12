@@ -22,11 +22,17 @@ namespace CubeAssignment.Gui
             var renderer = new Renderer(Canvas.Width, Canvas.Height);
             var cube = new VertexLabeledMeshSceneObject(Mesh.Cube, renderer);
 
+            // Camera bindings
             theValuetaLabel.DataBindings.Add(new Binding(nameof(Label.Text), _mainScene.Camera, nameof(Camera.Theta)));
             dValueLabel.DataBindings.Add(new Binding(nameof(Label.Text), _mainScene.Camera, nameof(Camera.D)));
             rValueLabel.DataBindings.Add(new Binding(nameof(Label.Text), _mainScene.Camera, nameof(Camera.R)));
             phiValueLabel.DataBindings.Add(new Binding(nameof(Label.Text), _mainScene.Camera, nameof(Camera.Phi)));
-
+            
+            // Mesh bindings
+            RotateValueLabel.DataBindings.Add(new Binding(nameof(Label.Text), cube, nameof(MeshSceneObject.Rotation)));
+            ScaleValueLabel.DataBindings.Add(new Binding(nameof(Label.Text), cube, nameof(MeshSceneObject.Scale)));
+            TranslateValueLabel.DataBindings.Add(new Binding(nameof(Label.Text), cube, nameof(MeshSceneObject.Position)));
+           
 
             _mainScene.Add(new CoordinateSystem(renderer));
             _mainScene.Add(cube);
