@@ -2,11 +2,11 @@
 
 namespace CubeAssignment.Gui.Animation
 {
-    public class SecondPhase : IState
+    public class SecondPhaseRotationXIncrease : IState
     {
         public float StepSize { get; set; } = (float) System.Math.PI / 60;
 
-        public virtual States State => States.Phase2;
+        public virtual States State => States.Phase2RotationXIncrease;
 
         public void Enter()
         {
@@ -32,23 +32,7 @@ namespace CubeAssignment.Gui.Animation
         protected void PerformAction(CubeAnimationData cubeAnimationData)
         {
             cubeAnimationData.MeshSceneObject.Rotation.x += StepSize;
-            cubeAnimationData.Camera.Theta -= 0.030f;
-        }
-    }
-
-    public class SecondPhaseInverse : SecondPhase
-    {
-        public override States State => States.Phase2Inverse;
-
-        public SecondPhaseInverse()
-        {
-            StepSize = -StepSize;
-        }
-
-        public override bool Tick(CubeAnimationData cubeAnimationData)
-        {
-            PerformAction(cubeAnimationData);
-            return cubeAnimationData.MeshSceneObject.Rotation.x <= ToRadians(0);
+            cubeAnimationData.Camera.THETA -= Program.THETA_STEP_SIZE;
         }
     }
 }
