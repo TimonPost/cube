@@ -20,12 +20,12 @@ namespace CubeAssignment.Gui.Animation
         {
             if (cubeAnimationData.Camera.THETA < -100)
             {
-                cubeAnimationData.Camera.THETA += 0.030f;
+                cubeAnimationData.Camera.THETA += Program.THETA_STEP_SIZE;
             }
 
             if (cubeAnimationData.Camera.PHI > -10)
             {
-                cubeAnimationData.Camera.PHI -= 0.00000001f;
+                cubeAnimationData.Camera.PHI -= Program.PHI_STEP_SIZE;
             }
 
             return false;

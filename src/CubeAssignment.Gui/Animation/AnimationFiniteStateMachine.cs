@@ -27,7 +27,7 @@ namespace CubeAssignment.Gui.Animation
                 {null, EnterThirdPhaseRotationYIncrease, EnterNotActive}, // EnterSecondPhaseRotationXDecrease
 
                 {null, EnterThirdPhaseRotationYDecrease, EnterNotActive}, // EnterThirdPhaseRotationYIncrease
-                {null, EnterNotActive, EnterNotActive}, // EnterThidPhaseRotationYDecrease
+                {null, InverseAnimation, EnterNotActive}, // EnterThidPhaseRotationYDecrease
                 
                 {null, EnterNotActive, EnterNotActive}, // NotActive 
                 {null, EnterNotActive, EnterNotActive} // InverseAnimation 

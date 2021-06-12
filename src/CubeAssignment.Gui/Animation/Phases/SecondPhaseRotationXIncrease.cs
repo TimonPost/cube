@@ -32,7 +32,7 @@ namespace CubeAssignment.Gui.Animation
         protected void PerformAction(CubeAnimationData cubeAnimationData)
         {
             cubeAnimationData.MeshSceneObject.Rotation.x += StepSize;
-           // cubeAnimationData.Camera.THETA -= Program.THETA_STEP_SIZE;
+            cubeAnimationData.Camera.THETA -= Program.THETA_STEP_SIZE;
         }
     }
 }

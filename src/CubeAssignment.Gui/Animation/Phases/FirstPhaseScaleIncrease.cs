@@ -30,7 +30,7 @@ namespace CubeAssignment.Gui.Animation
             cubeAnimationData.MeshSceneObject.Scale.y += StepSize;
             cubeAnimationData.MeshSceneObject.Scale.z += StepSize;
 
-            //cubeAnimationData.Camera.THETA -= Program.THETA_STEP_SIZE;
+            cubeAnimationData.Camera.THETA -= Program.THETA_STEP_SIZE;
         }
     }
 }
