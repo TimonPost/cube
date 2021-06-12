@@ -13,5 +13,15 @@ namespace CubeAssignment.Gui
         {
             return MathF.PI / 180f * degrees;
         }
+
+        /// <summary>
+        /// Converts radians to degrees
+        /// </summary>
+        /// <param name="degrees"></param>
+        /// <returns></returns>
+        public static float RadiansToDegrees(float radians)
+        {
+            return radians * (180 / MathF.PI);
+        }
     }
 }

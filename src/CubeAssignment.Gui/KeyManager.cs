@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace CubeAssignment.Gui
 {
-    public abstract class Keyboard
+    public static class Keyboard
     {
         [Flags]
         private enum KeyStates
@@ -41,12 +41,11 @@ namespace CubeAssignment.Gui
 
         public static bool IsKeyDown(Keys key)
         {
-            return KeyStates.Down == (GetKeyState(key) & KeyStates.Down);
-        }
-
-        public static bool IsKeyToggled(Keys key)
-        {
-            return KeyStates.Toggled == (GetKeyState(key) & KeyStates.Toggled);
+            if (Form.ActiveForm == MainForm.Instance)
+            {
+                return KeyStates.Down == (GetKeyState(key) & KeyStates.Down);
+            }
+            return false;
         }
     }
 }
