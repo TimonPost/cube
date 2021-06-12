@@ -1,5 +1,4 @@
 ﻿using MatrixTransformations.Animation;
-using MatrixTransformations.MathCustom;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MatrixTransformation.Tests

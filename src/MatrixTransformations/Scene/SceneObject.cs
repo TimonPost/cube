@@ -1,7 +1,6 @@
 ﻿using System.Drawing;
-using MatrixTransformations.MathCustom;
 
-namespace MatrixTransformations.World
+namespace MatrixTransformations
 {
     public abstract class SceneObject
     {

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MatrixTransformations.MathCustom;
-using MatrixTransformations.World;
 
 namespace MatrixTransformations.Animation
 {
@@ -67,7 +65,7 @@ namespace MatrixTransformations.Animation
         bool Tick(CubeAnimationData cubeAnimationData);
     }
 
-   public interface IAnimationFiniteStateMachine
+    public interface IAnimationFiniteStateMachine
     {
         void Tick();
         void Start();
@@ -98,7 +96,7 @@ namespace MatrixTransformations.Animation
                 {null, EnterPhaseOneInverse, EnterNotActive}, // PhaseTwoInverse
                 {null, EnterPhaseTwoInverse, EnterNotActive}, // PhaseThreeInverse 
                 {null, EnterNotActive, EnterNotActive}, // NotActive 
-                {null, EnterPhaseOne, EnterNotActive}, // InverseAnimation 
+                {null, EnterPhaseOne, EnterNotActive} // InverseAnimation 
             };
 
             _meshSceneObject = meshSceneObject;
@@ -155,14 +153,17 @@ namespace MatrixTransformations.Animation
         {
             EnterPhaseOne();
         }
-        
+
         /// <summary>
         ///     Update logic for the state-machine.
         /// </summary>
         public void Tick()
         {
             // If some state is finished, try to advance.
-            if (ActiveState?.Tick(new CubeAnimationData(_meshSceneObject, _camera)) ?? false) ProcessEvent(Events.Finished);
+            if (ActiveState?.Tick(new CubeAnimationData(_meshSceneObject, _camera)) ?? false)
+            {
+                ProcessEvent(Events.Finished);
+            }
         }
 
         /// <summary>
@@ -172,7 +173,7 @@ namespace MatrixTransformations.Animation
         /// <param name="theEvent"></param>
         public void ProcessEvent(Events theEvent)
         {
-            var enterNextState = _fsm[(int)ActiveState.State, (int)theEvent];
+            Action enterNextState = _fsm[(int) ActiveState.State, (int) theEvent];
             enterNextState?.Invoke();
         }
 

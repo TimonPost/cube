@@ -1,6 +1,4 @@
-﻿using MatrixTransformations.MathCustom;
-
-namespace MatrixTransformations.Animation
+﻿namespace MatrixTransformations.Animation
 {
     public interface IPhase
     {

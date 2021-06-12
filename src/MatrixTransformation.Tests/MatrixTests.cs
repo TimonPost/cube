@@ -1,5 +1,5 @@
 using System;
-using MatrixTransformations.MathCustom;
+using MatrixTransformations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MatrixTransformation.Tests
@@ -10,9 +10,9 @@ namespace MatrixTransformation.Tests
         [TestMethod]
         public void TestRotationXMatrix()
         {
-            var rotationMatrix = Matrix.RotateX((float)(Math.PI / 2f));
+            Matrix rotationMatrix = Matrix.RotateX((float) (Math.PI / 2f));
             var vector = new Vector(0f, 5f, 0f, 0);
-            var rotatedVector = Vector.Transform(vector, rotationMatrix);
+            Vector rotatedVector = Vector.Transform(vector, rotationMatrix);
             Assert.AreEqual(0, rotatedVector.x, 0.01);
             Assert.AreEqual(0, rotatedVector.y, 0.01);
             Assert.AreEqual(-5, rotatedVector.z, 0.01);
@@ -21,9 +21,9 @@ namespace MatrixTransformation.Tests
         [TestMethod]
         public void TestRotationYMatrix()
         {
-            var rotationMatrix = Matrix.RotateY((float)(Math.PI / 2f));
+            Matrix rotationMatrix = Matrix.RotateY((float) (Math.PI / 2f));
             var vector = new Vector(5f, 0f, 0f, 0);
-            var rotatedVector = Vector.Transform(vector, rotationMatrix);
+            Vector rotatedVector = Vector.Transform(vector, rotationMatrix);
             Assert.AreEqual(0, rotatedVector.x, 0.01);
             Assert.AreEqual(0, rotatedVector.y, 0.01);
             Assert.AreEqual(5, rotatedVector.z, 0.01);
@@ -32,9 +32,9 @@ namespace MatrixTransformation.Tests
         [TestMethod]
         public void TestRotationZMatrix()
         {
-            var rotationMatrix = Matrix.RotateZ((float)(Math.PI / 2f));
+            Matrix rotationMatrix = Matrix.RotateZ((float) (Math.PI / 2f));
             var vector = new Vector(0f, 5f, 0f, 0);
-            var rotatedVector = Vector.Transform(vector, rotationMatrix);
+            Vector rotatedVector = Vector.Transform(vector, rotationMatrix);
             Assert.AreEqual(5, rotatedVector.x, 0.01);
             Assert.AreEqual(0, rotatedVector.y, 0.01);
             Assert.AreEqual(0, rotatedVector.z, 0.01);
@@ -43,9 +43,9 @@ namespace MatrixTransformation.Tests
         [TestMethod]
         public void TestScaleMatrix()
         {
-            var scaleMatrix = Matrix.Scale(new Vector(2, 2, 2));
+            Matrix scaleMatrix = Matrix.Scale(new Vector(2, 2, 2));
             var vector = new Vector(1f, 1f, 1f, 0);
-            var scaledVector = Vector.Transform(vector, scaleMatrix);
+            Vector scaledVector = Vector.Transform(vector, scaleMatrix);
             Assert.AreEqual(2, scaledVector.x);
             Assert.AreEqual(2, scaledVector.y);
             Assert.AreEqual(2, scaledVector.z);
@@ -56,7 +56,7 @@ namespace MatrixTransformation.Tests
         {
             var translateMatrix = Matrix.CreateTranslation(new Vector(2, 2, 2));
             var vector = new Vector(1f, 1f, 1f, 1);
-            var translatedVector = Vector.Transform(vector, translateMatrix);
+            Vector translatedVector = Vector.Transform(vector, translateMatrix);
             Assert.AreEqual(3, translatedVector.x);
             Assert.AreEqual(3, translatedVector.y);
             Assert.AreEqual(3, translatedVector.z);
@@ -68,7 +68,7 @@ namespace MatrixTransformation.Tests
             var matrix1 = new Matrix(
                 2, 3, 4, 5,
                 6, 7, 8, 9,
-                10, 11, 12, 13, 
+                10, 11, 12, 13,
                 14, 16, 16, 17
             );
 
@@ -79,9 +79,9 @@ namespace MatrixTransformation.Tests
                 36, 69, 58, 48
             );
 
-            var result = matrix1 * matrix2;
-            
-            Assert.AreEqual(result[0,0],  333);
+            Matrix result = matrix1 * matrix2;
+
+            Assert.AreEqual(result[0, 0], 333);
             Assert.AreEqual(result[0, 1], 804);
             Assert.AreEqual(result[0, 2], 806);
             Assert.AreEqual(result[0, 3], 856);
@@ -111,8 +111,8 @@ namespace MatrixTransformation.Tests
                 10, 11, 12, 13,
                 14, 15, 16, 17
             );
-            
-            var result = matrix1 * 5;
+
+            Matrix result = matrix1 * 5;
 
             Assert.AreEqual(result[0, 0], 10);
             Assert.AreEqual(result[0, 1], 15);
@@ -152,7 +152,7 @@ namespace MatrixTransformation.Tests
                 36, 69, 58, 48
             );
 
-            var result = matrix1 + matrix2;
+            Matrix result = matrix1 + matrix2;
 
             Assert.AreEqual(result[0, 0], 12);
             Assert.AreEqual(result[0, 1], 25);
@@ -191,8 +191,8 @@ namespace MatrixTransformation.Tests
                 10, 11, 12, 13,
                 14, 15, 16, 17
             );
-            
-            var result = matrix1 - matrix2;
+
+            Matrix result = matrix1 - matrix2;
 
             Assert.AreEqual(result[0, 0], 8);
             Assert.AreEqual(result[0, 1], 19);
@@ -224,22 +224,22 @@ namespace MatrixTransformation.Tests
                 25, 85, 95, 95,
                 36, 69, 58, 48
             );
-            
+
             Assert.AreEqual(matrix1[0, 0], 10);
             Assert.AreEqual(matrix1[0, 1], 22);
             Assert.AreEqual(matrix1[0, 2], 35);
             Assert.AreEqual(matrix1[0, 3], 64);
-                            
+
             Assert.AreEqual(matrix1[1, 0], 11);
             Assert.AreEqual(matrix1[1, 1], 25);
             Assert.AreEqual(matrix1[1, 2], 22);
             Assert.AreEqual(matrix1[1, 3], 36);
-                            
+
             Assert.AreEqual(matrix1[2, 0], 25);
             Assert.AreEqual(matrix1[2, 1], 85);
             Assert.AreEqual(matrix1[2, 2], 95);
             Assert.AreEqual(matrix1[2, 3], 95);
-                            
+
             Assert.AreEqual(matrix1[3, 0], 36);
             Assert.AreEqual(matrix1[3, 1], 69);
             Assert.AreEqual(matrix1[3, 2], 58);
@@ -256,7 +256,7 @@ namespace MatrixTransformation.Tests
                 -1, 1, 1, 1
             );
 
-            var a = matrix1.Invert();
+            Matrix a = matrix1.Invert();
         }
     }
 }

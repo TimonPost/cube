@@ -1,15 +1,14 @@
 ﻿using System;
-using MatrixTransformations.MathCustom;
 
 namespace MatrixTransformations.Animation
 {
     public class ThirdPhase : IState
     {
-        public float StepSize { get; set; } = (float)System.Math.PI / 60;
-        
+        public float StepSize { get; set; } = (float) Math.PI / 60;
+
         public static double ToRadians(double val)
         {
-            return (System.Math.PI / 180) * val;
+            return Math.PI / 180 * val;
         }
 
         public virtual States State => States.Phase3;
@@ -48,7 +47,7 @@ namespace MatrixTransformations.Animation
 
         public override bool Tick(CubeAnimationData cubeAnimationData)
         {
-           PerformAction(cubeAnimationData);
+            PerformAction(cubeAnimationData);
             return cubeAnimationData.MeshSceneObject.Rotation.y <= ToRadians(0);
         }
     }

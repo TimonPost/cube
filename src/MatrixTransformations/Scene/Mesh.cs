@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Numerics;
 using OBJ3DWavefrontLoader;
-using MatrixTransformations.MathCustom;
-using Vector = MatrixTransformations.MathCustom.Vector;
+using Vector = MatrixTransformations.Vector;
 
-namespace MatrixTransformations.World
+namespace MatrixTransformations
 {
     public class Mesh
     {
@@ -27,7 +25,7 @@ namespace MatrixTransformations.World
         {
             var vertexes = new List<Vertex>();
             var indexes = new List<int>();
-            
+
             SimpleMesh objMesh;
             using (var reader = new StreamReader(path))
             {
@@ -40,20 +38,21 @@ namespace MatrixTransformations.World
                 {
                     for (var i = 0; i < face.Count; i++)
                     {
-                        int first = face[i] - 1; // Obj index starts at 1...
-                        int second = face[(i + 1) % face.Count] - 1;
+                        var first = face[i] - 1; // Obj index starts at 1...
+                        var second = face[(i + 1) % face.Count] - 1;
 
                         // We only want to render each edge once,
                         // so we hash the indexes and check if the are already added.
                         long hash;
                         if (first < second)
                         {
-                            hash = (long)first << 32 | (long)second;
+                            hash = ((long) first << 32) | (long) second;
                         }
                         else
                         {
-                            hash = (long)second << 32 | (long)first;
+                            hash = ((long) second << 32) | (long) first;
                         }
+
                         if (edges.Add(hash))
                         {
                             indexes.Add(first);
@@ -61,6 +60,7 @@ namespace MatrixTransformations.World
                         }
                     }
                 }
+
                 return new Mesh(vertexes, indexes);
             }
         }
@@ -81,33 +81,33 @@ namespace MatrixTransformations.World
 
             IReadOnlyList<Vertex> vertexbuffer = new List<Vertex>
             {
-               new Vertex(new Vector( 1.0f,  1.0f, 1.0f), Color.Red),     //0
-               new Vertex( new Vector( 1.0f, -1.0f, 1.0f),Color.Lime),     //1
-               new Vertex( new Vector(-1.0f, -1.0f, 1.0f),Color.Lime),     //2
-               new Vertex( new Vector(-1.0f,  1.0f, 1.0f),Color.Red),     //3
-              
-               new Vertex( new Vector( 1.0f,  1.0f, -1.0f),Color.Lime),    //4
-               new Vertex( new Vector( 1.0f, -1.0f, -1.0f),Color.Blue),    //5
-               new Vertex( new Vector(-1.0f, -1.0f, -1.0f),Color.Red),    //6
-               new Vertex( new Vector(-1.0f,  1.0f, -1.0f),Color.Blue),    //7
+                new Vertex(new Vector(1.0f, 1.0f, 1.0f), Color.Red), //0
+                new Vertex(new Vector(1.0f, -1.0f, 1.0f), Color.Lime), //1
+                new Vertex(new Vector(-1.0f, -1.0f, 1.0f), Color.Lime), //2
+                new Vertex(new Vector(-1.0f, 1.0f, 1.0f), Color.Red), //3
+
+                new Vertex(new Vector(1.0f, 1.0f, -1.0f), Color.Lime), //4
+                new Vertex(new Vector(1.0f, -1.0f, -1.0f), Color.Blue), //5
+                new Vertex(new Vector(-1.0f, -1.0f, -1.0f), Color.Red), //6
+                new Vertex(new Vector(-1.0f, 1.0f, -1.0f), Color.Blue) //7
             };
 
             IReadOnlyList<int> indexBuffer = new List<int>()
             {
-                1,2, // Front
-                2,3,
-                3,0,
-                0,1,
+                1, 2, // Front
+                2, 3,
+                3, 0,
+                0, 1,
 
-                5,6, // Back
-                6,7,
-                7,4,
-                4,5,
+                5, 6, // Back
+                6, 7,
+                7, 4,
+                4, 5,
 
-                5,1, // Lines between front and back
-                6,2,
-                7,3,
-                4,0
+                5, 1, // Lines between front and back
+                6, 2,
+                7, 3,
+                4, 0
             };
 
             return new Mesh(vertexbuffer, indexBuffer);
@@ -122,12 +122,12 @@ namespace MatrixTransformations.World
             IReadOnlyList<Vertex> vertexbuffer = new List<Vertex>
             {
                 new Vertex(position1, color1),
-                new Vertex(position2, color2),
+                new Vertex(position2, color2)
             };
 
             IReadOnlyList<int> indexBuffer = new List<int>()
             {
-                0,1
+                0, 1
             };
             return new Mesh(vertexbuffer, indexBuffer);
         }

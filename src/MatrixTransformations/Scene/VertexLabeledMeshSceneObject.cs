@@ -1,7 +1,6 @@
 ﻿using System.Drawing;
-using MatrixTransformations.MathCustom;
 
-namespace MatrixTransformations.World
+namespace MatrixTransformations
 {
     public class VertexLabeledMeshSceneObject : MeshSceneObject
     {
@@ -11,7 +10,7 @@ namespace MatrixTransformations.World
 
         public override void Draw(Graphics graphics, Matrix viewMatrix)
         {
-            var modeViewMatrix = Matrix.ModelTransformation(Scale, Rotation, Position) * viewMatrix;
+            Matrix modeViewMatrix = Matrix.ModelTransformation(Scale, Rotation, Position) * viewMatrix;
             for (var index = 0; index < Mesh.VertexBuffer.Count; index++)
             {
                 Vertex vertex = Mesh.VertexBuffer[index];

@@ -4,15 +4,13 @@ using System.Drawing;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 using MatrixTransformations.Animation;
-using MatrixTransformations.MathCustom;
-using MatrixTransformations.World;
 
 namespace MatrixTransformations
 {
     public partial class MainForm : Form
     {
         private readonly Scene _scene = new Scene();
-        
+
         private DateTime _previousTick = DateTime.Now;
 
         public MainForm()
@@ -24,14 +22,13 @@ namespace MatrixTransformations
             var renderer = new Renderer(Canvas.Width, Canvas.Height);
 
             var cube = new VertexLabeledMeshSceneObject(Mesh.Cube, renderer);
-            
+
             _scene.Add(new CoordinateSystem.CoordinateSystem(renderer));
             _scene.Add(cube);
 
             _scene.Add(new MeshSceneObject(Mesh.FromObj("Models/Suzanne.obj", Color.Chocolate), renderer));
 
             _scene.AddAnimationStateMachines(new AnimationFiniteStateMachine(cube, _scene.Camera));
-
         }
 
         private void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -46,7 +43,7 @@ namespace MatrixTransformations
         private float CalculateDeltaTime()
         {
             DateTime currentTick = DateTime.Now;
-            float deltaTime = (float) (currentTick - _previousTick).TotalSeconds;
+            var deltaTime = (float) (currentTick - _previousTick).TotalSeconds;
             _previousTick = currentTick;
             return deltaTime;
         }
@@ -62,7 +59,6 @@ namespace MatrixTransformations
             thetaLabel.Text = $"THETA {_scene.Camera.THETA}";
             //rTrack.Value = (int)_scene.Camera.R;
             rLabel.Text = $"R {_scene.Camera.R}";
-
         }
 
         private void Canvas_Paint(object sender, PaintEventArgs e)
@@ -80,26 +76,24 @@ namespace MatrixTransformations
 
         private void thetaTrack_ValueChanged(object sender, EventArgs e)
         {
-            _scene.Camera.THETA = ((TrackBar)sender).Value;
+            _scene.Camera.THETA = ((TrackBar) sender).Value;
             thetaLabel.Text = "THETA: " + _scene.Camera.THETA;
         }
 
         private void rTrack_ValueChanged(object sender, EventArgs e)
         {
-            _scene.Camera.R = ((TrackBar)sender).Value;
+            _scene.Camera.R = ((TrackBar) sender).Value;
             rLabel.Text = "R: " + _scene.Camera.R;
         }
 
         private void dTrack_ValueChanged(object sender, EventArgs e)
         {
-            _scene.Camera.D = ((TrackBar)sender).Value;
+            _scene.Camera.D = ((TrackBar) sender).Value;
             dLabel.Text = "D: " + _scene.Camera.D;
         }
 
         private void phiTrack_Scroll(object sender, EventArgs e)
         {
-
         }
     }
 }
-

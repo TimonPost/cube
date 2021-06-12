@@ -1,5 +1,4 @@
 ﻿using System;
-using MatrixTransformations.MathCustom;
 
 namespace MatrixTransformations.Animation
 {
@@ -20,12 +19,15 @@ namespace MatrixTransformations.Animation
         public virtual bool Tick(CubeAnimationData cubeAnimationData)
         {
             if (cubeAnimationData.Camera.THETA < -100)
+            {
                 cubeAnimationData.Camera.THETA += 0.030f;
+            }
 
             if (cubeAnimationData.Camera.PHI > -10)
+            {
                 cubeAnimationData.Camera.PHI -= 0.00000001f;
+            }
 
-       
             return false;
         }
     }

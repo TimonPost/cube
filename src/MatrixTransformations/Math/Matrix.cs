@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MatrixTransformations.MathCustom
+﻿namespace MatrixTransformations
 {
     public class Matrix
     {
@@ -44,7 +42,7 @@ namespace MatrixTransformations.MathCustom
 
         public static Matrix CreateProjection(float distance, float z)
         {
-            float projectedZ = 1 / (distance - z);
+            var projectedZ = 1 / (distance - z);
             var projectionMatrix = new Matrix(
                 projectedZ, 0, 0, 0,
                 0, projectedZ, 0, 0,
@@ -56,11 +54,11 @@ namespace MatrixTransformations.MathCustom
 
         public static Matrix ModelTransformation(Vector scale, Vector rotate, Vector translate)
         {
-            var scaleMatrix = Matrix.Scale(scale);
-            var rotationMatrixX = Matrix.RotateX(rotate.x);
-            var rotationMatrixY = Matrix.RotateY(rotate.y);
-            var rotationMatrixZ = Matrix.RotateZ(rotate.z);
-            var translateMatrix = Matrix.CreateTranslation(translate);
+            Matrix scaleMatrix = Scale(scale);
+            Matrix rotationMatrixX = RotateX(rotate.x);
+            Matrix rotationMatrixY = RotateY(rotate.y);
+            Matrix rotationMatrixZ = RotateZ(rotate.z);
+            var translateMatrix = CreateTranslation(translate);
             return translateMatrix * scaleMatrix * rotationMatrixX * rotationMatrixY * rotationMatrixZ;
         }
 
@@ -70,7 +68,7 @@ namespace MatrixTransformations.MathCustom
             Vector xaxis = Vector.Normalize(Vector.Cross(cameraUpVector, zaxis));
             Vector yaxis = Vector.Cross(zaxis, xaxis);
 
-            Matrix result = new Matrix();
+            var result = new Matrix();
 
             result[0, 0] = xaxis.x;
             result[0, 1] = yaxis.x;
@@ -102,9 +100,11 @@ namespace MatrixTransformations.MathCustom
         {
             var resultMatrix = new Matrix();
 
-            for (int k = 0; k < m1.mat.GetLength(0); k++)
-            for (int l = 0; l < m2.mat.GetLength(1); l++)
+            for (var k = 0; k < m1.mat.GetLength(0); k++)
+            for (var l = 0; l < m2.mat.GetLength(1); l++)
+            {
                 resultMatrix[k, l] = m1[k, l] + m2[k, l];
+            }
 
             return resultMatrix;
         }
@@ -113,9 +113,11 @@ namespace MatrixTransformations.MathCustom
         {
             var resultMatrix = new Matrix();
 
-            for (int k = 0; k < m1.mat.GetLength(0); k++)
-            for (int l = 0; l < m2.mat.GetLength(1); l++)
+            for (var k = 0; k < m1.mat.GetLength(0); k++)
+            for (var l = 0; l < m2.mat.GetLength(1); l++)
+            {
                 resultMatrix[k, l] = m1[k, l] - m2[k, l];
+            }
 
             return resultMatrix;
         }
@@ -124,9 +126,11 @@ namespace MatrixTransformations.MathCustom
         {
             var resultMatrix = new Matrix();
 
-            for (int k = 0; k < m1.mat.GetLength(0); k++)
-            for (int l = 0; l < m1.mat.GetLength(1); l++)
+            for (var k = 0; k < m1.mat.GetLength(0); k++)
+            for (var l = 0; l < m1.mat.GetLength(1); l++)
+            {
                 resultMatrix[k, l] = m1[k, l] * f;
+            }
 
             return resultMatrix;
         }
@@ -154,7 +158,7 @@ namespace MatrixTransformations.MathCustom
             {
                 for (var column = 0; column < 4; ++column)
                 {
-                    float s = 0.0f;
+                    var s = 0.0f;
                     for (var index = 0; index < 4; ++index)
                     {
                         s += m1[row, index] * m2[index, column];
@@ -169,7 +173,7 @@ namespace MatrixTransformations.MathCustom
 
         public static Matrix CreateTranslation(Vector position)
         {
-            Matrix result = new Matrix();
+            var result = new Matrix();
 
             result[0, 0] = 1.0f;
             result[0, 1] = 0.0f;
@@ -252,24 +256,24 @@ namespace MatrixTransformations.MathCustom
             return $@"[ {mat[0, 0]} {mat[0, 1]}, {mat[1, 0]}, {mat[1, 1]}]";
         }
 
-       public Matrix Invert()
+        public Matrix Invert()
         {
             // Use Laplace expansion theorem to calculate the inverse of a 4x4 matrix
             // 
             // 1. Calculate the 2x2 determinants needed the 4x4 determinant based on the 2x2 determinants 
             // 3. Create the adjugate matrix, which satisfies: A * adj(A) = det(A) * I
             // 4. Divide adjugate matrix with the determinant to find the inverse
-            
+
             float det1, det2, det3, det4, det5, det6, det7, det8, det9, det10, det11, det12;
             float detMatrix;
-            
-            findDeterminants(this, out detMatrix, out det1, out det2, out det3, out det4, out det5, out det6, 
-                             out det7, out det8, out det9, out det10, out det11, out det12);
-            
-            float invDetMatrix = 1f / detMatrix;
-            
+
+            findDeterminants(this, out detMatrix, out det1, out det2, out det3, out det4, out det5, out det6,
+                out det7, out det8, out det9, out det10, out det11, out det12);
+
+            var invDetMatrix = 1f / detMatrix;
+
             var ret = new Matrix();
-            
+
             ret[0, 0] = (mat[1, 1] * det12 - mat[1, 2] * det11 + mat[1, 3] * det10) * invDetMatrix;
             ret[0, 1] = (-mat[0, 1] * det12 + mat[0, 2] * det11 - mat[0, 3] * det10) * invDetMatrix;
             ret[0, 2] = (mat[3, 1] * det6 - mat[3, 2] * det5 + mat[3, 3] * det4) * invDetMatrix;
@@ -291,35 +295,36 @@ namespace MatrixTransformations.MathCustom
         }
 
         private static void findDeterminants(Matrix matrix, out float major,
-                                              out float minor1, out float minor2, out float minor3, out float minor4, out float minor5, out float minor6,
-                                              out float minor7, out float minor8, out float minor9, out float minor10, out float minor11, out float minor12)
+            out float minor1, out float minor2, out float minor3, out float minor4, out float minor5, out float minor6,
+            out float minor7, out float minor8, out float minor9, out float minor10, out float minor11,
+            out float minor12)
         {
-            double det1 = (double)matrix[0,0] * (double)matrix[1,1] - (double)matrix[0,1] * (double)matrix[1,0];
-            double det2 = (double)matrix[0,0] * (double)matrix[1,2] - (double)matrix[0,2] * (double)matrix[1,0];
-            double det3 = (double)matrix[0,0] * (double)matrix[1,3] - (double)matrix[0,3] * (double)matrix[1,0];
-            double det4 = (double)matrix[0,1] * (double)matrix[1,2] - (double)matrix[0,2] * (double)matrix[1,1];
-            double det5 = (double)matrix[0,1] * (double)matrix[1,3] - (double)matrix[0,3] * (double)matrix[1,1];
-            double det6 = (double)matrix[0,2] * (double)matrix[1,3] - (double)matrix[0,3] * (double)matrix[1,2];
-            double det7 = (double)matrix[2,0] * (double)matrix[3,1] - (double)matrix[2,1] * (double)matrix[3,0];
-            double det8 = (double)matrix[2,0] * (double)matrix[3,2] - (double)matrix[2,2] * (double)matrix[3,0];
-            double det9 = (double)matrix[2,0] * (double)matrix[3,3] - (double)matrix[2,3] * (double)matrix[3,0];
-            double det10 = (double)matrix[2,1] *(double)matrix[3,2] - (double)matrix[2,2] * (double)matrix[3,1];
-            double det11 = (double)matrix[2,1] *(double)matrix[3,3] - (double)matrix[2,3] * (double)matrix[3,1];
-            double det12 = (double)matrix[2,2] *(double)matrix[3,3] - (double)matrix[2,3] * (double)matrix[3,2];
+            var det1 = (double) matrix[0, 0] * (double) matrix[1, 1] - (double) matrix[0, 1] * (double) matrix[1, 0];
+            var det2 = (double) matrix[0, 0] * (double) matrix[1, 2] - (double) matrix[0, 2] * (double) matrix[1, 0];
+            var det3 = (double) matrix[0, 0] * (double) matrix[1, 3] - (double) matrix[0, 3] * (double) matrix[1, 0];
+            var det4 = (double) matrix[0, 1] * (double) matrix[1, 2] - (double) matrix[0, 2] * (double) matrix[1, 1];
+            var det5 = (double) matrix[0, 1] * (double) matrix[1, 3] - (double) matrix[0, 3] * (double) matrix[1, 1];
+            var det6 = (double) matrix[0, 2] * (double) matrix[1, 3] - (double) matrix[0, 3] * (double) matrix[1, 2];
+            var det7 = (double) matrix[2, 0] * (double) matrix[3, 1] - (double) matrix[2, 1] * (double) matrix[3, 0];
+            var det8 = (double) matrix[2, 0] * (double) matrix[3, 2] - (double) matrix[2, 2] * (double) matrix[3, 0];
+            var det9 = (double) matrix[2, 0] * (double) matrix[3, 3] - (double) matrix[2, 3] * (double) matrix[3, 0];
+            var det10 = (double) matrix[2, 1] * (double) matrix[3, 2] - (double) matrix[2, 2] * (double) matrix[3, 1];
+            var det11 = (double) matrix[2, 1] * (double) matrix[3, 3] - (double) matrix[2, 3] * (double) matrix[3, 1];
+            var det12 = (double) matrix[2, 2] * (double) matrix[3, 3] - (double) matrix[2, 3] * (double) matrix[3, 2];
 
-            major = (float)(det1 * det12 - det2 * det11 + det3 * det10 + det4 * det9 - det5 * det8 + det6 * det7);
-            minor1 = (float)det1;
-            minor2 = (float)det2;
-            minor3 = (float)det3;
-            minor4 = (float)det4;
-            minor5 = (float)det5;
-            minor6 = (float)det6;
-            minor7 = (float)det7;
-            minor8 = (float)det8;
-            minor9 = (float)det9;
-            minor10 = (float)det10;
-            minor11 = (float)det11;
-            minor12 = (float)det12;
+            major = (float) (det1 * det12 - det2 * det11 + det3 * det10 + det4 * det9 - det5 * det8 + det6 * det7);
+            minor1 = (float) det1;
+            minor2 = (float) det2;
+            minor3 = (float) det3;
+            minor4 = (float) det4;
+            minor5 = (float) det5;
+            minor6 = (float) det6;
+            minor7 = (float) det7;
+            minor8 = (float) det8;
+            minor9 = (float) det9;
+            minor10 = (float) det10;
+            minor11 = (float) det11;
+            minor12 = (float) det12;
         }
     }
 }

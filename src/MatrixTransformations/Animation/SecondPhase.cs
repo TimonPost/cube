@@ -1,13 +1,12 @@
 ﻿using System;
-using MatrixTransformations.MathCustom;
 
 namespace MatrixTransformations.Animation
 {
     public class SecondPhase : IState
     {
-        public float StepSize { get; set; } = (float)System.Math.PI / 60;
+        public float StepSize { get; set; } = (float) Math.PI / 60;
 
-        public virtual  States State => States.Phase2;
+        public virtual States State => States.Phase2;
 
         public void Enter()
         {
@@ -24,10 +23,10 @@ namespace MatrixTransformations.Animation
             PerformAction(cubeAnimationData);
             return cubeAnimationData.MeshSceneObject.Rotation.x >= ToRadians(45);
         }
-        
+
         public static double ToRadians(double val)
         {
-            return (System.Math.PI / 180) * val;
+            return Math.PI / 180 * val;
         }
 
         protected void PerformAction(CubeAnimationData cubeAnimationData)
@@ -45,6 +44,7 @@ namespace MatrixTransformations.Animation
         {
             StepSize = -StepSize;
         }
+
         public override bool Tick(CubeAnimationData cubeAnimationData)
         {
             PerformAction(cubeAnimationData);

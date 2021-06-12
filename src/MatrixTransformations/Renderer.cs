@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
-using MatrixTransformations.MathCustom;
-using MatrixTransformations.World;
-using Matrix = MatrixTransformations.MathCustom.Matrix;
+using Matrix = MatrixTransformations.Matrix;
 
 namespace MatrixTransformations
 {
@@ -26,7 +24,7 @@ namespace MatrixTransformations
 
         public static Matrix ProjectionTransformation(float distance, float z)
         {
-            float projectedZ = 1 / (distance - z);
+            var projectedZ = 1 / (distance - z);
             var projectionMatrix = new Matrix(
                 projectedZ, 0, 0, 0,
                 0, projectedZ, 0, 0,
@@ -41,8 +39,8 @@ namespace MatrixTransformations
             Vector vector = inputVector;
             vector.w = 1;
 
-            var transformed = Vector.Transform(vector, modelViewMatrix);
-            var projection = ProjectionTransformation(5, transformed.z);
+            Vector transformed = Vector.Transform(vector, modelViewMatrix);
+            Matrix projection = ProjectionTransformation(5, transformed.z);
             Vector projected = Vector.Transform(transformed, projection);
 
             //Scale to screen
@@ -59,7 +57,7 @@ namespace MatrixTransformations
         /// <param name="color"></param>
         /// <param name="position"></param>
         /// <param name="modelViewMatrix"></param>
-        public void DrawText(Graphics graphics, string text, Color color ,Vector position, Matrix modelViewMatrix)
+        public void DrawText(Graphics graphics, string text, Color color, Vector position, Matrix modelViewMatrix)
         {
             if (_fontBrush == null)
             {
@@ -81,9 +79,10 @@ namespace MatrixTransformations
         /// <param name="vertexes"></param>
         /// <param name="indexes"></param>
         /// <param name="modelViewMatrix"></param>
-        public void Draw(Graphics graphics, IReadOnlyList<Vertex> vertexes, IReadOnlyList<int> indexes, Matrix modelViewMatrix)
+        public void Draw(Graphics graphics, IReadOnlyList<Vertex> vertexes, IReadOnlyList<int> indexes,
+            Matrix modelViewMatrix)
         {
-            using (var indexEnumerator = indexes.GetEnumerator())
+            using (IEnumerator<int> indexEnumerator = indexes.GetEnumerator())
             {
                 while (indexEnumerator.MoveNext())
                 {
@@ -97,14 +96,14 @@ namespace MatrixTransformations
                     var point1 = new PointF(firstVector.x, firstVector.y);
                     var point2 = new PointF(secondVector.x, secondVector.y);
 
-                    
                     // Avoid drawing zero line, because that results in an out of memory exception.
-                    if (System.Math.Abs(point1.X - point2.X) < 1.1f && System.Math.Abs(point1.Y - point2.Y) < 1.1f)
+                    if (Math.Abs(point1.X - point2.X) < 1.1f && Math.Abs(point1.Y - point2.Y) < 1.1f)
                     {
                         continue;
                     }
-                    
-                    using (var linearGradientBrush = new LinearGradientBrush(point1, point2, firstVertex.Color, secondVertex.Color))
+
+                    using (var linearGradientBrush =
+                        new LinearGradientBrush(point1, point2, firstVertex.Color, secondVertex.Color))
                     {
                         if (_pen == null)
                         {
@@ -114,6 +113,7 @@ namespace MatrixTransformations
                         {
                             _pen.Brush = linearGradientBrush;
                         }
+
                         graphics.DrawLine(_pen, point1, point2);
                     }
                 }

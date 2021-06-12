@@ -1,7 +1,5 @@
 ﻿using System;
 using MatrixTransformations;
-using MatrixTransformations.MathCustom;
-using MatrixTransformations.World;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MatrixTransformation.Tests
