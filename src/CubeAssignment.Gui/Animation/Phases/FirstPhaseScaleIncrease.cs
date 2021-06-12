@@ -53,11 +53,11 @@ namespace CubeAssignment.Gui.Animation
         }
     }
 
-    public class FirstPhase : IState
+    public class FirstPhaseScaleIncrease : IState
     {
         public float StepSize { get; set; } = 0.01f;
 
-        public virtual States State => States.Phase1;
+        public virtual States State => States.Phase1ScaleIncrease;
 
         public void Enter()
         {
@@ -81,23 +81,7 @@ namespace CubeAssignment.Gui.Animation
             cubeAnimationData.MeshSceneObject.Scale.y += StepSize;
             cubeAnimationData.MeshSceneObject.Scale.z += StepSize;
 
-            cubeAnimationData.Camera.THETA -= 0.030f;
-        }
-    }
-
-    public class FirstPhaseInverse : FirstPhase
-    {
-        public override States State => States.Phase1Inverse;
-
-        public FirstPhaseInverse()
-        {
-            StepSize = -StepSize;
-        }
-
-        public override bool Tick(CubeAnimationData cubeAnimationData)
-        {
-            PerformAction(cubeAnimationData);
-            return cubeAnimationData.MeshSceneObject.Scale.x <= 1.0f;
+            //cubeAnimationData.Camera.THETA -= Program.THETA_STEP_SIZE;
         }
     }
 }
