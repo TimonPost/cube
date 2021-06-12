@@ -18,14 +18,14 @@ namespace CubeAssignment.Gui.Animation
 
         public virtual bool Tick(CubeAnimationData cubeAnimationData)
         {
-            if (cubeAnimationData.Camera.THETA < -100)
+            if (cubeAnimationData.Camera.Theta < -100)
             {
-                cubeAnimationData.Camera.THETA += 0.030f;
+                cubeAnimationData.Camera.Theta += 0.030f;
             }
 
-            if (cubeAnimationData.Camera.PHI > -10)
+            if (cubeAnimationData.Camera.Phi > -10)
             {
-                cubeAnimationData.Camera.PHI -= 0.00000001f;
+                cubeAnimationData.Camera.Phi -= 0.00000001f;
             }
 
             return false;
@@ -81,7 +81,7 @@ namespace CubeAssignment.Gui.Animation
             cubeAnimationData.MeshSceneObject.Scale.y += StepSize;
             cubeAnimationData.MeshSceneObject.Scale.z += StepSize;
 
-            cubeAnimationData.Camera.THETA -= 0.030f;
+            cubeAnimationData.Camera.Theta -= 0.030f;
         }
     }
 
