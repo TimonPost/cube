@@ -9,12 +9,15 @@ namespace CubeAssignment.Gui
 {
     public partial class MainForm : Form
     {
+        internal static Form Instance { get; private set; }
+
         private readonly MainScene _mainScene = new MainScene();
 
         private DateTime _previousTick = DateTime.Now;
 
         public MainForm()
         {
+            Instance = this;
             InitializeComponent();
 
             AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
@@ -30,7 +33,11 @@ namespace CubeAssignment.Gui
             phiValueLabel.DataBindings.Add(new Binding(nameof(Label.Text), _mainScene.Camera, nameof(Camera.Phi)));
             
             // Mesh bindings
-            RotateValueLabel.DataBindings.Add(new Binding(nameof(Label.Text), cube, nameof(MeshSceneObject.Rotation)));
+            Binding rotationBinding = new Binding(nameof(Label.Text), cube, nameof(MeshSceneObject.Rotation));
+            rotationBinding.Format += FormatRotationVectorToDegrees;
+
+
+            RotateValueLabel.DataBindings.Add(rotationBinding);
             ScaleValueLabel.DataBindings.Add(new Binding(nameof(Label.Text), cube, nameof(MeshSceneObject.Scale)));
             TranslateValueLabel.DataBindings.Add(new Binding(nameof(Label.Text), cube, nameof(MeshSceneObject.Position)));
            
@@ -41,6 +48,12 @@ namespace CubeAssignment.Gui
 
             _mainScene.AddAnimationStateMachines(new AnimationFiniteStateMachine(cube, _mainScene.Camera));
             _mainScene.AddAnimationStateMachines(new AnimationFiniteStateMachine(ape, _mainScene.Camera));
+        }
+       
+        private void FormatRotationVectorToDegrees(object sender, ConvertEventArgs args)
+        {
+            var rotation = (Vector) args.Value;
+            args.Value = new Vector(Utils.RadiansToDegrees(rotation.x), Utils.RadiansToDegrees(rotation.y), Utils.RadiansToDegrees(rotation.z)).ToString();
         }
 
         private void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs e)
