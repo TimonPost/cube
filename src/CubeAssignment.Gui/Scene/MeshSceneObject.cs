@@ -12,10 +12,10 @@ namespace CubeAssignment.Gui.Scene
             Mesh = mesh;
         }
 
-        public override void Draw(Graphics graphics, Matrix viewMatrix)
+        public override void Draw(Graphics graphics, Camera camera)
         {
-            Renderer.Draw(graphics, Mesh.VertexBuffer, Mesh.IndexBuffer,
-                Matrix.ModelTransformation(Scale, Rotation, Position) * viewMatrix);
+            var modelMatrix = Matrix.ModelTransformation(Scale, Rotation, Position);
+            Renderer.Draw(graphics, Mesh.VertexBuffer, Mesh.IndexBuffer, camera, modelMatrix);
         }
 
         public override void Update()

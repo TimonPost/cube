@@ -38,6 +38,18 @@ namespace CubeAssignment.Gui.Scene
 
         private void UpdateInput()
         {
+            if (Keyboard.IsKeyDown(Keys.Q))
+                // decrease scale
+            {
+                ApplyEffect((ms) => Camera.D += 1);
+            }
+            if (Keyboard.IsKeyDown(Keys.W))
+                // decrease scale
+            {
+                ApplyEffect((ms) => Camera.D -= 1);
+            }
+
+
             if (Keyboard.IsKeyDown(Keys.PageUp))
                 // decrease z
             {

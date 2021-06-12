@@ -22,6 +22,7 @@ namespace CubeAssignment.Gui
             var renderer = new Renderer(Canvas.Width, Canvas.Height);
             var cube = new VertexLabeledMeshSceneObject(Mesh.Cube, renderer);
             var ape = new MeshSceneObject(Mesh.FromObj("Models/Suzanne.obj", Color.Chocolate), renderer);
+
             theValuetaLabel.DataBindings.Add(new Binding(nameof(Label.Text), _mainScene.Camera, nameof(Camera.Theta)));
             dValueLabel.DataBindings.Add(new Binding(nameof(Label.Text), _mainScene.Camera, nameof(Camera.D)));
             rValueLabel.DataBindings.Add(new Binding(nameof(Label.Text), _mainScene.Camera, nameof(Camera.R)));

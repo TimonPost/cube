@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using CubeAssignment.Gui.Scene;
 using Matrix = CubeAssignment.Gui.Matrix;
 
 namespace CubeAssignment.Gui
@@ -21,9 +22,9 @@ namespace CubeAssignment.Gui
             ScreenHeight = screenHeight;
         }
 
-        public static Matrix ProjectionTransformation(float distance, float z)
+        public Matrix ProjectionTransformation(Camera camera, float z)
         {
-            var projectedZ = 1 / (distance - z);
+            var projectedZ = 1 / (camera.D - z);
             var projectionMatrix = new Matrix(
                 projectedZ, 0, 0, 0,
                 0, projectedZ, 0, 0,
@@ -33,13 +34,32 @@ namespace CubeAssignment.Gui
             return projectionMatrix;
         }
 
-        private Vector Transform(Vector inputVector, Matrix modelViewMatrix)
+        private Vector Transform(Camera camera, Vector inputVector, Matrix modelMatrix)
+        {
+            var modelView = modelMatrix * camera.GetMatrix();
+            
+            Vector vector = inputVector;
+            vector.w = 1;
+
+            Vector transformed = Vector.Transform(vector, modelView);
+
+            Matrix projection = ProjectionTransformation(camera, transformed.z);
+            Vector projected = Vector.Transform(transformed, projection);
+
+            //Scale to screen
+            projected.x = (projected.x + 1f) * ScreenWidth * 0.5f;
+            projected.y = (1f - projected.y) * ScreenHeight * 0.5f;
+            return projected;
+        }
+
+        private Vector Transform1(Camera camera, Vector inputVector)
         {
             Vector vector = inputVector;
             vector.w = 1;
 
-            Vector transformed = Vector.Transform(vector, modelViewMatrix);
-            Matrix projection = ProjectionTransformation(5, transformed.z);
+            Vector transformed = Vector.Transform(vector, camera.GetMatrix());
+
+            Matrix projection = ProjectionTransformation(camera, transformed.z);
             Vector projected = Vector.Transform(transformed, projection);
 
             //Scale to screen
@@ -56,7 +76,7 @@ namespace CubeAssignment.Gui
         /// <param name="color"></param>
         /// <param name="position"></param>
         /// <param name="modelViewMatrix"></param>
-        public void DrawText(Graphics graphics, string text, Color color, Vector position, Matrix modelViewMatrix)
+        public void DrawText(Graphics graphics, string text, Color color, Vector position, Camera camera, Matrix modeViewMatrix = null)
         {
             if (_fontBrush == null)
             {
@@ -67,7 +87,10 @@ namespace CubeAssignment.Gui
                 _fontBrush.Color = color;
             }
 
-            position = Transform(position, modelViewMatrix);
+            if (modeViewMatrix is null)
+                modeViewMatrix = Matrix.Identity();
+            
+            position = Transform(camera, position, modeViewMatrix);
             graphics.DrawString(text, _font, _fontBrush, new PointF(position.x, position.y));
         }
 
@@ -78,19 +101,18 @@ namespace CubeAssignment.Gui
         /// <param name="vertexes"></param>
         /// <param name="indexes"></param>
         /// <param name="modelViewMatrix"></param>
-        public void Draw(Graphics graphics, IReadOnlyList<Vertex> vertexes, IReadOnlyList<int> indexes,
-            Matrix modelViewMatrix)
+        public void Draw(Graphics graphics, IReadOnlyList<Vertex> vertexes, IReadOnlyList<int> indexes, Camera camera, Matrix modelMatrix)
         {
             using (IEnumerator<int> indexEnumerator = indexes.GetEnumerator())
             {
                 while (indexEnumerator.MoveNext())
                 {
                     Vertex firstVertex = vertexes[indexEnumerator.Current];
-                    Vector firstVector = Transform(firstVertex.Vector, modelViewMatrix);
+                    Vector firstVector = Transform(camera, firstVertex.Vector, modelMatrix);
 
                     indexEnumerator.MoveNext();
                     Vertex secondVertex = vertexes[indexEnumerator.Current];
-                    Vector secondVector = Transform(secondVertex.Vector, modelViewMatrix);
+                    Vector secondVector = Transform(camera, secondVertex.Vector, modelMatrix);
 
                     var point1 = new PointF(firstVector.x, firstVector.y);
                     var point2 = new PointF(secondVector.x, secondVector.y);

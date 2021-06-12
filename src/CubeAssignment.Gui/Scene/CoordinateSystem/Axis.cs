@@ -9,8 +9,7 @@ namespace CubeAssignment.Gui.Scene.CoordinateSystem
         private readonly Vector _baseVector;
         private readonly Color _color;
         private readonly Mesh _lineMesh;
-
-
+        
         public Axis(Renderer renderer, string label, Vector baseVector, Color color)
         {
             _renderer = renderer;
@@ -21,10 +20,10 @@ namespace CubeAssignment.Gui.Scene.CoordinateSystem
             _lineMesh = Mesh.CreateLine(Vector.NullVector, color, _baseVector, color);
         }
 
-        public void Draw(Graphics graphics, Matrix viewMatrix)
+        public void Draw(Graphics graphics, Camera camera)
         {
-            _renderer.Draw(graphics, _lineMesh.VertexBuffer, _lineMesh.IndexBuffer, viewMatrix);
-            _renderer.DrawText(graphics, _label, _color, _baseVector, viewMatrix);
+            _renderer.Draw(graphics, _lineMesh.VertexBuffer, _lineMesh.IndexBuffer, camera, Matrix.Identity());
+            _renderer.DrawText(graphics, _label, _color, _baseVector, camera);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace CubeAssignment.Gui.Scene
 {
     public class Camera : INotifyPropertyChanged
     {
-        private float _d = 800;
+        private float _d = 4;
         private float _r = 10;
         private float _theta = -100;
         private float _phi = -10;
@@ -74,7 +74,7 @@ namespace CubeAssignment.Gui.Scene
             Theta = -100;
             Phi = -10;
             R = 10;
-            D = 800;
+            D = 10;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

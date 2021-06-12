@@ -16,11 +16,11 @@ namespace CubeAssignment.Gui.Scene.CoordinateSystem
             };
         }
 
-        public override void Draw(Graphics graphics, Matrix viewMatrix)
+        public override void Draw(Graphics graphics, Camera camera)
         {
             foreach (Axis axis in _axises)
             {
-                axis.Draw(graphics, viewMatrix);
+                axis.Draw(graphics, camera);
             }
         }
 

@@ -8,16 +8,17 @@ namespace CubeAssignment.Gui.Scene
         {
         }
 
-        public override void Draw(Graphics graphics, Matrix viewMatrix)
+        public override void Draw(Graphics graphics, Camera camera)
         {
-            Matrix modeViewMatrix = Matrix.ModelTransformation(Scale, Rotation, Position) * viewMatrix;
+            Matrix modeViewMatrix = Matrix.ModelTransformation(Scale, Rotation, Position);
+
             for (var index = 0; index < Mesh.VertexBuffer.Count; index++)
             {
                 Vertex vertex = Mesh.VertexBuffer[index];
-                Renderer.DrawText(graphics, index.ToString(), Color.White, vertex.Vector, modeViewMatrix);
+                Renderer.DrawText(graphics, index.ToString(), Color.White, vertex.Vector, camera, modeViewMatrix);
             }
 
-            base.Draw(graphics, viewMatrix);
+            base.Draw(graphics, camera);
         }
     }
 }

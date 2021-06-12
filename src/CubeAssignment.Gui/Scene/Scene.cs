@@ -28,7 +28,7 @@ namespace CubeAssignment.Gui.Scene
         {
             foreach (SceneObject sceneObject in _sceneObjects)
             {
-                sceneObject.Draw(graphics, Camera.GetMatrix());
+                sceneObject.Draw(graphics, Camera);
             }
         }
     }
