@@ -37,6 +37,10 @@ namespace CubeAssignment.Gui.Scene
         public void Reset()
         {
             Position = new Vector(0, 0, 3);
+            Theta = -100;
+            Phi = -10;
+            R = 10;
+            D = 800;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

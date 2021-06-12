@@ -21,6 +21,7 @@ namespace CubeAssignment.Gui
 
             var renderer = new Renderer(Canvas.Width, Canvas.Height);
             var cube = new VertexLabeledMeshSceneObject(Mesh.Cube, renderer);
+            var ape = new MeshSceneObject(Mesh.FromObj("Models/Suzanne.obj", Color.Chocolate), renderer);
 
             // Camera bindings
             theValuetaLabel.DataBindings.Add(new Binding(nameof(Label.Text), _mainScene.Camera, nameof(Camera.Theta)));
@@ -36,8 +37,10 @@ namespace CubeAssignment.Gui
 
             _mainScene.Add(new CoordinateSystem(renderer));
             _mainScene.Add(cube);
-            _mainScene.Add(new MeshSceneObject(Mesh.FromObj("Models/Suzanne.obj", Color.Chocolate), renderer));
+            _mainScene.Add(ape);
+
             _mainScene.AddAnimationStateMachines(new AnimationFiniteStateMachine(cube, _mainScene.Camera));
+            _mainScene.AddAnimationStateMachines(new AnimationFiniteStateMachine(ape, _mainScene.Camera));
         }
 
         private void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs e)
