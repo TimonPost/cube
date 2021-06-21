@@ -16,7 +16,7 @@ namespace CubeAssignment.Gui.Animation
         /// <summary>
         ///     The state that is currently active.
         /// </summary>
-        private IState ActiveState { get; set; }
+        public IState ActiveState { get; private set; }
 
         public AnimationFiniteStateMachine(MeshSceneObject meshSceneObject, Camera camera)
         {
