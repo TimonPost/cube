@@ -45,7 +45,7 @@ namespace CubeAssignment.Tests
                 phase.Tick(animationState, deltaTime);
             }
 
-            Assert.AreEqual(camera.Theta, Camera.DefaultTheta - (Utils.DeltaChange(deltaTime) * timesToTick), 0.01f);
+            Assert.AreEqual(camera.Theta, Camera.DefaultTheta - (Utils.DeltaChange001(deltaTime) * timesToTick), 0.01f);
         }
 
         [TestMethod]
@@ -62,7 +62,7 @@ namespace CubeAssignment.Tests
                 phase.Tick(animationState, deltaTime);
             }
 
-            Assert.AreEqual(camera.Theta, Camera.DefaultTheta - (Utils.DeltaChange(deltaTime) * timesToTick), 0.01f);
+            Assert.AreEqual(camera.Theta, Camera.DefaultTheta - (Utils.DeltaChange001(deltaTime) * timesToTick), 0.01f);
         }
 
         [TestMethod]
@@ -112,7 +112,7 @@ namespace CubeAssignment.Tests
                 phase.Tick(animationState, deltaTime);
             }
 
-            Assert.AreEqual(camera.Theta, Camera.DefaultTheta - (Utils.DeltaChange(deltaTime) * timesToTick), 0.01f);
+            Assert.AreEqual(camera.Theta, Camera.DefaultTheta - (Utils.DeltaChange001(deltaTime) * timesToTick), 0.01f);
         }
 
         [TestMethod]
@@ -129,7 +129,7 @@ namespace CubeAssignment.Tests
                 phase.Tick(animationState, deltaTime);
             }
 
-            Assert.AreEqual(camera.Theta, Camera.DefaultTheta - (Utils.DeltaChange(deltaTime) * timesToTick), 0.01f);
+            Assert.AreEqual(camera.Theta, Camera.DefaultTheta - (Utils.DeltaChange001(deltaTime) * timesToTick), 0.01f);
         }
 
         [TestMethod]
@@ -143,7 +143,7 @@ namespace CubeAssignment.Tests
             for (int i = 0; i < timesToTick; i++)
                 phase.Tick(animationState, deltaTime);
 
-            Assert.IsTrue(meshObject.Rotation.x >= (Utils.DeltaChange(deltaTime) * timesToTick));
+            Assert.IsTrue(meshObject.Rotation.x >= (Utils.DeltaChange001(deltaTime) * timesToTick));
         }
 
         [TestMethod]
@@ -157,7 +157,7 @@ namespace CubeAssignment.Tests
             for (int i = 0; i < timesToTick; i++)
                 phase.Tick(animationState, deltaTime);
 
-            Assert.AreEqual(meshObject.Rotation.x + (Utils.DeltaChange(deltaTime) * timesToTick), 0, 0.01f);
+            Assert.AreEqual(meshObject.Rotation.x + (Utils.DeltaChange001(deltaTime) * timesToTick), 0, 0.01f);
         }
 
         [TestMethod]
@@ -174,7 +174,7 @@ namespace CubeAssignment.Tests
                 phase.Tick(animationState, deltaTime);
             }
 
-            Assert.AreEqual(camera.Phi, Camera.DefaultPhi +  (Utils.DeltaChange(deltaTime) * timesToTick), 0.00001f);
+            Assert.AreEqual(camera.Phi, Camera.DefaultPhi +  (Utils.DeltaChange001(deltaTime) * timesToTick), 0.00001f);
         }
 
         [TestMethod]
@@ -191,7 +191,7 @@ namespace CubeAssignment.Tests
                 phase.Tick(animationState, deltaTime);
             }
 
-            Assert.AreEqual(camera.Phi, Camera.DefaultPhi + (Utils.DeltaChange(deltaTime) * timesToTick), 0.00001f);
+            Assert.AreEqual(camera.Phi, Camera.DefaultPhi + (Utils.DeltaChange001(deltaTime) * timesToTick), 0.00001f);
         }
 
         [TestMethod]
@@ -205,7 +205,7 @@ namespace CubeAssignment.Tests
             for (int i = 0; i < timesToTick; i++)
                 phase.Tick(animationState, deltaTime);
 
-            Assert.IsTrue(meshObject.Rotation.y >= (Utils.DeltaChange(deltaTime) * timesToTick));
+            Assert.IsTrue(meshObject.Rotation.y >= (Utils.DeltaChange001(deltaTime) * timesToTick));
         }
 
         [TestMethod]
@@ -219,7 +219,7 @@ namespace CubeAssignment.Tests
             for (int i = 0; i < timesToTick; i++)
                 phase.Tick(animationState, deltaTime);
 
-            Assert.AreEqual(meshObject.Rotation.y + (Utils.DeltaChange(deltaTime) * timesToTick), 0, 0.01f);
+            Assert.AreEqual(meshObject.Rotation.y + (Utils.DeltaChange001(deltaTime) * timesToTick), 0, 0.01f);
         }
 
         [TestMethod]

@@ -49,17 +49,7 @@ namespace CubeAssignment.Gui.Scene
 
         private void UpdateInput(float deltaTime)
         {
-            if (Input.IsKeyDown(Keys.Q))
-                // decrease scale
-            {
-                ApplyEffect((ms) => Camera.Distance += Utils.DeltaChange(deltaTime) * 500);
-            }
-            if (Input.IsKeyDown(Keys.W))
-                // decrease scale
-            {
-                ApplyEffect((ms) => Camera.Distance -= Utils.DeltaChange(deltaTime) * 500);
-            }
-
+          
 
             if (Input.IsKeyDown(Keys.PageUp))
                 // decrease z
@@ -67,7 +57,7 @@ namespace CubeAssignment.Gui.Scene
                 ApplyEffect((ms) =>
                 {
                     Vector newPosition = ms.Position;
-                    newPosition.z -= Utils.DeltaChange(deltaTime);
+                    newPosition.z -= Utils.DeltaChange001(deltaTime);
                     ms.Position = newPosition;
                 });
             }
@@ -78,7 +68,7 @@ namespace CubeAssignment.Gui.Scene
                 ApplyEffect((ms) =>
                 {
                     Vector newPosition = ms.Position;
-                    newPosition.z += Utils.DeltaChange(deltaTime);
+                    newPosition.z += Utils.DeltaChange001(deltaTime);
                     ms.Position = newPosition;
                 });
             }
@@ -86,13 +76,37 @@ namespace CubeAssignment.Gui.Scene
             // If shift is pressed
             if ((Control.ModifierKeys & Keys.Shift) != 0)
             {
+                if (Input.IsKeyDown(Keys.P))
+                    // decrease phi
+                {
+                    ApplyEffect((ms) => Camera.Phi -= Utils.DeltaChange001(deltaTime) * 100);
+                }
+
+                if (Input.IsKeyDown(Keys.D))
+                    // decrease distance
+                {
+                    ApplyEffect((ms) => Camera.Distance -= Utils.DeltaChange001(deltaTime) * 150);
+                }
+
+                if (Input.IsKeyDown(Keys.T))
+                    // decrease Thetea
+                {
+                    ApplyEffect((ms) => Camera.Theta -= Utils.DeltaChange001(deltaTime) * 100);
+                }
+
+                if (Input.IsKeyDown(Keys.R))
+                    // decrease R
+                {
+                    ApplyEffect((ms) => Camera.R -= Utils.DeltaChange001(deltaTime) * 20);
+                }
+
                 if (Input.IsKeyDown(Keys.S))
-                    // decrease scale
+                     // decrease scale
                 {
                     ApplyEffect((ms) =>
                     {
                         Vector newScale = ms.Scale;
-                        float decrement = Utils.DeltaChange(deltaTime);
+                        float decrement = Utils.DeltaChange001(deltaTime);
                         newScale -= new Vector(decrement, decrement, decrement);
                         ms.Scale = newScale;
                     });
@@ -104,7 +118,7 @@ namespace CubeAssignment.Gui.Scene
                     ApplyEffect((ms) =>
                     {
                         Vector newRotation = ms.Rotation;
-                        newRotation.x -= Utils.DeltaChange(deltaTime);
+                        newRotation.x -= Utils.DeltaChange001(deltaTime);
                         ms.Rotation = newRotation;
                     });
                 }
@@ -115,7 +129,7 @@ namespace CubeAssignment.Gui.Scene
                     ApplyEffect((ms) =>
                     {
                         Vector newRotation = ms.Rotation;
-                        newRotation.y -= Utils.DeltaChange(deltaTime);
+                        newRotation.y -= Utils.DeltaChange001(deltaTime);
                         ms.Rotation = newRotation;
                     });
                 }
@@ -126,20 +140,44 @@ namespace CubeAssignment.Gui.Scene
                     ApplyEffect((ms) =>
                     {
                         Vector newRotation = ms.Rotation;
-                        newRotation.z -= Utils.DeltaChange(deltaTime);
+                        newRotation.z -= Utils.DeltaChange001(deltaTime);
                         ms.Rotation = newRotation;
                     });
                 }
             }
             else
             {
+                if (Input.IsKeyDown(Keys.P))
+                     // increase phi
+                {
+                    ApplyEffect((ms) => Camera.Phi += Utils.DeltaChange001(deltaTime) * 100);
+                }
+
+                if (Input.IsKeyDown(Keys.D))
+                    // increase distance
+                {
+                    ApplyEffect((ms) => Camera.Distance += Utils.DeltaChange001(deltaTime) * 150);
+                }
+
+                if (Input.IsKeyDown(Keys.T))
+                // increase scale
+                {
+                    ApplyEffect((ms) => Camera.Theta += Utils.DeltaChange001(deltaTime) * 100);
+                }
+
+                if (Input.IsKeyDown(Keys.R))
+                    // decrease R
+                {
+                    ApplyEffect((ms) => Camera.R += Utils.DeltaChange001(deltaTime) * 20);
+                }
+
                 if (Input.IsKeyDown(Keys.S))
                     // increase scale
                 {
                     ApplyEffect((ms) =>
                     {
                         Vector newScale = ms.Scale;
-                        float increment = Utils.DeltaChange(deltaTime);
+                        float increment = Utils.DeltaChange001(deltaTime);
                         newScale += new Vector(increment, increment, increment, increment);
                         ms.Scale = newScale;
                     });
@@ -151,7 +189,7 @@ namespace CubeAssignment.Gui.Scene
                     ApplyEffect((ms) =>
                     {
                         Vector newRotation = ms.Rotation;
-                        newRotation.x += Utils.DeltaChange(deltaTime);
+                        newRotation.x += Utils.DeltaChange001(deltaTime);
                         ms.Rotation = newRotation;
                     });
                 }
@@ -162,7 +200,7 @@ namespace CubeAssignment.Gui.Scene
                     ApplyEffect((ms) =>
                     {
                         Vector newRotation = ms.Rotation;
-                        newRotation.y += Utils.DeltaChange(deltaTime);
+                        newRotation.y += Utils.DeltaChange001(deltaTime);
                         ms.Rotation = newRotation;
                     });
                 }
@@ -173,7 +211,7 @@ namespace CubeAssignment.Gui.Scene
                     ApplyEffect((ms) =>
                     {
                         Vector newRotation = ms.Rotation;
-                        newRotation.z += Utils.DeltaChange(deltaTime);
+                        newRotation.z += Utils.DeltaChange001(deltaTime);
                         ms.Rotation = newRotation;
                     });
                 }
@@ -213,7 +251,7 @@ namespace CubeAssignment.Gui.Scene
                     ApplyEffect((ms) =>
                     {
                         Vector newPosition = ms.Position;
-                        newPosition.y += Utils.DeltaChange(deltaTime);
+                        newPosition.y += Utils.DeltaChange001(deltaTime);
                         ms.Position = newPosition;
                     });
                 }
@@ -224,7 +262,7 @@ namespace CubeAssignment.Gui.Scene
                     ApplyEffect((ms) =>
                     {
                         Vector newPosition = ms.Position;
-                        newPosition.x -= Utils.DeltaChange(deltaTime);
+                        newPosition.x -= Utils.DeltaChange001(deltaTime);
                         ms.Position = newPosition;
                     });
                 }
@@ -235,7 +273,7 @@ namespace CubeAssignment.Gui.Scene
                     ApplyEffect((ms) =>
                     {
                         Vector newPosition = ms.Position;
-                        newPosition.x += Utils.DeltaChange(deltaTime);
+                        newPosition.x += Utils.DeltaChange001(deltaTime);
                         ms.Position = newPosition;
                     });
                 }
@@ -246,7 +284,7 @@ namespace CubeAssignment.Gui.Scene
                     ApplyEffect((ms) =>
                     {
                         Vector newPosition = ms.Position;
-                        newPosition.y -= Utils.DeltaChange(deltaTime);
+                        newPosition.y -= Utils.DeltaChange001(deltaTime);
                         ms.Position = newPosition;
                     });
                 }
@@ -257,7 +295,7 @@ namespace CubeAssignment.Gui.Scene
                     ApplyEffect((ms) =>
                     {
                         Vector newPosition = ms.Position;
-                        newPosition.z -= Utils.DeltaChange(deltaTime);
+                        newPosition.z -= Utils.DeltaChange001(deltaTime);
                         ms.Position = newPosition;
                     });
                 }
@@ -268,7 +306,7 @@ namespace CubeAssignment.Gui.Scene
                     ApplyEffect((ms) =>
                     {
                         Vector newPosition = ms.Position;
-                        newPosition.z += Utils.DeltaChange(deltaTime);
+                        newPosition.z += Utils.DeltaChange001(deltaTime);
                         ms.Position = newPosition;
                     });
                 }

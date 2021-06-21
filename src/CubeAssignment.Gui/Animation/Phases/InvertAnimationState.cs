@@ -27,7 +27,7 @@ namespace CubeAssignment.Gui.Animation.Phases
         {
             if (cubeAnimationData.Camera.Theta < Camera.DefaultTheta)
             {
-                cubeAnimationData.Camera.Theta += Utils.DeltaChange(deltaTime);
+                cubeAnimationData.Camera.Theta += Utils.DeltaChangeStepSize1(deltaTime);
             }
             else
             {
@@ -37,7 +37,7 @@ namespace CubeAssignment.Gui.Animation.Phases
 
             if (cubeAnimationData.Camera.Phi > Camera.DefaultPhi)
             {
-                cubeAnimationData.Camera.Phi -= Utils.DeltaChange(deltaTime);
+                cubeAnimationData.Camera.Phi -= Utils.DeltaChangeStepSize1(deltaTime);
             }
             else
             {

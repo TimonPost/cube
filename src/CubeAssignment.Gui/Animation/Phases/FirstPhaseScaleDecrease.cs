@@ -28,12 +28,13 @@ namespace CubeAssignment.Gui.Animation.Phases
         protected void PerformAction(CubeAnimationData cubeAnimationData, float deltaTime)
         {
             Vector newScale = cubeAnimationData.MeshSceneObject.Scale;
-            newScale.x -= Utils.DeltaChange(deltaTime);
-            newScale.y -= Utils.DeltaChange(deltaTime);
-            newScale.z -= Utils.DeltaChange(deltaTime);
+            newScale.x -= Utils.DeltaChange001(deltaTime);
+            newScale.y -= Utils.DeltaChange001(deltaTime);
+            newScale.z -= Utils.DeltaChange001(deltaTime);
+
             cubeAnimationData.MeshSceneObject.Scale = newScale;
 
-           cubeAnimationData.Camera.Theta -= Utils.DeltaChange(deltaTime);
+           cubeAnimationData.Camera.Theta -= Utils.DeltaChangeStepSize1(deltaTime);
         }
     }
 }

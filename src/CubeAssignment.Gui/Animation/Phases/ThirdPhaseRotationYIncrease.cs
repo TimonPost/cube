@@ -33,9 +33,9 @@ namespace CubeAssignment.Gui.Animation.Phases
         protected void PerformAction(CubeAnimationData cubeAnimationData, float deltaTime)
         {
             Vector newRotation = cubeAnimationData.MeshSceneObject.Rotation;
-            newRotation.y += Utils.DeltaChange(deltaTime);
+            newRotation.y += Utils.DeltaChange001(deltaTime);
             cubeAnimationData.MeshSceneObject.Rotation = newRotation;
-            cubeAnimationData.Camera.Phi += Utils.DeltaChange(deltaTime);
+            cubeAnimationData.Camera.Phi += Utils.DeltaChangeStepSize1(deltaTime);
         }
     }
 }
