@@ -8,19 +8,25 @@ namespace CubeAssignment.Gui.Scene
     [AddINotifyPropertyChangedInterface]
     public class Camera : INotifyPropertyChanged
     {
-        public static float DEFAULT_THETA = -100;
+        public const float DefaultTheta = -100;
 
-        public static float DEFAULT_PHI = -10;
+        public const float DefaultPhi = -10;
 
-        public Vector Position { get; set; } = new Vector(0, 0, 3);
+        public const float DefaultR = 10;
+        
+        public const float DefaultD = 5;
 
-        public float D { get; set; } = 5;
+        public static readonly Vector DefaultPosition = new Vector(0, 0, 3);
 
-        public float R { get; set; } = 10;
+        public Vector Position { get; set; } = DefaultPosition;
 
-        public float Theta { get; set; } = -DEFAULT_THETA;
+        public float D { get; set; } = DefaultD;
 
-        public float Phi { get; set; } = -DEFAULT_PHI;
+        public float R { get; set; } = DefaultR;
+
+        public float Theta { get; set; } = DefaultTheta;
+
+        public float Phi { get; set; } = DefaultPhi;
         
         public Matrix GetMatrix()
         {
@@ -39,11 +45,11 @@ namespace CubeAssignment.Gui.Scene
         
         public void Reset()
         {
-            Position = new Vector(0, 0, 3);
-            Theta = DEFAULT_THETA;
-            Phi = DEFAULT_PHI;
-            R = 10;
-            D = 5;
+            Position = DefaultPosition;
+            Theta = DefaultTheta;
+            Phi = DefaultPhi;
+            R = DefaultR;
+            D = DefaultD;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
