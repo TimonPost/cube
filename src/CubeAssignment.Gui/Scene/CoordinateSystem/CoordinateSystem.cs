@@ -27,7 +27,7 @@ namespace CubeAssignment.Gui.Scene.CoordinateSystem
             }
         }
 
-        public override void Update()
+        public override void Update(float deltaTime)
         {
             // Ignore
         }

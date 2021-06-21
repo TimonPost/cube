@@ -31,7 +31,7 @@ namespace CubeAssignment.Gui.Scene
         {
             foreach (SceneObject sceneObject in _sceneObjects)
             {
-                sceneObject.Update();
+                sceneObject.Update(deltaTime);
             }
         }
 
