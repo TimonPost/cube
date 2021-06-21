@@ -54,10 +54,10 @@ namespace CubeAssignment.Gui.Animation
         /// <summary>
         ///     Update logic for the state-machine.
         /// </summary>
-        public void Tick()
+        public void Tick(float deltaTime)
         {
             // If some state is finished, try to advance.
-            if (ActiveState?.Tick(new CubeAnimationData(_meshSceneObject, _camera)) ?? false)
+            if (ActiveState?.Tick(new CubeAnimationData(_meshSceneObject, _camera), deltaTime) ?? false)
             {
                 ProcessEvent(Events.Finished);
             }

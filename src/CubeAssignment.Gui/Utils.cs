@@ -26,5 +26,10 @@ namespace CubeAssignment.Gui
         {
             return radians * (180 / MathF.PI);
         }
+
+        public static float DeltaChange(float deltaTime)
+        {
+            return deltaTime * Settings.StepSize * Settings.Speed;
+        }
     }
 }

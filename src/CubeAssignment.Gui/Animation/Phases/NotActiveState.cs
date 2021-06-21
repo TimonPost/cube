@@ -19,7 +19,7 @@ namespace CubeAssignment.Gui.Animation.Phases
             Console.WriteLine("exit phase 1 not active");
         }
 
-        public virtual bool Tick(CubeAnimationData cubeAnimationData)
+        public virtual bool Tick(CubeAnimationData cubeAnimationData, float deltaTime)
         {
             return false;
         }

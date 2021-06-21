@@ -26,19 +26,19 @@ namespace CubeAssignment.Gui.Animation.Phases
             Console.WriteLine("enter phase 3");
         }
 
-        public virtual bool Tick(CubeAnimationData cubeAnimationData)
+        public virtual bool Tick(CubeAnimationData cubeAnimationData, float deltaTime)
         {
-            PerformAction(cubeAnimationData);
+            PerformAction(cubeAnimationData, deltaTime);
             return cubeAnimationData.MeshSceneObject.Rotation.y <= ToRadians(0);
         }
 
-        protected void PerformAction(CubeAnimationData cubeAnimationData)
+        protected void PerformAction(CubeAnimationData cubeAnimationData, float deltaTime)
         {
             Vector newRotation = cubeAnimationData.MeshSceneObject.Rotation;
             newRotation.y -= StepSize;
             cubeAnimationData.MeshSceneObject.Rotation = newRotation;
 
-            cubeAnimationData.Camera.Phi += Settings.StepSize;
+            cubeAnimationData.Camera.Phi += Utils.DeltaChange(deltaTime);
         }
     }
 }

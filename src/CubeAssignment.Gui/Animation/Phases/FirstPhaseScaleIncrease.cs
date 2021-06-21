@@ -21,20 +21,20 @@ namespace CubeAssignment.Gui.Animation.Phases
             Console.WriteLine("exit phase 1");
         }
 
-        public virtual bool Tick(CubeAnimationData cubeAnimationData)
+        public virtual bool Tick(CubeAnimationData cubeAnimationData, float deltaTime)
         {
-            PerformAction(cubeAnimationData);
+            PerformAction(cubeAnimationData, deltaTime);
             return cubeAnimationData.MeshSceneObject.Scale.x >= 1.5f;
         }
 
-        protected void PerformAction(CubeAnimationData cubeAnimationData)
+        protected void PerformAction(CubeAnimationData cubeAnimationData, float deltaTime)
         {
             Vector newScale = cubeAnimationData.MeshSceneObject.Scale;
             newScale.x += StepSize;
             newScale.y += StepSize;
             newScale.z += StepSize;
             cubeAnimationData.MeshSceneObject.Scale = newScale;
-            cubeAnimationData.Camera.Theta -= Settings.StepSize;
+            cubeAnimationData.Camera.Theta -= Utils.DeltaChange(deltaTime);
         }
     }
 }
