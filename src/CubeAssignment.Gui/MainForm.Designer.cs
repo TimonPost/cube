@@ -46,15 +46,20 @@
             this.KeybindingLabel = new System.Windows.Forms.Label();
             this.KeyBindingZLabel = new System.Windows.Forms.Label();
             this.KeyBindingScaleLabel = new System.Windows.Forms.Label();
-            this.KeyBindingRotationLabel = new System.Windows.Forms.Label();
-            this.KeyBindingAnimationResetLabel = new System.Windows.Forms.Label();
-            this.CameraZoomLabel = new System.Windows.Forms.Label();
             this.phiValueLabel = new System.Windows.Forms.Label();
             this.dValueLabel = new System.Windows.Forms.Label();
             this.rValueLabel = new System.Windows.Forms.Label();
             this.theValuetaLabel = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.CameraZoomLabel = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.KeyBindingRotationLabel = new System.Windows.Forms.Label();
+            this.KeyBindingAnimationResetLabel = new System.Windows.Forms.Label();
             this.Canvas = new System.Windows.Forms.PictureBox();
             this.MainTable = new System.Windows.Forms.TableLayoutPanel();
+            this.label5 = new System.Windows.Forms.Label();
             this.MenuTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).BeginInit();
             this.MainTable.SuspendLayout();
@@ -72,6 +77,7 @@
             this.MenuTable.ColumnCount = 2;
             this.MenuTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.MenuTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.MenuTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.MenuTable.Controls.Add(this.TranslateLabel, 0, 1);
             this.MenuTable.Controls.Add(this.MeshPropertiesLabel, 0, 0);
             this.MenuTable.Controls.Add(this.RotateLabel, 0, 2);
@@ -85,19 +91,24 @@
             this.MenuTable.Controls.Add(this.ThetaLabel, 0, 7);
             this.MenuTable.Controls.Add(this.PhiLabel, 0, 8);
             this.MenuTable.Controls.Add(this.KeybindingLabel, 0, 9);
-            this.MenuTable.Controls.Add(this.KeyBindingZLabel, 0, 10);
             this.MenuTable.Controls.Add(this.KeyBindingScaleLabel, 0, 11);
-            this.MenuTable.Controls.Add(this.KeyBindingRotationLabel, 0, 12);
-            this.MenuTable.Controls.Add(this.KeyBindingAnimationResetLabel, 0, 13);
-            this.MenuTable.Controls.Add(this.CameraZoomLabel, 0, 14);
             this.MenuTable.Controls.Add(this.phiValueLabel, 1, 8);
             this.MenuTable.Controls.Add(this.dValueLabel, 1, 5);
             this.MenuTable.Controls.Add(this.rValueLabel, 1, 6);
             this.MenuTable.Controls.Add(this.theValuetaLabel, 1, 7);
+            this.MenuTable.Controls.Add(this.label1, 0, 20);
+            this.MenuTable.Controls.Add(this.label2, 0, 21);
+            this.MenuTable.Controls.Add(this.label3, 0, 22);
+            this.MenuTable.Controls.Add(this.CameraZoomLabel, 0, 23);
+            this.MenuTable.Controls.Add(this.KeyBindingZLabel, 0, 24);
+            this.MenuTable.Controls.Add(this.label4, 0, 25);
+            this.MenuTable.Controls.Add(this.KeyBindingRotationLabel, 0, 26);
+            this.MenuTable.Controls.Add(this.KeyBindingAnimationResetLabel, 0, 27);
+            this.MenuTable.Controls.Add(this.label5, 0, 28);
             this.MenuTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MenuTable.Location = new System.Drawing.Point(3, 3);
             this.MenuTable.Name = "MenuTable";
-            this.MenuTable.RowCount = 20;
+            this.MenuTable.RowCount = 30;
             this.MenuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.MenuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.MenuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -118,6 +129,16 @@
             this.MenuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.MenuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.MenuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.MenuTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.MenuTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.MenuTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.MenuTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.MenuTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.MenuTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.MenuTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.MenuTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.MenuTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.MenuTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.MenuTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.MenuTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.MenuTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
@@ -289,12 +310,12 @@
             this.MenuTable.SetColumnSpan(this.KeyBindingZLabel, 2);
             this.KeyBindingZLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.KeyBindingZLabel.ForeColor = System.Drawing.Color.White;
-            this.KeyBindingZLabel.Location = new System.Drawing.Point(4, 210);
+            this.KeyBindingZLabel.Location = new System.Drawing.Point(4, 311);
             this.KeyBindingZLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.KeyBindingZLabel.Name = "KeyBindingZLabel";
-            this.KeyBindingZLabel.Size = new System.Drawing.Size(232, 21);
+            this.KeyBindingZLabel.Size = new System.Drawing.Size(193, 20);
             this.KeyBindingZLabel.TabIndex = 24;
-            this.KeyBindingZLabel.Text = "PgUp/PgDn: decrase / increase z";
+            this.KeyBindingZLabel.Text = "Translate Z: PgUp/PgDown";
             // 
             // KeyBindingScaleLabel
             // 
@@ -303,51 +324,12 @@
             this.KeyBindingScaleLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.KeyBindingScaleLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.KeyBindingScaleLabel.ForeColor = System.Drawing.Color.White;
-            this.KeyBindingScaleLabel.Location = new System.Drawing.Point(4, 231);
+            this.KeyBindingScaleLabel.Location = new System.Drawing.Point(4, 210);
             this.KeyBindingScaleLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.KeyBindingScaleLabel.Name = "KeyBindingScaleLabel";
             this.KeyBindingScaleLabel.Size = new System.Drawing.Size(386, 21);
             this.KeyBindingScaleLabel.TabIndex = 27;
-            this.KeyBindingScaleLabel.Text = "s/S: scale (increase, decrease)";
-            // 
-            // KeyBindingRotationLabel
-            // 
-            this.KeyBindingRotationLabel.AutoSize = true;
-            this.MenuTable.SetColumnSpan(this.KeyBindingRotationLabel, 2);
-            this.KeyBindingRotationLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.KeyBindingRotationLabel.ForeColor = System.Drawing.Color.White;
-            this.KeyBindingRotationLabel.Location = new System.Drawing.Point(4, 252);
-            this.KeyBindingRotationLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.KeyBindingRotationLabel.Name = "KeyBindingRotationLabel";
-            this.KeyBindingRotationLabel.Size = new System.Drawing.Size(334, 21);
-            this.KeyBindingRotationLabel.TabIndex = 26;
-            this.KeyBindingRotationLabel.Text = "X/X, y/Y, z/Z: rotate around x-axis, y-axis, z-axis.";
-            // 
-            // KeyBindingAnimationResetLabel
-            // 
-            this.KeyBindingAnimationResetLabel.AutoSize = true;
-            this.MenuTable.SetColumnSpan(this.KeyBindingAnimationResetLabel, 2);
-            this.KeyBindingAnimationResetLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.KeyBindingAnimationResetLabel.ForeColor = System.Drawing.Color.White;
-            this.KeyBindingAnimationResetLabel.Location = new System.Drawing.Point(4, 273);
-            this.KeyBindingAnimationResetLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.KeyBindingAnimationResetLabel.Name = "KeyBindingAnimationResetLabel";
-            this.KeyBindingAnimationResetLabel.Size = new System.Drawing.Size(373, 21);
-            this.KeyBindingAnimationResetLabel.TabIndex = 28;
-            this.KeyBindingAnimationResetLabel.Text = "When “C” is pressed, all variables are reset to default";
-            // 
-            // CameraZoomLabel
-            // 
-            this.CameraZoomLabel.AutoSize = true;
-            this.MenuTable.SetColumnSpan(this.CameraZoomLabel, 2);
-            this.CameraZoomLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CameraZoomLabel.ForeColor = System.Drawing.Color.White;
-            this.CameraZoomLabel.Location = new System.Drawing.Point(4, 294);
-            this.CameraZoomLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.CameraZoomLabel.Name = "CameraZoomLabel";
-            this.CameraZoomLabel.Size = new System.Drawing.Size(167, 21);
-            this.CameraZoomLabel.TabIndex = 26;
-            this.CameraZoomLabel.Text = "Camera Distance: Q/W";
+            this.KeyBindingScaleLabel.Text = "Scale (increase, decrease): S/s";
             // 
             // phiValueLabel
             // 
@@ -397,6 +379,97 @@
             this.theValuetaLabel.TabIndex = 36;
             this.theValuetaLabel.Text = "0";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.MenuTable.SetColumnSpan(this.label3, 2);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(4, 271);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(107, 20);
+            this.label3.TabIndex = 49;
+            this.label3.Text = "Camera R: R/r";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.MenuTable.SetColumnSpan(this.label2, 2);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(4, 251);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(121, 20);
+            this.label2.TabIndex = 48;
+            this.label2.Text = "Camera Phi: P/p";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.MenuTable.SetColumnSpan(this.label1, 2);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(4, 231);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(132, 20);
+            this.label1.TabIndex = 47;
+            this.label1.Text = "Camera Theta: T/t";
+            // 
+            // CameraZoomLabel
+            // 
+            this.CameraZoomLabel.AutoSize = true;
+            this.MenuTable.SetColumnSpan(this.CameraZoomLabel, 2);
+            this.CameraZoomLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CameraZoomLabel.ForeColor = System.Drawing.Color.White;
+            this.CameraZoomLabel.Location = new System.Drawing.Point(4, 291);
+            this.CameraZoomLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.CameraZoomLabel.Name = "CameraZoomLabel";
+            this.CameraZoomLabel.Size = new System.Drawing.Size(160, 20);
+            this.CameraZoomLabel.TabIndex = 26;
+            this.CameraZoomLabel.Text = "Camera Distance: D/d";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.MenuTable.SetColumnSpan(this.label4, 2);
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(4, 331);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(145, 20);
+            this.label4.TabIndex = 50;
+            this.label4.Text = "Translate: ARROWS";
+            // 
+            // KeyBindingRotationLabel
+            // 
+            this.KeyBindingRotationLabel.AutoSize = true;
+            this.MenuTable.SetColumnSpan(this.KeyBindingRotationLabel, 2);
+            this.KeyBindingRotationLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.KeyBindingRotationLabel.ForeColor = System.Drawing.Color.White;
+            this.KeyBindingRotationLabel.Location = new System.Drawing.Point(4, 351);
+            this.KeyBindingRotationLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.KeyBindingRotationLabel.Name = "KeyBindingRotationLabel";
+            this.KeyBindingRotationLabel.Size = new System.Drawing.Size(338, 20);
+            this.KeyBindingRotationLabel.TabIndex = 26;
+            this.KeyBindingRotationLabel.Text = "Rotate around x-axis, y-axis, z-axis: X/X, y/Y, z/Z:";
+            // 
+            // KeyBindingAnimationResetLabel
+            // 
+            this.KeyBindingAnimationResetLabel.AutoSize = true;
+            this.MenuTable.SetColumnSpan(this.KeyBindingAnimationResetLabel, 2);
+            this.KeyBindingAnimationResetLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.KeyBindingAnimationResetLabel.ForeColor = System.Drawing.Color.White;
+            this.KeyBindingAnimationResetLabel.Location = new System.Drawing.Point(4, 371);
+            this.KeyBindingAnimationResetLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.KeyBindingAnimationResetLabel.Name = "KeyBindingAnimationResetLabel";
+            this.KeyBindingAnimationResetLabel.Size = new System.Drawing.Size(135, 20);
+            this.KeyBindingAnimationResetLabel.TabIndex = 28;
+            this.KeyBindingAnimationResetLabel.Text = "Start Animation: A";
+            // 
             // Canvas
             // 
             this.Canvas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
@@ -425,6 +498,19 @@
             this.MainTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.MainTable.Size = new System.Drawing.Size(2197, 942);
             this.MainTable.TabIndex = 1;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.MenuTable.SetColumnSpan(this.label5, 2);
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(4, 391);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(151, 20);
+            this.label5.TabIndex = 51;
+            this.label5.Text = "Reset all variables: C";
             // 
             // MainForm
             // 
@@ -473,6 +559,11 @@
         private System.Windows.Forms.Label KeyBindingRotationLabel;
         private System.Windows.Forms.Label KeyBindingAnimationResetLabel;
         private System.Windows.Forms.Label CameraZoomLabel;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }
 
