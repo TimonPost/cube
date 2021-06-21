@@ -5,7 +5,9 @@ using CubeAssignment.Gui;
 using CubeAssignment.Gui.Animation;
 using CubeAssignment.Gui.Animation.Phases;
 using CubeAssignment.Gui.Scene;
+using Microsoft.VisualBasic.CompilerServices;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Utils = CubeAssignment.Gui.Utils;
 
 namespace CubeAssignment.Tests
 {
@@ -34,11 +36,13 @@ namespace CubeAssignment.Tests
             FirstPhaseScaleDecrease phase = new FirstPhaseScaleDecrease();
 
             int timesToTick = 20;
-            
-            for (int i = 0; i < timesToTick; i++)
-                phase.Tick(animationState, 1f/60);
 
-            Assert.AreEqual(Math.Round(camera.Theta, 4), Math.Round(Camera.DefaultTheta - (Settings.StepSize * timesToTick+1)), 4);
+            float deltaTime = 1f / 60f;
+
+            for (int i = 0; i < timesToTick; i++)
+                phase.Tick(animationState, deltaTime);
+
+            Assert.AreEqual(camera.Theta, Camera.DefaultTheta - (Utils.DeltaChange(deltaTime) * timesToTick), 0.01f);
         }
 
 
@@ -49,10 +53,14 @@ namespace CubeAssignment.Tests
 
             int timesToTick = 20;
 
-            for (int i = 0; i < timesToTick; i++)
-                phase.Tick(animationState, 1f / 60f);
+            float deltaTime = 1f / 60f;
 
-            Assert.AreEqual(Math.Round(camera.Theta, 4), Math.Round(Camera.DefaultTheta - (Settings.StepSize * timesToTick + 1)), 4);
+            for (int i = 0; i < timesToTick; i++)
+            {
+                phase.Tick(animationState, deltaTime);
+            }
+
+            Assert.AreEqual(camera.Theta, Camera.DefaultTheta - (Utils.DeltaChange(deltaTime) * timesToTick), 0.01f);
         }
     }
 }

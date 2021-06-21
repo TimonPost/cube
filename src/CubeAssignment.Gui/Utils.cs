@@ -5,7 +5,7 @@ namespace CubeAssignment.Gui
     /// <summary>
     /// Helper utilities. 
     /// </summary>
-    internal static class Utils
+    public static class Utils
     {
         /// <summary>
         /// Converts degrees to radians
