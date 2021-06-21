@@ -14,6 +14,7 @@ namespace CubeAssignment.Gui
         private readonly MainScene _mainScene = new MainScene();
 
         private DateTime _previousTick = DateTime.Now;
+        private readonly Renderer _renderer;
 
         public MainForm()
         {
@@ -22,9 +23,9 @@ namespace CubeAssignment.Gui
 
             AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
 
-            var renderer = new Renderer(Canvas.Width, Canvas.Height);
-            var cube = new VertexLabeledMeshSceneObject(Mesh.Cube, renderer);
-            var ape = new MeshSceneObject(Mesh.FromObj("Models/Suzanne.obj", Color.Orange), renderer);
+            _renderer = new Renderer(Canvas.Width, Canvas.Height);
+            var cube = new VertexLabeledMeshSceneObject(Mesh.Cube, _renderer);
+            var ape = new MeshSceneObject(Mesh.FromObj("Models/Suzanne.obj", Color.FromArgb(77, 77, 77)), _renderer);
 
             // Camera UI property bindings
             theValuetaLabel.DataBindings.Add(new Binding(nameof(Label.Text), _mainScene.Camera, nameof(Camera.Theta)));
@@ -40,7 +41,7 @@ namespace CubeAssignment.Gui
             ScaleValueLabel.DataBindings.Add(new Binding(nameof(Label.Text), cube, nameof(MeshSceneObject.Scale)));
             TranslateValueLabel.DataBindings.Add(new Binding(nameof(Label.Text), cube, nameof(MeshSceneObject.Position)));
             
-            _mainScene.Add(new CoordinateSystem(renderer));
+            _mainScene.Add(new CoordinateSystem(_renderer));
             _mainScene.Add(cube);
             _mainScene.Add(ape);
 
@@ -87,6 +88,12 @@ namespace CubeAssignment.Gui
         private void tableLayoutPanel4_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            _renderer.ScreenWidth = Canvas.Width;
+            _renderer.ScreenHeight = Canvas.Height;
         }
     }
 }

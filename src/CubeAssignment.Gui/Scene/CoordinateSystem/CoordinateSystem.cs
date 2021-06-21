@@ -13,9 +13,9 @@ namespace CubeAssignment.Gui.Scene.CoordinateSystem
         {
             _axises = new Axis[]
             {
-                new Axis(renderer, "X", new Vector(4, 0, 0), Color.Red),
-                new Axis(renderer, "Y", new Vector(0, 4, 0), Color.Green),
-                new Axis(renderer, "Z", new Vector(0, 0, -4), Color.Blue)
+                new Axis(renderer, "X", new Vector(4, 0, 0), Color.FromArgb(246, 54, 82)),
+                new Axis(renderer, "Y", new Vector(0, 4, 0), Color.FromArgb(111, 162, 26)),
+                new Axis(renderer, "Z", new Vector(0, 0, -4), Color.FromArgb(46, 131, 227))
             };
         }
         
