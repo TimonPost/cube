@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Diagnostics;
 using System.Runtime.ConstrainedExecution;
 using CubeAssignment.Gui;
@@ -248,6 +249,34 @@ namespace CubeAssignment.Tests
 
             Assert.AreEqual(camera.Phi, Camera.DefaultPhi);
             Assert.AreEqual(camera.Theta, Camera.DefaultTheta);
+        }
+
+        [TestMethod]
+        public void AnimationStateMachine_State_Order()
+        {
+            AnimationFiniteStateMachine afsm = new AnimationFiniteStateMachine(meshObject, camera);
+
+            afsm.Start();
+
+            Assert.AreSame(afsm.ActiveState.GetType(), typeof(FirstPhaseScaleIncrease));
+
+            afsm.ProcessEvent(Events.Finished);
+            Assert.AreSame(afsm.ActiveState.GetType(), typeof(FirstPhaseScaleDecrease));
+
+            afsm.ProcessEvent(Events.Finished);
+            Assert.AreSame(afsm.ActiveState.GetType(), typeof(SecondPhaseRotationXIncrease));
+
+            afsm.ProcessEvent(Events.Finished);
+            Assert.AreSame(afsm.ActiveState.GetType(), typeof(SecondPhaseRotationXDecrease));
+
+            afsm.ProcessEvent(Events.Finished);
+            Assert.AreSame(afsm.ActiveState.GetType(), typeof(ThirdPhaseRotationYIncrease));
+
+            afsm.ProcessEvent(Events.Finished);
+            Assert.AreSame(afsm.ActiveState.GetType(), typeof(ThirdPhaseRotationYDecrease));
+
+            afsm.ProcessEvent(Events.Finished);
+            Assert.AreSame(afsm.ActiveState.GetType(), typeof(InvertAnimationState));
         }
     }
 }

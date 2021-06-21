@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using CubeAssignment.Gui;
+using CubeAssignment.Gui.Scene;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CubeAssignment.Tests
 {
@@ -97,5 +99,26 @@ namespace CubeAssignment.Tests
         //     Assert.AreEqual(Math.Round(result[3, 2], 3), 5);
         //     Assert.AreEqual(Math.Round(result[3, 3], 3), 1);
         // }
+        [TestMethod]
+        public void Camera_Reset_Values_Test()
+        {
+            Camera camera = new Camera();
+            camera.Phi = 5;
+            camera.Theta = 555;
+            camera.R = 4444;
+            camera.Position = new Vector(20, 20, 20);
+
+            camera.Reset();
+
+            Assert.AreEqual(camera.Phi, Camera.DefaultPhi);
+            Assert.AreEqual(camera.Theta, Camera.DefaultTheta);
+            Assert.AreEqual(camera.D, Camera.DefaultD);
+            Assert.AreEqual(camera.Position, Camera.DefaultPosition);
+            Assert.AreEqual(camera.R, Camera.DefaultR);
+        }
+
+       
     }
+
+
 }
