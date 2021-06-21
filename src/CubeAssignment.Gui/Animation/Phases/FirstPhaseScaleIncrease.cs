@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CubeAssignment.Gui.Animation
+namespace CubeAssignment.Gui.Animation.Phases
 {
     /// <summary>
     /// Animation phase that increases the scale and meanwhile decreases the camera 'theta'.  
@@ -9,7 +9,7 @@ namespace CubeAssignment.Gui.Animation
     {
         public float StepSize { get; set; } = 0.01f;
 
-        public virtual States State => States.Phase1ScaleIncrease;
+        public virtual AnimationStates AnimationState => AnimationStates.Phase1ScaleIncrease;
 
         public void Enter()
         {

@@ -1,10 +1,13 @@
 ﻿using System;
 
-namespace CubeAssignment.Gui.Animation
+namespace CubeAssignment.Gui.Animation.Phases
 {
+    /// <summary>
+    /// Animation phase that does nothing. 
+    /// </summary>
     public class NotActiveState : IState
     {
-        public States State => States.NotActive;
+        public AnimationStates AnimationState => AnimationStates.NotActive;
 
         public void Enter()
         {

@@ -1,6 +1,9 @@
 ﻿namespace CubeAssignment.Gui.Animation
 {
-    public enum States
+    /// <summary>
+    /// Different animation states. 
+    /// </summary>
+    public enum AnimationStates
     {
         Phase1ScaleIncrease,
         Phase1ScaleDecrease,

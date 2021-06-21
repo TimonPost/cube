@@ -8,7 +8,7 @@
         /// <summary>
         ///     State identifier.
         /// </summary>
-        States State { get; }
+        AnimationStates AnimationState { get; }
 
         /// <summary>
         ///     Enter the state.

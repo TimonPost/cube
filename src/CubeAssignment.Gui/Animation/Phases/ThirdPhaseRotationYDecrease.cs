@@ -1,7 +1,10 @@
 ﻿using System;
 
-namespace CubeAssignment.Gui.Animation
+namespace CubeAssignment.Gui.Animation.Phases
 {
+    /// <summary>
+    /// Animation phase that decreases the rotation along the Y down to 0 degrees and meanwhile increases the camera 'PHI'.  
+    /// </summary>
     public class ThirdPhaseRotationYDecrease : IState
     {
         public float StepSize { get; set; } = (float)System.Math.PI / 60;
@@ -11,7 +14,7 @@ namespace CubeAssignment.Gui.Animation
             return System.Math.PI / 180 * val;
         }
 
-        public virtual States State => States.Phase3RotationYDecrease;
+        public virtual AnimationStates AnimationState => AnimationStates.Phase3RotationYDecrease;
 
         public void Enter()
         {

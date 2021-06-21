@@ -1,9 +1,18 @@
 ﻿namespace CubeAssignment.Gui
 {
+    /// <summary>
+    /// 4 dimensional Matrix 
+    /// </summary>
     public class Matrix
     {
+        /// <summary>
+        /// Underlying 4x4 multidimensional matrix array. 
+        /// </summary>
         public float[,] mat = new float[4, 4];
 
+        /// <summary>
+        /// Creates default identity matrix.
+        /// </summary>
         public Matrix()
         {
             mat[0, 0] = 1;
@@ -12,6 +21,25 @@
             mat[3, 3] = 1;
         }
 
+        /// <summary>
+        /// Creates Matrix with the given values.
+        /// </summary>
+        /// <param name="m11"></param>
+        /// <param name="m12"></param>
+        /// <param name="m13"></param>
+        /// <param name="m14"></param>
+        /// <param name="m21"></param>
+        /// <param name="m22"></param>
+        /// <param name="m23"></param>
+        /// <param name="m24"></param>
+        /// <param name="m31"></param>
+        /// <param name="m32"></param>
+        /// <param name="m33"></param>
+        /// <param name="m34"></param>
+        /// <param name="m41"></param>
+        /// <param name="m42"></param>
+        /// <param name="m43"></param>
+        /// <param name="m44"></param>
         public Matrix(
             float m11, float m12, float m13, float m14,
             float m21, float m22, float m23, float m24,
@@ -40,6 +68,12 @@
             mat[3, 3] = m44;
         }
 
+        /// <summary>
+        /// Creates a projection matrix with the given distance.
+        /// </summary>
+        /// <param name="distance"></param>
+        /// <param name="z"></param>
+        /// <returns></returns>
         public static Matrix CreateProjection(float distance, float z)
         {
             var projectedZ = 1 / (distance - z);
@@ -52,6 +86,13 @@
             return projectionMatrix;
         }
 
+        /// <summary>
+        /// Creates a transformation matrix that can be used for scaling, rotating, and translating. 
+        /// </summary>
+        /// <param name="scale"></param>
+        /// <param name="rotate"></param>
+        /// <param name="translate"></param>
+        /// <returns></returns>
         public static Matrix ModelTransformation(Vector scale, Vector rotate, Vector translate)
         {
             Matrix scaleMatrix = Scale(scale);
@@ -62,6 +103,13 @@
             return translateMatrix * scaleMatrix * rotationMatrixX * rotationMatrixY * rotationMatrixZ;
         }
 
+        /// <summary>
+        /// Creates a matrix that looks from the given camera position towards a given target. 
+        /// </summary>
+        /// <param name="cameraPosition"></param>
+        /// <param name="cameraTarget"></param>
+        /// <param name="cameraUpVector"></param>
+        /// <returns></returns>
         public static Matrix CreateLookAt(Vector cameraPosition, Vector cameraTarget, Vector cameraUpVector)
         {
             Vector zaxis = Vector.Normalize(cameraPosition - cameraTarget);
@@ -90,12 +138,24 @@
             return result;
         }
 
+        /// <summary>
+        /// Gets a value from the matrix using two indices.
+        /// </summary>
+        /// <param name="index1"></param>
+        /// <param name="index2"></param>
+        /// <returns></returns>
         public float this[int index1, int index2]
         {
             get => mat[index1, index2];
             set => mat[index1, index2] = value;
         }
 
+        /// <summary>
+        /// Returns the result of two matrices added. 
+        /// </summary>
+        /// <param name="m1"></param>
+        /// <param name="m2"></param>
+        /// <returns></returns>
         public static Matrix operator +(Matrix m1, Matrix m2)
         {
             var resultMatrix = new Matrix();
@@ -109,6 +169,12 @@
             return resultMatrix;
         }
 
+        /// <summary>
+        /// Returns the result of two matrices subtracted. 
+        /// </summary>
+        /// <param name="m1"></param>
+        /// <param name="m2"></param>
+        /// <returns></returns>
         public static Matrix operator -(Matrix m1, Matrix m2)
         {
             var resultMatrix = new Matrix();
@@ -122,6 +188,12 @@
             return resultMatrix;
         }
 
+        /// <summary>
+        /// Returns the result of a matrix multiplied by a float value. 
+        /// </summary>
+        /// <param name="m1"></param>
+        /// <param name="f"></param>
+        /// <returns></returns>
         public static Matrix operator *(Matrix m1, float f)
         {
             var resultMatrix = new Matrix();
@@ -135,11 +207,22 @@
             return resultMatrix;
         }
 
+        /// <summary>
+        /// Returns the result of a float multiplied by a matrix.
+        /// </summary>
+        /// <param name="f"></param>
+        /// <param name="m1"></param>
+        /// <returns></returns>
         public static Matrix operator *(float f, Matrix m1)
         {
             return m1 * f;
         }
 
+        /// <summary>
+        /// Returns a scale matrix with the given scale vector. 
+        /// </summary>
+        /// <param name="vector"></param>
+        /// <returns></returns>
         public static Matrix Scale(Vector vector)
         {
             var matrix = new Matrix();
@@ -150,6 +233,12 @@
             return matrix;
         }
 
+        /// <summary>
+        /// Returns the result of two matrices multiplied. 
+        /// </summary>
+        /// <param name="m1"></param>
+        /// <param name="m2"></param>
+        /// <returns></returns>
         public static Matrix operator *(Matrix m1, Matrix m2)
         {
             var resultMatrix = new Matrix();
@@ -171,6 +260,11 @@
             return resultMatrix;
         }
 
+        /// <summary>
+        ///  Returns a translation matrix with the given translation vector. 
+        /// </summary>
+        /// <param name="position"></param>
+        /// <returns></returns>
         public static Matrix CreateTranslation(Vector position)
         {
             var result = new Matrix();
@@ -196,6 +290,10 @@
             return result;
         }
 
+        /// <summary>
+        /// Returns an identity matrix.
+        /// </summary>
+        /// <returns></returns>
         public static Matrix Identity()
         {
             var newMatrix = new Matrix
@@ -209,6 +307,11 @@
             return newMatrix;
         }
 
+        /// <summary>
+        /// Returns a matrix that rotates N radians around the x axis. 
+        /// </summary>
+        /// <param name="radians"></param>
+        /// <returns></returns>
         public static Matrix RotateX(float radians)
         {
             var newMatrix = new Matrix
@@ -223,6 +326,11 @@
             return newMatrix;
         }
 
+        /// <summary>
+        /// Returns a matrix that rotates N radians around the y axis. 
+        /// </summary>
+        /// <param name="radians"></param>
+        /// <returns></returns>
         public static Matrix RotateY(float radians)
         {
             var newMatrix = new Matrix
@@ -237,6 +345,11 @@
             return newMatrix;
         }
 
+        /// <summary>
+        /// Returns a matrix that rotates N radians around the z axis. 
+        /// </summary>
+        /// <param name="radians"></param>
+        /// <returns></returns>
         public static Matrix RotateZ(float radians)
         {
             var newMatrix = new Matrix
@@ -256,6 +369,10 @@
             return $@"[ {mat[0, 0]} {mat[0, 1]}, {mat[1, 0]}, {mat[1, 1]}]";
         }
 
+        /// <summary>
+        /// Inverts the current matrix return the result. 
+        /// </summary>
+        /// <returns></returns>
         public Matrix Invert()
         {
             // Use Laplace expansion theorem to calculate the inverse of a 4x4 matrix
@@ -294,6 +411,23 @@
             return ret;
         }
 
+        /// <summary>
+        /// Find the determinants for the given matrix. 
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <param name="major"></param>
+        /// <param name="minor1"></param>
+        /// <param name="minor2"></param>
+        /// <param name="minor3"></param>
+        /// <param name="minor4"></param>
+        /// <param name="minor5"></param>
+        /// <param name="minor6"></param>
+        /// <param name="minor7"></param>
+        /// <param name="minor8"></param>
+        /// <param name="minor9"></param>
+        /// <param name="minor10"></param>
+        /// <param name="minor11"></param>
+        /// <param name="minor12"></param>
         private static void findDeterminants(Matrix matrix, out float major,
             out float minor1, out float minor2, out float minor3, out float minor4, out float minor5, out float minor6,
             out float minor7, out float minor8, out float minor9, out float minor10, out float minor11,

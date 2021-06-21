@@ -1,12 +1,15 @@
 ﻿using System;
+using CubeAssignment.Gui.Animation.Phases;
 using CubeAssignment.Gui.Scene;
 
 namespace CubeAssignment.Gui.Animation
 {
+    /// <summary>
+    /// An animation state-machine animates a given Mesh Object. 
+    /// </summary>
     public class AnimationFiniteStateMachine : IAnimationFiniteStateMachine
     {
         private readonly Action[,] _fsm;
-
         private MeshSceneObject _meshSceneObject;
         private readonly Camera _camera;
 
@@ -38,6 +41,39 @@ namespace CubeAssignment.Gui.Animation
 
             EnterNotActive();
         }
+
+        /// <summary>
+        ///     Starts the finite state-machine.
+        ///     This will make the shark look for a vetex to go to.
+        /// </summary>
+        public void Start()
+        {
+            EnterPhaseOneIncrease();
+        }
+
+        /// <summary>
+        ///     Update logic for the state-machine.
+        /// </summary>
+        public void Tick()
+        {
+            // If some state is finished, try to advance.
+            if (ActiveState?.Tick(new CubeAnimationData(_meshSceneObject, _camera)) ?? false)
+            {
+                ProcessEvent(Events.Finished);
+            }
+        }
+
+        /// <summary>
+        ///     Process the event which will trigger internal state changes.
+        ///     Nothing will happen if event is not supported for the given state
+        /// </summary>
+        /// <param name="theEvent"></param>
+        public void ProcessEvent(Events theEvent)
+        {
+            Action enterNextState = _fsm[(int)ActiveState.AnimationState, (int)theEvent];
+            enterNextState?.Invoke();
+        }
+
 
         private void EnterPhaseOneIncrease()
         {
@@ -77,38 +113,6 @@ namespace CubeAssignment.Gui.Animation
         private void InverseAnimation()
         {
             EnterState(new InvertAnimationState());
-        }
-
-        /// <summary>
-        ///     Starts the finite state-machine.
-        ///     This will make the shark look for a vetex to go to.
-        /// </summary>
-        public void Start()
-        {
-            EnterPhaseOneIncrease();
-        }
-
-        /// <summary>
-        ///     Update logic for the state-machine.
-        /// </summary>
-        public void Tick()
-        {
-            // If some state is finished, try to advance.
-            if (ActiveState?.Tick(new CubeAnimationData(_meshSceneObject, _camera)) ?? false)
-            {
-                ProcessEvent(Events.Finished);
-            }
-        }
-
-        /// <summary>
-        ///     Process the event which will trigger internal state changes.
-        ///     Nothing will happen if event is not supported for the given state
-        /// </summary>
-        /// <param name="theEvent"></param>
-        public void ProcessEvent(Events theEvent)
-        {
-            Action enterNextState = _fsm[(int) ActiveState.State, (int) theEvent];
-            enterNextState?.Invoke();
         }
 
         private void EnterState(IState state)

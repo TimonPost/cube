@@ -1,15 +1,15 @@
 ﻿using System;
 
-namespace CubeAssignment.Gui.Animation
+namespace CubeAssignment.Gui.Animation.Phases
 {
     /// <summary>
-    /// Animation phase that increases the rotation along the X and meanwhile increases the camera 'PHI'.  
+    /// Animation phase that increases the rotation along the X up to 45 degrees and meanwhile decreases the camera 'THETA'.  
     /// </summary>
     public class SecondPhaseRotationXIncrease : IState
     {
         public float StepSize { get; set; } = (float) System.Math.PI / 60;
 
-        public virtual States State => States.Phase2RotationXIncrease;
+        public virtual AnimationStates AnimationState => AnimationStates.Phase2RotationXIncrease;
 
         public void Enter()
         {
@@ -37,7 +37,7 @@ namespace CubeAssignment.Gui.Animation
             Vector newRotation = cubeAnimationData.MeshSceneObject.Rotation;
             newRotation.x += StepSize;
             cubeAnimationData.MeshSceneObject.Rotation = newRotation;
-            cubeAnimationData.Camera.Phi -= Program.THETA_STEP_SIZE;
+            cubeAnimationData.Camera.Theta -= Program.THETA_STEP_SIZE;
         }
     }
 }
