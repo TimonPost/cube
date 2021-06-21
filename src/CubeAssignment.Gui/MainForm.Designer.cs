@@ -157,7 +157,7 @@
             this.KeyBindingAnimationResetLabel.Location = new System.Drawing.Point(4, 81);
             this.KeyBindingAnimationResetLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.KeyBindingAnimationResetLabel.Name = "KeyBindingAnimationResetLabel";
-            this.KeyBindingAnimationResetLabel.Size = new System.Drawing.Size(381, 19);
+            this.KeyBindingAnimationResetLabel.Size = new System.Drawing.Size(381, 20);
             this.KeyBindingAnimationResetLabel.TabIndex = 28;
             this.KeyBindingAnimationResetLabel.Text = "When “C” is pressed, all variables are reset to default";
             // 
@@ -178,10 +178,10 @@
             this.CameraZoomLabel.AutoSize = true;
             this.CameraZoomLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.CameraZoomLabel.ForeColor = System.Drawing.Color.White;
-            this.CameraZoomLabel.Location = new System.Drawing.Point(4, 61);
+            this.CameraZoomLabel.Location = new System.Drawing.Point(4, 101);
             this.CameraZoomLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.CameraZoomLabel.Name = "CameraZoomLabel";
-            this.CameraZoomLabel.Size = new System.Drawing.Size(341, 20);
+            this.CameraZoomLabel.Size = new System.Drawing.Size(171, 20);
             this.CameraZoomLabel.TabIndex = 26;
             this.CameraZoomLabel.Text = "Camera Distance: Q/W";
             // 
@@ -383,7 +383,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(571, 100);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(571, 307);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // tableLayoutPanel3
@@ -401,7 +401,7 @@
             this.tableLayoutPanel3.Controls.Add(this.ThetaLabel, 0, 3);
             this.tableLayoutPanel3.Controls.Add(this.PhiLabel, 0, 4);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 215);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 629);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 5;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
@@ -410,7 +410,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(571, 724);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(571, 310);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // CameraPropertiesLabel
@@ -428,7 +428,7 @@
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 1;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 150F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Controls.Add(this.KeybindingLabel, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.KeyBindingZLabel, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.KeyBindingScaleLabel, 0, 2);
@@ -436,17 +436,17 @@
             this.tableLayoutPanel4.Controls.Add(this.KeyBindingAnimationResetLabel, 0, 4);
             this.tableLayoutPanel4.Controls.Add(this.CameraZoomLabel, 0, 5);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 109);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 316);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 5;
+            this.tableLayoutPanel4.RowCount = 7;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(571, 100);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(571, 307);
             this.tableLayoutPanel4.TabIndex = 2;
             this.tableLayoutPanel4.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel4_Paint);
             // 

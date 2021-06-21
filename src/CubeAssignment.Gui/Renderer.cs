@@ -67,23 +67,7 @@ namespace CubeAssignment.Gui
             projected.y = (1f - projected.y) * ScreenHeight * 0.5f;
             return projected;
         }
-
-        private Vector Transform1(Camera camera, Vector inputVector)
-        {
-            Vector vector = inputVector;
-            vector.w = 1;
-
-            Vector transformed = Vector.Transform(vector, camera.GetMatrix());
-
-            Matrix projection = ProjectionTransformation(camera, transformed.z);
-            Vector projected = Vector.Transform(transformed, projection);
-
-            //Scale to screen
-            projected.x = (projected.x + 1f) * ScreenWidth * 0.5f;
-            projected.y = (1f - projected.y) * ScreenHeight * 0.5f;
-            return projected;
-        }
-
+        
         /// <summary>
         /// Draws text on graphics
         /// </summary>

@@ -245,18 +245,5 @@ namespace CubeAssignment.Tests
             Assert.AreEqual(matrix1[3, 2], 58);
             Assert.AreEqual(matrix1[3, 3], 48);
         }
-
-        [TestMethod]
-        public void MatrixInversion()
-        {
-            var matrix1 = new Matrix(
-                1, 1, 1, -1,
-                1, 1, -1, 1,
-                1, -1, 1, 1,
-                -1, 1, 1, 1
-            );
-
-            Matrix a = matrix1.Invert();
-        }
     }
 }

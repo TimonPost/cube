@@ -21,6 +21,14 @@
             mat[3, 3] = 1;
         }
 
+        public Matrix(Vector v)
+        {
+            mat[0, 0] = v.x; mat[0, 1] = 0; mat[0, 2] = 0; mat[0, 3] = 0;
+            mat[1, 0] = v.y; mat[1, 1] = 1; mat[1, 2] = 0; mat[1, 3] = 0;
+            mat[2, 0] = v.z; mat[2, 1] = 0; mat[2, 2] = 1; mat[2, 3] = 0;
+            mat[3, 0] = v.w; mat[3, 1] = 0; mat[3, 2] = 0; mat[3, 3] = 1;
+        }
+
         /// <summary>
         /// Creates Matrix with the given values.
         /// </summary>
@@ -47,43 +55,10 @@
             float m41, float m42, float m43, float m44
         )
         {
-            mat[0, 0] = m11;
-            mat[0, 1] = m12;
-            mat[0, 2] = m13;
-            mat[0, 3] = m14;
-
-            mat[1, 0] = m21;
-            mat[1, 1] = m22;
-            mat[1, 2] = m23;
-            mat[1, 3] = m24;
-
-            mat[2, 0] = m31;
-            mat[2, 1] = m32;
-            mat[2, 2] = m33;
-            mat[2, 3] = m34;
-
-            mat[3, 0] = m41;
-            mat[3, 1] = m42;
-            mat[3, 2] = m43;
-            mat[3, 3] = m44;
-        }
-
-        /// <summary>
-        /// Creates a projection matrix with the given distance.
-        /// </summary>
-        /// <param name="distance"></param>
-        /// <param name="z"></param>
-        /// <returns></returns>
-        public static Matrix CreateProjection(float distance, float z)
-        {
-            var projectedZ = 1 / (distance - z);
-            var projectionMatrix = new Matrix(
-                projectedZ, 0, 0, 0,
-                0, projectedZ, 0, 0,
-                0, 0, 1, 0,
-                0, 0, 0, 1
-            );
-            return projectionMatrix;
+            mat[0, 0] = m11; mat[0, 1] = m12; mat[0, 2] = m13; mat[0, 3] = m14;
+            mat[1, 0] = m21; mat[1, 1] = m22; mat[1, 2] = m23; mat[1, 3] = m24;
+            mat[2, 0] = m31; mat[2, 1] = m32; mat[2, 2] = m33; mat[2, 3] = m34;
+            mat[3, 0] = m41; mat[3, 1] = m42; mat[3, 2] = m43; mat[3, 3] = m44;
         }
 
         /// <summary>
@@ -102,42 +77,7 @@
             var translateMatrix = CreateTranslation(translate);
             return translateMatrix * scaleMatrix * rotationMatrixX * rotationMatrixY * rotationMatrixZ;
         }
-
-        /// <summary>
-        /// Creates a matrix that looks from the given camera position towards a given target. 
-        /// </summary>
-        /// <param name="cameraPosition"></param>
-        /// <param name="cameraTarget"></param>
-        /// <param name="cameraUpVector"></param>
-        /// <returns></returns>
-        public static Matrix CreateLookAt(Vector cameraPosition, Vector cameraTarget, Vector cameraUpVector)
-        {
-            Vector zaxis = Vector.Normalize(cameraPosition - cameraTarget);
-            Vector xaxis = Vector.Normalize(Vector.Cross(cameraUpVector, zaxis));
-            Vector yaxis = Vector.Cross(zaxis, xaxis);
-
-            var result = new Matrix();
-
-            result[0, 0] = xaxis.x;
-            result[0, 1] = yaxis.x;
-            result[0, 2] = zaxis.x;
-            result[0, 3] = 0.0f;
-            result[1, 0] = xaxis.y;
-            result[1, 1] = yaxis.y;
-            result[1, 2] = zaxis.y;
-            result[1, 3] = 0.0f;
-            result[2, 0] = xaxis.z;
-            result[2, 1] = yaxis.z;
-            result[2, 2] = zaxis.z;
-            result[2, 3] = 0.0f;
-            result[3, 0] = -Vector.Dot(xaxis, cameraPosition);
-            result[3, 1] = -Vector.Dot(yaxis, cameraPosition);
-            result[3, 2] = -Vector.Dot(zaxis, cameraPosition);
-            result[3, 3] = 1.0f;
-
-            return result;
-        }
-
+        
         /// <summary>
         /// Gets a value from the matrix using two indices.
         /// </summary>
@@ -218,6 +158,19 @@
             return m1 * f;
         }
 
+        public static Vector operator *(Matrix m1, Vector v)
+        {
+            Matrix vectormatrix = new Matrix(v);
+            Matrix answer = m1 * vectormatrix;
+            return answer.ToVector();
+        }
+        public static Vector operator *(Vector v, Matrix m1)
+        {
+            Matrix vectormatrix = new Matrix(v);
+            Matrix answer = m1 * vectormatrix;
+            return answer.ToVector();
+        }
+
         /// <summary>
         /// Returns a scale matrix with the given scale vector. 
         /// </summary>
@@ -243,19 +196,25 @@
         {
             var resultMatrix = new Matrix();
 
-            for (var row = 0; row < 4; ++row)
-            {
-                for (var column = 0; column < 4; ++column)
-                {
-                    var s = 0.0f;
-                    for (var index = 0; index < 4; ++index)
-                    {
-                        s += m1[row, index] * m2[index, column];
-                    }
+            resultMatrix.mat[0, 0] = m1.mat[0, 0] * m2.mat[0, 0] + m1.mat[0, 1] * m2.mat[1, 0] + m1.mat[0, 2] * m2.mat[2, 0] + m1.mat[0, 3] * m2.mat[3, 0];
+            resultMatrix.mat[0, 1] = m1.mat[0, 0] * m2.mat[0, 1] + m1.mat[0, 1] * m2.mat[1, 1] + m1.mat[0, 2] * m2.mat[2, 1] + m1.mat[0, 3] * m2.mat[3, 1];
+            resultMatrix.mat[0, 2] = m1.mat[0, 0] * m2.mat[0, 2] + m1.mat[0, 1] * m2.mat[1, 2] + m1.mat[0, 2] * m2.mat[2, 2] + m1.mat[0, 3] * m2.mat[3, 2];
+            resultMatrix.mat[0, 3] = m1.mat[0, 0] * m2.mat[0, 3] + m1.mat[0, 1] * m2.mat[1, 3] + m1.mat[0, 2] * m2.mat[2, 3] + m1.mat[0, 3] * m2.mat[3, 3];
 
-                    resultMatrix[row, column] = s;
-                }
-            }
+            resultMatrix.mat[1, 0] = m1.mat[1, 0] * m2.mat[0, 0] + m1.mat[1, 1] * m2.mat[1, 0] + m1.mat[1, 2] * m2.mat[2, 0] + m1.mat[1, 3] * m2.mat[3, 0];
+            resultMatrix.mat[1, 1] = m1.mat[1, 0] * m2.mat[0, 1] + m1.mat[1, 1] * m2.mat[1, 1] + m1.mat[1, 2] * m2.mat[2, 1] + m1.mat[1, 3] * m2.mat[3, 1];
+            resultMatrix.mat[1, 2] = m1.mat[1, 0] * m2.mat[0, 2] + m1.mat[1, 1] * m2.mat[1, 2] + m1.mat[1, 2] * m2.mat[2, 2] + m1.mat[1, 3] * m2.mat[3, 2];
+            resultMatrix.mat[1, 3] = m1.mat[1, 0] * m2.mat[0, 3] + m1.mat[1, 1] * m2.mat[1, 3] + m1.mat[1, 2] * m2.mat[2, 3] + m1.mat[1, 3] * m2.mat[3, 3];
+
+            resultMatrix.mat[2, 0] = m1.mat[2, 0] * m2.mat[0, 0] + m1.mat[2, 1] * m2.mat[1, 0] + m1.mat[2, 2] * m2.mat[2, 0] + m1.mat[2, 3] * m2.mat[3, 0];
+            resultMatrix.mat[2, 1] = m1.mat[2, 0] * m2.mat[0, 1] + m1.mat[2, 1] * m2.mat[1, 1] + m1.mat[2, 2] * m2.mat[2, 1] + m1.mat[2, 3] * m2.mat[3, 1];
+            resultMatrix.mat[2, 2] = m1.mat[2, 0] * m2.mat[0, 2] + m1.mat[2, 1] * m2.mat[1, 2] + m1.mat[2, 2] * m2.mat[2, 2] + m1.mat[2, 3] * m2.mat[3, 2];
+            resultMatrix.mat[2, 3] = m1.mat[2, 0] * m2.mat[0, 3] + m1.mat[2, 1] * m2.mat[1, 3] + m1.mat[2, 2] * m2.mat[2, 3] + m1.mat[2, 3] * m2.mat[3, 3];
+
+            resultMatrix.mat[3, 0] = m1.mat[3, 0] * m2.mat[0, 0] + m1.mat[3, 1] * m2.mat[1, 0] + m1.mat[3, 2] * m2.mat[2, 0] + m1.mat[3, 3] * m2.mat[3, 0];
+            resultMatrix.mat[3, 1] = m1.mat[3, 0] * m2.mat[0, 1] + m1.mat[3, 1] * m2.mat[1, 1] + m1.mat[3, 2] * m2.mat[2, 1] + m1.mat[3, 3] * m2.mat[3, 1];
+            resultMatrix.mat[3, 2] = m1.mat[3, 0] * m2.mat[0, 2] + m1.mat[3, 1] * m2.mat[1, 2] + m1.mat[3, 2] * m2.mat[2, 2] + m1.mat[3, 3] * m2.mat[3, 2];
+            resultMatrix.mat[3, 3] = m1.mat[3, 0] * m2.mat[0, 3] + m1.mat[3, 1] * m2.mat[1, 3] + m1.mat[3, 2] * m2.mat[2, 3] + m1.mat[3, 3] * m2.mat[3, 3];
 
             return resultMatrix;
         }
@@ -268,24 +227,10 @@
         public static Matrix CreateTranslation(Vector position)
         {
             var result = new Matrix();
-
-            result[0, 0] = 1.0f;
-            result[0, 1] = 0.0f;
-            result[0, 2] = 0.0f;
-            result[0, 3] = 0.0f;
-            result[1, 0] = 0.0f;
-            result[1, 1] = 1.0f;
-            result[1, 2] = 0.0f;
-            result[1, 3] = 0.0f;
-            result[2, 0] = 0.0f;
-            result[2, 1] = 0.0f;
-            result[2, 2] = 1.0f;
-            result[2, 3] = 0.0f;
-
+            
             result[3, 0] = position.x;
             result[3, 1] = position.y;
             result[3, 2] = position.z;
-            result[3, 3] = 1.0f;
 
             return result;
         }
@@ -305,6 +250,11 @@
             };
 
             return newMatrix;
+        }
+
+        public Vector ToVector()
+        {
+            return new Vector(this.mat[0, 0], this.mat[1, 0], this.mat[2, 0]);
         }
 
         /// <summary>
@@ -367,98 +317,6 @@
         public override string ToString()
         {
             return $@"[ {mat[0, 0]} {mat[0, 1]}, {mat[1, 0]}, {mat[1, 1]}]";
-        }
-
-        /// <summary>
-        /// Inverts the current matrix return the result. 
-        /// </summary>
-        /// <returns></returns>
-        public Matrix Invert()
-        {
-            // Use Laplace expansion theorem to calculate the inverse of a 4x4 matrix
-            // 
-            // 1. Calculate the 2x2 determinants needed the 4x4 determinant based on the 2x2 determinants 
-            // 3. Create the adjugate matrix, which satisfies: A * adj(A) = det(A) * I
-            // 4. Divide adjugate matrix with the determinant to find the inverse
-
-            float det1, det2, det3, det4, det5, det6, det7, det8, det9, det10, det11, det12;
-            float detMatrix;
-
-            findDeterminants(this, out detMatrix, out det1, out det2, out det3, out det4, out det5, out det6,
-                out det7, out det8, out det9, out det10, out det11, out det12);
-
-            var invDetMatrix = 1f / detMatrix;
-
-            var ret = new Matrix();
-
-            ret[0, 0] = (mat[1, 1] * det12 - mat[1, 2] * det11 + mat[1, 3] * det10) * invDetMatrix;
-            ret[0, 1] = (-mat[0, 1] * det12 + mat[0, 2] * det11 - mat[0, 3] * det10) * invDetMatrix;
-            ret[0, 2] = (mat[3, 1] * det6 - mat[3, 2] * det5 + mat[3, 3] * det4) * invDetMatrix;
-            ret[0, 3] = (-mat[2, 1] * det6 + mat[2, 2] * det5 - mat[2, 3] * det4) * invDetMatrix;
-            ret[1, 0] = (-mat[1, 0] * det12 + mat[1, 2] * det9 - mat[1, 3] * det8) * invDetMatrix;
-            ret[1, 1] = (mat[0, 0] * det12 - mat[0, 2] * det9 + mat[0, 3] * det8) * invDetMatrix;
-            ret[1, 2] = (-mat[3, 0] * det6 + mat[3, 2] * det3 - mat[3, 3] * det2) * invDetMatrix;
-            ret[1, 3] = (mat[2, 0] * det6 - mat[2, 2] * det3 + mat[2, 3] * det2) * invDetMatrix;
-            ret[2, 0] = (mat[1, 0] * det11 - mat[1, 1] * det9 + mat[1, 3] * det7) * invDetMatrix;
-            ret[2, 1] = (-mat[0, 0] * det11 + mat[0, 1] * det9 - mat[0, 3] * det7) * invDetMatrix;
-            ret[2, 2] = (mat[3, 0] * det5 - mat[3, 1] * det3 + mat[3, 3] * det1) * invDetMatrix;
-            ret[2, 3] = (-mat[2, 0] * det5 + mat[2, 1] * det3 - mat[2, 3] * det1) * invDetMatrix;
-            ret[3, 0] = (-mat[1, 0] * det10 + mat[1, 1] * det8 - mat[1, 2] * det7) * invDetMatrix;
-            ret[3, 1] = (mat[0, 0] * det10 - mat[0, 1] * det8 + mat[0, 2] * det7) * invDetMatrix;
-            ret[3, 2] = (-mat[3, 0] * det4 + mat[3, 1] * det2 - mat[3, 2] * det1) * invDetMatrix;
-            ret[3, 3] = (mat[2, 0] * det4 - mat[2, 1] * det2 + mat[2, 2] * det1) * invDetMatrix;
-
-            return ret;
-        }
-
-        /// <summary>
-        /// Find the determinants for the given matrix. 
-        /// </summary>
-        /// <param name="matrix"></param>
-        /// <param name="major"></param>
-        /// <param name="minor1"></param>
-        /// <param name="minor2"></param>
-        /// <param name="minor3"></param>
-        /// <param name="minor4"></param>
-        /// <param name="minor5"></param>
-        /// <param name="minor6"></param>
-        /// <param name="minor7"></param>
-        /// <param name="minor8"></param>
-        /// <param name="minor9"></param>
-        /// <param name="minor10"></param>
-        /// <param name="minor11"></param>
-        /// <param name="minor12"></param>
-        private static void findDeterminants(Matrix matrix, out float major,
-            out float minor1, out float minor2, out float minor3, out float minor4, out float minor5, out float minor6,
-            out float minor7, out float minor8, out float minor9, out float minor10, out float minor11,
-            out float minor12)
-        {
-            var det1 = (double) matrix[0, 0] * (double) matrix[1, 1] - (double) matrix[0, 1] * (double) matrix[1, 0];
-            var det2 = (double) matrix[0, 0] * (double) matrix[1, 2] - (double) matrix[0, 2] * (double) matrix[1, 0];
-            var det3 = (double) matrix[0, 0] * (double) matrix[1, 3] - (double) matrix[0, 3] * (double) matrix[1, 0];
-            var det4 = (double) matrix[0, 1] * (double) matrix[1, 2] - (double) matrix[0, 2] * (double) matrix[1, 1];
-            var det5 = (double) matrix[0, 1] * (double) matrix[1, 3] - (double) matrix[0, 3] * (double) matrix[1, 1];
-            var det6 = (double) matrix[0, 2] * (double) matrix[1, 3] - (double) matrix[0, 3] * (double) matrix[1, 2];
-            var det7 = (double) matrix[2, 0] * (double) matrix[3, 1] - (double) matrix[2, 1] * (double) matrix[3, 0];
-            var det8 = (double) matrix[2, 0] * (double) matrix[3, 2] - (double) matrix[2, 2] * (double) matrix[3, 0];
-            var det9 = (double) matrix[2, 0] * (double) matrix[3, 3] - (double) matrix[2, 3] * (double) matrix[3, 0];
-            var det10 = (double) matrix[2, 1] * (double) matrix[3, 2] - (double) matrix[2, 2] * (double) matrix[3, 1];
-            var det11 = (double) matrix[2, 1] * (double) matrix[3, 3] - (double) matrix[2, 3] * (double) matrix[3, 1];
-            var det12 = (double) matrix[2, 2] * (double) matrix[3, 3] - (double) matrix[2, 3] * (double) matrix[3, 2];
-
-            major = (float) (det1 * det12 - det2 * det11 + det3 * det10 + det4 * det9 - det5 * det8 + det6 * det7);
-            minor1 = (float) det1;
-            minor2 = (float) det2;
-            minor3 = (float) det3;
-            minor4 = (float) det4;
-            minor5 = (float) det5;
-            minor6 = (float) det6;
-            minor7 = (float) det7;
-            minor8 = (float) det8;
-            minor9 = (float) det9;
-            minor10 = (float) det10;
-            minor11 = (float) det11;
-            minor12 = (float) det12;
         }
     }
 }
