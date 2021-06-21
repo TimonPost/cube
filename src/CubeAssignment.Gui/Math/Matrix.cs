@@ -99,8 +99,10 @@
             Matrix rotationMatrixX = RotateX(rotate.x);
             Matrix rotationMatrixY = RotateY(rotate.y);
             Matrix rotationMatrixZ = RotateZ(rotate.z);
+            
             var translateMatrix = CreateTranslation(translate);
-            return translateMatrix * scaleMatrix * rotationMatrixX * rotationMatrixY * rotationMatrixZ;
+
+            return translateMatrix * rotationMatrixX * rotationMatrixY * rotationMatrixZ * scaleMatrix;
         }
 
         /// <summary>

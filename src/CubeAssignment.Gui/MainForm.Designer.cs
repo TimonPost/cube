@@ -340,8 +340,8 @@
             // 
             this.MainSplitContainer.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(104)))), ((int)(((byte)(104)))));
             this.MainSplitContainer.Panel2.Controls.Add(this.CanvasScrollPanel);
-            this.MainSplitContainer.Size = new System.Drawing.Size(1680, 942);
-            this.MainSplitContainer.SplitterDistance = 577;
+            this.MainSplitContainer.Size = new System.Drawing.Size(1683, 834);
+            this.MainSplitContainer.SplitterDistance = 578;
             this.MainSplitContainer.SplitterWidth = 5;
             this.MainSplitContainer.TabIndex = 0;
             // 
@@ -360,7 +360,7 @@
             this.MainTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.MainTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.MainTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.MainTable.Size = new System.Drawing.Size(577, 942);
+            this.MainTable.Size = new System.Drawing.Size(578, 834);
             this.MainTable.TabIndex = 2;
             // 
             // tableLayoutPanel2
@@ -383,7 +383,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(571, 100);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(572, 100);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // tableLayoutPanel3
@@ -410,7 +410,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(571, 724);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(572, 724);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // CameraPropertiesLabel
@@ -445,7 +445,7 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(571, 100);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(572, 100);
             this.tableLayoutPanel4.TabIndex = 2;
             // 
             // CanvasScrollPanel
@@ -457,7 +457,7 @@
             this.CanvasScrollPanel.Location = new System.Drawing.Point(0, 0);
             this.CanvasScrollPanel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.CanvasScrollPanel.Name = "CanvasScrollPanel";
-            this.CanvasScrollPanel.Size = new System.Drawing.Size(1098, 942);
+            this.CanvasScrollPanel.Size = new System.Drawing.Size(1100, 834);
             this.CanvasScrollPanel.TabIndex = 1;
             // 
             // Canvas
@@ -466,7 +466,7 @@
             this.Canvas.Location = new System.Drawing.Point(4, 0);
             this.Canvas.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Canvas.Name = "Canvas";
-            this.Canvas.Size = new System.Drawing.Size(933, 923);
+            this.Canvas.Size = new System.Drawing.Size(900, 900);
             this.Canvas.TabIndex = 0;
             this.Canvas.TabStop = false;
             this.Canvas.Paint += new System.Windows.Forms.PaintEventHandler(this.Canvas_Paint);
@@ -475,7 +475,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1680, 942);
+            this.ClientSize = new System.Drawing.Size(1683, 834);
             this.Controls.Add(this.MainSplitContainer);
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);

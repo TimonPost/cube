@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using CubeAssignment.Gui.Annotations;
 using PropertyChanged;
@@ -22,14 +23,9 @@ namespace CubeAssignment.Gui.Scene
         public static float DefaultPhi = -10;
 
         /// <summary>
-        /// Default value for <see cref="Position"/>
+        /// Default value for <see cref="Distance"/>
         /// </summary>
-        public static Vector DefaultPosition = new Vector(0, 0, 3);
-
-        /// <summary>
-        /// Default value for <see cref="D"/>
-        /// </summary>
-        public static float DefaultD = 5;
+        public static float DefaultD = 800;
 
         /// <summary>
         /// Default value for <see cref="R"/>
@@ -37,14 +33,9 @@ namespace CubeAssignment.Gui.Scene
         public static float DefaultR = 10;
 
         /// <summary>
-        /// The position of the camera in world space. 
-        /// </summary>
-        public Vector Position { get; set; } = DefaultPosition;
-
-        /// <summary>
         /// The distance from origin to the camera lens.
         /// </summary>
-        public float D { get; set; } = DefaultD;
+        public float Distance { get; set; } = DefaultD;
         
         public float R { get; set; } = DefaultR;
 
@@ -58,36 +49,47 @@ namespace CubeAssignment.Gui.Scene
         /// </summary>
 
         public float Phi { get; set; } = DefaultPhi;
-        
+
         /// <summary>
         /// Returns the view matrix of this camera.
         /// </summary>
         /// <returns></returns>
         public Matrix GetMatrix()
         {
+            float thetaRadians = Utils.DegreesToRadians(Theta);
+            float phiRadians = Utils.DegreesToRadians(Phi);
+
             Matrix camera = Matrix.Identity();
-            camera[0, 3] = R * (float) System.Math.Sin(Phi) * (float) System.Math.Cos(Theta);
-            camera[1, 3] = R * (float) System.Math.Sin(Phi) * (float) System.Math.Sin(Theta);
-            camera[2, 3] = R * (float) System.Math.Cos(Phi);
-            camera[3, 3] = 1;
+            camera[0, 0] = -MathF.Sin(thetaRadians);
+            camera[0, 1] = MathF.Cos(thetaRadians);
 
-            Matrix rotateZ = Matrix.RotateZ(Theta + (float) Utils.DegreesToRadians(90));
-            Matrix rotateX = Matrix.RotateX(Phi);
-            Matrix result = rotateX * rotateZ * camera;
+            camera[1, 0] = -MathF.Cos(thetaRadians) * MathF.Cos(phiRadians
+            );
+            camera[1, 1] = -MathF.Cos(phiRadians
+            ) * MathF.Sin(thetaRadians);
+            camera[1, 2] = MathF.Sin(phiRadians
+            );
 
-            return result.Invert();
+            camera[2, 0] = MathF.Cos(thetaRadians) * MathF.Sin(phiRadians
+            );
+            camera[2, 1] = MathF.Sin(thetaRadians) * MathF.Sin(phiRadians
+            );
+            camera[2, 2] = MathF.Cos(phiRadians
+            );
+            camera[2, 3] = -R;
+
+            return camera;
         }
-        
+
         /// <summary>
         /// Resets the camera values: position, theta, phi, R, and D to be default values. 
         /// </summary>
         public void Reset()
         {
-            Position = DefaultPosition;
             Theta = DefaultTheta;
             Phi = DefaultPhi;
             R = DefaultR;
-            D = DefaultD;
+            Distance = DefaultD;
         }
     }
 }

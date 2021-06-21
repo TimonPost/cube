@@ -52,12 +52,12 @@ namespace CubeAssignment.Gui.Scene
             if (Input.IsKeyDown(Keys.Q))
                 // decrease scale
             {
-                ApplyEffect((ms) => Camera.D += Utils.DeltaChange(deltaTime));
+                ApplyEffect((ms) => Camera.Distance += Utils.DeltaChange(deltaTime));
             }
             if (Input.IsKeyDown(Keys.W))
                 // decrease scale
             {
-                ApplyEffect((ms) => Camera.D -= Utils.DeltaChange(deltaTime));
+                ApplyEffect((ms) => Camera.Distance -= Utils.DeltaChange(deltaTime));
             }
 
 

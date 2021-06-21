@@ -17,7 +17,7 @@
         /// <param name="y"></param>
         /// <param name="z"></param>
         /// <param name="w"></param>
-        public Vector(float x = 0, float y = 0, float z = 0, float w = 0)
+        public Vector(float x = 0, float y = 0, float z = 0, float w = 1)
         {
             this.x = x;
             this.y = y;
