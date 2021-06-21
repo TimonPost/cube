@@ -2,6 +2,9 @@
 
 namespace CubeAssignment.Gui.Scene.CoordinateSystem
 {
+    /// <summary>
+    /// Drawable axis from a coordinate system. 
+    /// </summary>
     public class Axis
     {
         private readonly Renderer _renderer;

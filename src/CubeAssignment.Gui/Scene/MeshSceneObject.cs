@@ -16,7 +16,7 @@ namespace CubeAssignment.Gui.Scene
             Renderer = renderer;
             Mesh = mesh;
         }
-
+        
         public override void Draw(Graphics graphics, Camera camera)
         {
             var modelMatrix = Matrix.ModelTransformation(Scale, Rotation, Position);
@@ -27,10 +27,24 @@ namespace CubeAssignment.Gui.Scene
         {
         }
 
+        /// <summary>
+        /// The rotation of this mesh scene object. 
+        /// </summary>
         public Vector Rotation { get; set; }= new Vector();
+
+        /// <summary>
+        /// The position of this mesh scene object. 
+        /// </summary>
         public Vector Position { get; set; } = new Vector();
+
+        /// <summary>
+        /// The scale of this mesh scene object. 
+        /// </summary>
         public Vector Scale { get; set; } = new Vector(1, 1, 1, 1);
 
+        /// <summary>
+        /// The underlying mesh for this mesh scene object. 
+        /// </summary>
         public Mesh Mesh { get; }
     }
 }

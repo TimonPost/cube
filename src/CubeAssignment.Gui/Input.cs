@@ -4,6 +4,9 @@ using System.Windows.Forms;
 
 namespace CubeAssignment.Gui
 {
+    /// <summary>
+    /// Winapi hook for getting keyboard state. 
+    /// </summary>
     public static class Input
     {
         [Flags]
@@ -17,6 +20,11 @@ namespace CubeAssignment.Gui
         [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
         private static extern short GetKeyState(int keyCode);
 
+        /// <summary>
+        /// Get the keystate for the given key. 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         private static KeyStates GetKeyState(Keys key)
         {
             var state = KeyStates.None;
@@ -39,6 +47,11 @@ namespace CubeAssignment.Gui
             return state;
         }
 
+        /// <summary>
+        /// Check if key is down.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public static bool IsKeyDown(Keys key)
         {
             // Avoid logging keys when application is not active.

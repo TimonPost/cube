@@ -5,16 +5,27 @@ using CubeAssignment.Gui.Animation;
 
 namespace CubeAssignment.Gui.Scene
 {
+    /// <summary>
+    /// The main scene of the game world. 
+    /// </summary>
     public class MainScene : Scene
     {
+        private readonly List<IAnimationFiniteStateMachine> _animationStateMachines =
+            new List<IAnimationFiniteStateMachine>();
+
+        /// <summary>
+        /// Adds a given animation state machine that will animate a particular scene object. 
+        /// </summary>
+        /// <param name="stateMachine"></param>
         public void AddAnimationStateMachines(IAnimationFiniteStateMachine stateMachine)
         {
             _animationStateMachines.Add(stateMachine);
         }
-
-        private readonly List<IAnimationFiniteStateMachine> _animationStateMachines =
-            new List<IAnimationFiniteStateMachine>();
-
+        
+        /// <summary>
+        /// Updates the main scene.
+        /// </summary>
+        /// <param name="deltaTime"></param>
         public override void Update(float deltaTime)
         {
             UpdateInput();
@@ -24,7 +35,7 @@ namespace CubeAssignment.Gui.Scene
             }
             base.Update(deltaTime);
         }
-
+        
         private void ApplyEffect(Action<MeshSceneObject> effectCallback)
         {
             foreach (SceneObject sceneObject in SceneObjects)
