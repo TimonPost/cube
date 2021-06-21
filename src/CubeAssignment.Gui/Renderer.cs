@@ -16,8 +16,8 @@ namespace CubeAssignment.Gui
         private SolidBrush _fontBrush;
         private readonly Font _font = new Font("Arial", 15);
 
-        private int ScreenWidth { get; set; }
-        private int ScreenHeight { get; set; }
+        public int ScreenWidth { get; set; }
+        public int ScreenHeight { get; set; }
 
         public Renderer(int screenWidth, int screenHeight)
         {
@@ -54,6 +54,7 @@ namespace CubeAssignment.Gui
             var worldspace = camera.GetMatrix() * modelMatrix;
 
             var viewSpace = inputVector * worldspace;
+          
             var projection = ProjectionTransformation(camera.Distance, viewSpace.z);
 
             var newVector = viewSpace * projection;
