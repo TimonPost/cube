@@ -5,7 +5,7 @@ namespace CubeAssignment.Gui
     /// <summary>
     /// Helper utilities. 
     /// </summary>
-    internal static class Utils
+    public static class Utils
     {
         /// <summary>
         /// Converts degrees to radians
@@ -25,6 +25,11 @@ namespace CubeAssignment.Gui
         public static float RadiansToDegrees(float radians)
         {
             return radians * (180 / MathF.PI);
+        }
+
+        public static float DeltaChange(float deltaTime)
+        {
+            return deltaTime * Settings.StepSize * Settings.Speed;
         }
     }
 }

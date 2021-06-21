@@ -8,7 +8,7 @@
         /// <summary>
         /// Make the current animation state run. 
         /// </summary>
-        void Tick();
+        void Tick(float deltaTime);
 
         /// <summary>
         /// Starts the state-machine. 

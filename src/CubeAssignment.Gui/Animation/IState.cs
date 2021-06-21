@@ -24,6 +24,6 @@
         ///     Checks if the state is finished.
         /// </summary>
         /// <returns>if the state is finished</returns>
-        bool Tick(CubeAnimationData cubeAnimationData);
+        bool Tick(CubeAnimationData cubeAnimationData, float deltaTime);
     }
 }

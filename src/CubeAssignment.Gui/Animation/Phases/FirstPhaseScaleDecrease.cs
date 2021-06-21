@@ -7,8 +7,6 @@ namespace CubeAssignment.Gui.Animation.Phases
     /// </summary>
     public class FirstPhaseScaleDecrease : IState
     {
-        public float StepSize { get; set; } = 0.01f;
-
         public virtual AnimationStates AnimationState => AnimationStates.Phase1ScaleDecrease;
 
         public void Enter()
@@ -21,20 +19,21 @@ namespace CubeAssignment.Gui.Animation.Phases
             Console.WriteLine("exit phase 1");
         }
 
-        public virtual bool Tick(CubeAnimationData cubeAnimationData)
+        public virtual bool Tick(CubeAnimationData cubeAnimationData, float deltaTime)
         {
-            PerformAction(cubeAnimationData);
+            PerformAction(cubeAnimationData, deltaTime);
             return cubeAnimationData.MeshSceneObject.Scale.x <= 1.0f;
         }
 
-        protected void PerformAction(CubeAnimationData cubeAnimationData)
+        protected void PerformAction(CubeAnimationData cubeAnimationData, float deltaTime)
         {
             Vector newScale = cubeAnimationData.MeshSceneObject.Scale;
-            newScale.x -= StepSize;
-            newScale.y -= StepSize;
-            newScale.z -= StepSize;
+            newScale.x -= Utils.DeltaChange(deltaTime);
+            newScale.y -= Utils.DeltaChange(deltaTime);
+            newScale.z -= Utils.DeltaChange(deltaTime);
             cubeAnimationData.MeshSceneObject.Scale = newScale;
-           cubeAnimationData.Camera.Theta -= Settings.StepSize;
+
+           cubeAnimationData.Camera.Theta -= Utils.DeltaChange(deltaTime);
         }
     }
 }

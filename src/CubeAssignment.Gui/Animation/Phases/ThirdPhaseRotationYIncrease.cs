@@ -7,8 +7,6 @@ namespace CubeAssignment.Gui.Animation.Phases
     /// </summary>
     public class ThirdPhaseRotationYIncrease : IState
     {
-        public float StepSize { get; set; } = (float) System.Math.PI / 60;
-
         public static double ToRadians(double val)
         {
             return System.Math.PI / 180 * val;
@@ -26,18 +24,18 @@ namespace CubeAssignment.Gui.Animation.Phases
             Console.WriteLine("enter phase 3");
         }
 
-        public virtual bool Tick(CubeAnimationData cubeAnimationData)
+        public virtual bool Tick(CubeAnimationData cubeAnimationData, float deltaTime)
         {
-            PerformAction(cubeAnimationData);
+            PerformAction(cubeAnimationData, deltaTime);
             return cubeAnimationData.MeshSceneObject.Rotation.y >= ToRadians(45);
         }
 
-        protected void PerformAction(CubeAnimationData cubeAnimationData)
+        protected void PerformAction(CubeAnimationData cubeAnimationData, float deltaTime)
         {
             Vector newRotation = cubeAnimationData.MeshSceneObject.Rotation;
-            newRotation.y += StepSize;
+            newRotation.y += Utils.DeltaChange(deltaTime);
             cubeAnimationData.MeshSceneObject.Rotation = newRotation;
-            cubeAnimationData.Camera.Phi += Settings.StepSize;
+            cubeAnimationData.Camera.Phi += Utils.DeltaChange(deltaTime);
         }
     }
 }

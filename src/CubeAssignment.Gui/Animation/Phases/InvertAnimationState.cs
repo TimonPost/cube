@@ -23,11 +23,11 @@ namespace CubeAssignment.Gui.Animation.Phases
             Console.WriteLine("exit phase 1 not active");
         }
 
-        public virtual bool Tick(CubeAnimationData cubeAnimationData)
+        public virtual bool Tick(CubeAnimationData cubeAnimationData, float deltaTime)
         {
             if (cubeAnimationData.Camera.Theta < Camera.DefaultTheta)
             {
-                cubeAnimationData.Camera.Theta += Settings.StepSize;
+                cubeAnimationData.Camera.Theta += Utils.DeltaChange(deltaTime);
             }
             else
             {
@@ -37,7 +37,7 @@ namespace CubeAssignment.Gui.Animation.Phases
 
             if (cubeAnimationData.Camera.Phi > Camera.DefaultPhi)
             {
-                cubeAnimationData.Camera.Phi -= Settings.StepSize;
+                cubeAnimationData.Camera.Phi -= Utils.DeltaChange(deltaTime);
             }
             else
             {

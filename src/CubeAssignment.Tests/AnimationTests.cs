@@ -5,7 +5,9 @@ using CubeAssignment.Gui;
 using CubeAssignment.Gui.Animation;
 using CubeAssignment.Gui.Animation.Phases;
 using CubeAssignment.Gui.Scene;
+using Microsoft.VisualBasic.CompilerServices;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Utils = CubeAssignment.Gui.Utils;
 
 namespace CubeAssignment.Tests
 {
@@ -34,7 +36,9 @@ namespace CubeAssignment.Tests
             FirstPhaseScaleDecrease phase = new FirstPhaseScaleDecrease();
 
             int timesToTick = 20;
-            
+
+            float deltaTime = 1f / 60f;
+
             for (int i = 0; i < timesToTick; i++)
                 phase.Tick(animationState);
 
@@ -51,6 +55,7 @@ namespace CubeAssignment.Tests
 
             for (int i = 0; i < timesToTick; i++)
                 phase.Tick(animationState);
+                phase.Tick(animationState, deltaTime);
 
             Assert.AreEqual(Math.Round(camera.Theta, 4), Math.Round(Camera.DefaultTheta - (Settings.StepSize * timesToTick + 1)), 4);
         }
@@ -68,6 +73,7 @@ namespace CubeAssignment.Tests
             Assert.IsTrue(meshObject.Scale.x <= 1.0);
             Assert.IsTrue(meshObject.Scale.y <= 1.0);
             Assert.IsTrue(meshObject.Scale.z <= 1.0);
+            Assert.AreEqual(camera.Theta, Camera.DefaultTheta - (Utils.DeltaChange(deltaTime) * timesToTick), 0.01f);
         }
 
 
@@ -106,38 +112,14 @@ namespace CubeAssignment.Tests
 
             int timesToTick = 20;
 
-            for (int i = 0; i < timesToTick; i++)
-                phase.Tick(animationState);
-
-            Assert.AreEqual(Math.Round(camera.Theta, 4), Math.Round(Camera.DefaultTheta - (Settings.StepSize * timesToTick + 1)), 4);
-        }
-
-        [TestMethod]
-        public void SecondPhase_Rotation_45_degrees_Test()
-        {
-            SecondPhaseRotationXIncrease phase = new SecondPhaseRotationXIncrease();
-
-            int timesToTick = 500;
+            float deltaTime = 1f / 60f;
 
             for (int i = 0; i < timesToTick; i++)
-                phase.Tick(animationState);
+            {
+                phase.Tick(animationState, deltaTime);
+            }
 
-            Assert.IsTrue(meshObject.Rotation.x >= 0);
-        }
-
-        [TestMethod]
-        public void SecondPhase_Rotation_Minus_45_degrees_Test()
-        {
-            SecondPhaseRotationXDecrease phase = new SecondPhaseRotationXDecrease();
-
-            int timesToTick = 500;
-
-            for (int i = 0; i < timesToTick; i++)
-                phase.Tick(animationState);
-
-            Assert.IsTrue(meshObject.Scale.x <= 1.0);
-            Assert.IsTrue(meshObject.Scale.y <= 1.0);
-            Assert.IsTrue(meshObject.Scale.z <= 1.0);
+            Assert.AreEqual(camera.Theta, Camera.DefaultTheta - (Utils.DeltaChange(deltaTime) * timesToTick), 0.01f);
         }
 
     }
