@@ -3,7 +3,7 @@
 namespace CubeAssignment.Gui.Animation.Phases
 {
     /// <summary>
-    /// Animation phase that does nothing. 
+    ///     Animation phase that does nothing.
     /// </summary>
     public class NotActiveState : IState
     {

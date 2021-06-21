@@ -3,12 +3,12 @@
 namespace CubeAssignment.Gui
 {
     /// <summary>
-    /// Helper utilities. 
+    ///     Helper utilities.
     /// </summary>
     public static class Utils
     {
         /// <summary>
-        /// Converts degrees to radians
+        ///     Converts degrees to radians
         /// </summary>
         /// <param name="degrees"></param>
         /// <returns></returns>
@@ -18,7 +18,7 @@ namespace CubeAssignment.Gui
         }
 
         /// <summary>
-        /// Converts radians to degrees
+        ///     Converts radians to degrees
         /// </summary>
         /// <param name="degrees"></param>
         /// <returns></returns>
@@ -34,7 +34,7 @@ namespace CubeAssignment.Gui
 
         public static float DeltaChangeStepSize1(float deltaTime)
         {
-            return (deltaTime * 1)*6;
+            return deltaTime * 1 * 6;
         }
     }
 }

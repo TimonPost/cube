@@ -3,7 +3,7 @@
 namespace CubeAssignment.Gui
 {
     /// <summary>
-    /// The Vertex data is used to render Mesh Edges.
+    ///     The Vertex data is used to render Mesh Edges.
     /// </summary>
     public class Vertex
     {
@@ -14,12 +14,12 @@ namespace CubeAssignment.Gui
         }
 
         /// <summary>
-        /// The Position vector of the vertex
+        ///     The Position vector of the vertex
         /// </summary>
         public Vector Position { get; }
 
         /// <summary>
-        /// The color of the Vertex
+        ///     The color of the Vertex
         /// </summary>
         public Color Color { get; }
     }

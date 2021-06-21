@@ -5,18 +5,13 @@ using CubeAssignment.Gui.Scene;
 namespace CubeAssignment.Gui.Animation
 {
     /// <summary>
-    /// An animation state-machine animates a given Mesh Object. 
+    ///     An animation state-machine animates a given Mesh Object.
     /// </summary>
     public class AnimationFiniteStateMachine : IAnimationFiniteStateMachine
     {
-        private readonly Action[,] _fsm;
-        private MeshSceneObject _meshSceneObject;
         private readonly Camera _camera;
-
-        /// <summary>
-        ///     The state that is currently active.
-        /// </summary>
-        public IState ActiveState { get; private set; }
+        private readonly Action[,] _fsm;
+        private readonly MeshSceneObject _meshSceneObject;
 
         public AnimationFiniteStateMachine(MeshSceneObject meshSceneObject, Camera camera)
         {
@@ -30,10 +25,10 @@ namespace CubeAssignment.Gui.Animation
                 {null, EnterThirdPhaseRotationYIncrease, EnterNotActive}, // EnterSecondPhaseRotationXDecrease
 
                 {null, EnterThirdPhaseRotationYDecrease, EnterNotActive}, // EnterThirdPhaseRotationYIncrease
-                {null, InverseAnimation, EnterNotActive}, // EnterThidPhaseRotationYDecrease
-                
+                {null, InverseAnimation, EnterNotActive}, // EnterThirdPhaseRotationYDecrease
+
                 {null, EnterNotActive, EnterNotActive}, // NotActive 
-                {null, EnterNotActive, EnterNotActive} // InverseAnimation 
+                {null, EnterFirstPhaseScaleIncrease, EnterNotActive} // InverseAnimation 
             };
 
             _meshSceneObject = meshSceneObject;
@@ -43,12 +38,17 @@ namespace CubeAssignment.Gui.Animation
         }
 
         /// <summary>
+        ///     The state that is currently active.
+        /// </summary>
+        public IState ActiveState { get; private set; }
+
+        /// <summary>
         ///     Starts the finite state-machine.
         ///     This will make the shark look for a vetex to go to.
         /// </summary>
         public void Start()
         {
-            EnterPhaseOneIncrease();
+            EnterFirstPhaseScaleIncrease();
         }
 
         /// <summary>
@@ -58,9 +58,7 @@ namespace CubeAssignment.Gui.Animation
         {
             // If some state is finished, try to advance.
             if (ActiveState?.Tick(new CubeAnimationData(_meshSceneObject, _camera), deltaTime) ?? false)
-            {
                 ProcessEvent(Events.Finished);
-            }
         }
 
         /// <summary>
@@ -70,12 +68,12 @@ namespace CubeAssignment.Gui.Animation
         /// <param name="theEvent"></param>
         public void ProcessEvent(Events theEvent)
         {
-            Action enterNextState = _fsm[(int)ActiveState.AnimationState, (int)theEvent];
+            var enterNextState = _fsm[(int) ActiveState.AnimationState, (int) theEvent];
             enterNextState?.Invoke();
         }
 
 
-        private void EnterPhaseOneIncrease()
+        private void EnterFirstPhaseScaleIncrease()
         {
             EnterState(new FirstPhaseScaleIncrease());
         }

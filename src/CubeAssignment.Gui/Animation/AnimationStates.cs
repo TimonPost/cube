@@ -1,7 +1,7 @@
 ﻿namespace CubeAssignment.Gui.Animation
 {
     /// <summary>
-    /// Different animation states. 
+    ///     Different animation states.
     /// </summary>
     public enum AnimationStates
     {

@@ -3,15 +3,10 @@
 namespace CubeAssignment.Gui.Animation.Phases
 {
     /// <summary>
-    /// Animation phase that increases the rotation along the Y up to 45 degrees and meanwhile increases the camera 'PHI'.  
+    ///     Animation phase that increases the rotation along the Y up to 45 degrees and meanwhile increases the camera 'PHI'.
     /// </summary>
     public class ThirdPhaseRotationYIncrease : IState
     {
-        public static double ToRadians(double val)
-        {
-            return System.Math.PI / 180 * val;
-        }
-
         public virtual AnimationStates AnimationState => AnimationStates.Phase3RotationYIncrease;
 
         public void Enter()
@@ -30,9 +25,14 @@ namespace CubeAssignment.Gui.Animation.Phases
             return cubeAnimationData.MeshSceneObject.Rotation.y >= ToRadians(45);
         }
 
+        public static double ToRadians(double val)
+        {
+            return Math.PI / 180 * val;
+        }
+
         protected void PerformAction(CubeAnimationData cubeAnimationData, float deltaTime)
         {
-            Vector newRotation = cubeAnimationData.MeshSceneObject.Rotation;
+            var newRotation = cubeAnimationData.MeshSceneObject.Rotation;
             newRotation.y += Utils.DeltaChange001(deltaTime);
             cubeAnimationData.MeshSceneObject.Rotation = newRotation;
             cubeAnimationData.Camera.Phi += Utils.DeltaChangeStepSize1(deltaTime);

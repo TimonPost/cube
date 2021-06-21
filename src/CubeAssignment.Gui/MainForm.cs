@@ -9,12 +9,10 @@ namespace CubeAssignment.Gui
 {
     public partial class MainForm : Form
     {
-        internal static Form Instance { get; private set; }
-
         private readonly MainScene _mainScene = new MainScene();
+        private readonly Renderer _renderer;
 
         private DateTime _previousTick = DateTime.Now;
-        private readonly Renderer _renderer;
 
         public MainForm()
         {
@@ -32,15 +30,16 @@ namespace CubeAssignment.Gui
             dValueLabel.DataBindings.Add(new Binding(nameof(Label.Text), _mainScene.Camera, nameof(Camera.Distance)));
             rValueLabel.DataBindings.Add(new Binding(nameof(Label.Text), _mainScene.Camera, nameof(Camera.R)));
             phiValueLabel.DataBindings.Add(new Binding(nameof(Label.Text), _mainScene.Camera, nameof(Camera.Phi)));
-            
+
             // Mesh UI property bindings
-            Binding rotationBinding = new Binding(nameof(Label.Text), cube, nameof(MeshSceneObject.Rotation));
+            var rotationBinding = new Binding(nameof(Label.Text), cube, nameof(MeshSceneObject.Rotation));
             rotationBinding.Format += FormatRotationVectorToDegrees;
 
             RotateValueLabel.DataBindings.Add(rotationBinding);
             ScaleValueLabel.DataBindings.Add(new Binding(nameof(Label.Text), cube, nameof(MeshSceneObject.Scale)));
-            TranslateValueLabel.DataBindings.Add(new Binding(nameof(Label.Text), cube, nameof(MeshSceneObject.Position)));
-            
+            TranslateValueLabel.DataBindings.Add(
+                new Binding(nameof(Label.Text), cube, nameof(MeshSceneObject.Position)));
+
             _mainScene.Add(new CoordinateSystem(_renderer));
             _mainScene.Add(cube);
             _mainScene.Add(ape);
@@ -48,11 +47,14 @@ namespace CubeAssignment.Gui
             _mainScene.AddAnimationStateMachines(new AnimationFiniteStateMachine(cube, _mainScene.Camera));
             _mainScene.AddAnimationStateMachines(new AnimationFiniteStateMachine(ape, _mainScene.Camera));
         }
-       
+
+        internal static Form Instance { get; private set; }
+
         private void FormatRotationVectorToDegrees(object sender, ConvertEventArgs args)
         {
             var rotation = (Vector) args.Value;
-            args.Value = new Vector(Utils.RadiansToDegrees(rotation.x), Utils.RadiansToDegrees(rotation.y), Utils.RadiansToDegrees(rotation.z)).ToString();
+            args.Value = new Vector(Utils.RadiansToDegrees(rotation.x), Utils.RadiansToDegrees(rotation.y),
+                Utils.RadiansToDegrees(rotation.z)).ToString();
         }
 
         private void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -61,12 +63,12 @@ namespace CubeAssignment.Gui
         }
 
         /// <summary>
-        /// Calculates the time between the current frame and the previous frame.
+        ///     Calculates the time between the current frame and the previous frame.
         /// </summary>
         /// <returns></returns>
         private float CalculateDeltaTime()
         {
-            DateTime currentTick = DateTime.Now;
+            var currentTick = DateTime.Now;
             var deltaTime = (float) (currentTick - _previousTick).TotalSeconds;
             _previousTick = currentTick;
             return deltaTime;
@@ -87,7 +89,6 @@ namespace CubeAssignment.Gui
 
         private void tableLayoutPanel4_Paint(object sender, PaintEventArgs e)
         {
-
         }
 
         private void MainForm_Resize(object sender, EventArgs e)

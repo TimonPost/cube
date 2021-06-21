@@ -6,7 +6,7 @@ using CubeAssignment.Gui.Animation;
 namespace CubeAssignment.Gui.Scene
 {
     /// <summary>
-    /// The main scene of the game world. 
+    ///     The main scene of the game world.
     /// </summary>
     public class MainScene : Scene
     {
@@ -14,205 +14,162 @@ namespace CubeAssignment.Gui.Scene
             new List<IAnimationFiniteStateMachine>();
 
         /// <summary>
-        /// Adds a given animation state machine that will animate a particular scene object. 
+        ///     Adds a given animation state machine that will animate a particular scene object.
         /// </summary>
         /// <param name="stateMachine"></param>
         public void AddAnimationStateMachines(IAnimationFiniteStateMachine stateMachine)
         {
             _animationStateMachines.Add(stateMachine);
         }
-        
+
         /// <summary>
-        /// Updates the main scene.
+        ///     Updates the main scene.
         /// </summary>
         /// <param name="deltaTime"></param>
         public override void Update(float deltaTime)
         {
             UpdateInput(deltaTime);
-            foreach (IAnimationFiniteStateMachine animation in _animationStateMachines)
-            {
-                animation?.Tick(deltaTime);
-            }
+            foreach (var animation in _animationStateMachines) animation?.Tick(deltaTime);
             base.Update(deltaTime);
         }
-        
+
         private void ApplyEffect(Action<MeshSceneObject> effectCallback)
         {
-            foreach (SceneObject sceneObject in SceneObjects)
-            {
+            foreach (var sceneObject in SceneObjects)
                 if (sceneObject is MeshSceneObject ms)
-                {
                     effectCallback(ms);
-                }
-            }
         }
 
         private void UpdateInput(float deltaTime)
         {
             if (Input.IsKeyDown(Keys.PageUp))
                 // decrease z
-            {
-                ApplyEffect((ms) =>
+                ApplyEffect(ms =>
                 {
-                    Vector newPosition = ms.Position;
+                    var newPosition = ms.Position;
                     newPosition.z -= Utils.DeltaChange001(deltaTime);
                     ms.Position = newPosition;
                 });
-            }
 
             if (Input.IsKeyDown(Keys.PageUp))
                 // increase z
-            {
-                ApplyEffect((ms) =>
+                ApplyEffect(ms =>
                 {
-                    Vector newPosition = ms.Position;
+                    var newPosition = ms.Position;
                     newPosition.z += Utils.DeltaChange001(deltaTime);
                     ms.Position = newPosition;
                 });
-            }
 
             // If shift is pressed
             if ((Control.ModifierKeys & Keys.Shift) != 0)
             {
                 if (Input.IsKeyDown(Keys.P))
                     // decrease phi
-                {
-                    ApplyEffect((ms) => Camera.Phi -= Utils.DeltaChange001(deltaTime) * 100);
-                }
+                    ApplyEffect(ms => Camera.Phi -= Utils.DeltaChange001(deltaTime) * 100);
 
                 if (Input.IsKeyDown(Keys.D))
                     // decrease distance
-                {
-                    ApplyEffect((ms) => Camera.Distance -= Utils.DeltaChange001(deltaTime) * 150);
-                }
+                    ApplyEffect(ms => Camera.Distance -= Utils.DeltaChange001(deltaTime) * 150);
 
                 if (Input.IsKeyDown(Keys.T))
-                     // decrease Theta
-                {
-                    ApplyEffect((ms) => Camera.Theta -= Utils.DeltaChange001(deltaTime) * 100);
-                }
+                    // decrease Theta
+                    ApplyEffect(ms => Camera.Theta -= Utils.DeltaChange001(deltaTime) * 100);
 
                 if (Input.IsKeyDown(Keys.R))
                     // decrease R
-                {
-                    ApplyEffect((ms) => Camera.R -= Utils.DeltaChange001(deltaTime) * 20);
-                }
+                    ApplyEffect(ms => Camera.R -= Utils.DeltaChange001(deltaTime) * 20);
 
                 if (Input.IsKeyDown(Keys.S))
-                     // decrease scale
-                {
-                    ApplyEffect((ms) =>
+                    // decrease scale
+                    ApplyEffect(ms =>
                     {
-                        Vector newScale = ms.Scale;
-                        float decrement = Utils.DeltaChange001(deltaTime);
+                        var newScale = ms.Scale;
+                        var decrement = Utils.DeltaChange001(deltaTime);
                         newScale -= new Vector(decrement, decrement, decrement);
                         ms.Scale = newScale;
                     });
-                }
 
                 if (Input.IsKeyDown(Keys.X))
                     // decrease rotate x
-                {
-                    ApplyEffect((ms) =>
+                    ApplyEffect(ms =>
                     {
-                        Vector newRotation = ms.Rotation;
+                        var newRotation = ms.Rotation;
                         newRotation.x -= Utils.DeltaChange001(deltaTime);
                         ms.Rotation = newRotation;
                     });
-                }
 
                 if (Input.IsKeyDown(Keys.Y))
                     // decrease rotate y
-                {
-                    ApplyEffect((ms) =>
+                    ApplyEffect(ms =>
                     {
-                        Vector newRotation = ms.Rotation;
+                        var newRotation = ms.Rotation;
                         newRotation.y -= Utils.DeltaChange001(deltaTime);
                         ms.Rotation = newRotation;
                     });
-                }
 
                 if (Input.IsKeyDown(Keys.Z))
                     // decrease rotate z
-                {
-                    ApplyEffect((ms) =>
+                    ApplyEffect(ms =>
                     {
-                        Vector newRotation = ms.Rotation;
+                        var newRotation = ms.Rotation;
                         newRotation.z -= Utils.DeltaChange001(deltaTime);
                         ms.Rotation = newRotation;
                     });
-                }
             }
             else
             {
                 if (Input.IsKeyDown(Keys.P))
-                     // increase phi
-                {
-                    ApplyEffect((ms) => Camera.Phi += Utils.DeltaChange001(deltaTime) * 100);
-                }
+                    // increase phi
+                    ApplyEffect(ms => Camera.Phi += Utils.DeltaChange001(deltaTime) * 100);
 
                 if (Input.IsKeyDown(Keys.D))
                     // increase distance
-                {
-                    ApplyEffect((ms) => Camera.Distance += Utils.DeltaChange001(deltaTime) * 150);
-                }
+                    ApplyEffect(ms => Camera.Distance += Utils.DeltaChange001(deltaTime) * 150);
 
                 if (Input.IsKeyDown(Keys.T))
-                // increase scale
-                {
-                    ApplyEffect((ms) => Camera.Theta += Utils.DeltaChange001(deltaTime) * 100);
-                }
+                    // increase scale
+                    ApplyEffect(ms => Camera.Theta += Utils.DeltaChange001(deltaTime) * 100);
 
                 if (Input.IsKeyDown(Keys.R))
                     // decrease R
-                {
-                    ApplyEffect((ms) => Camera.R += Utils.DeltaChange001(deltaTime) * 20);
-                }
+                    ApplyEffect(ms => Camera.R += Utils.DeltaChange001(deltaTime) * 20);
 
                 if (Input.IsKeyDown(Keys.S))
                     // increase scale
-                {
-                    ApplyEffect((ms) =>
+                    ApplyEffect(ms =>
                     {
-                        Vector newScale = ms.Scale;
-                        float increment = Utils.DeltaChange001(deltaTime);
+                        var newScale = ms.Scale;
+                        var increment = Utils.DeltaChange001(deltaTime);
                         newScale += new Vector(increment, increment, increment, increment);
                         ms.Scale = newScale;
                     });
-                }
 
                 if (Input.IsKeyDown(Keys.X))
                     // increase rotate x
-                {
-                    ApplyEffect((ms) =>
+                    ApplyEffect(ms =>
                     {
-                        Vector newRotation = ms.Rotation;
+                        var newRotation = ms.Rotation;
                         newRotation.x += Utils.DeltaChange001(deltaTime);
                         ms.Rotation = newRotation;
                     });
-                }
 
                 if (Input.IsKeyDown(Keys.Y))
                     // increase rotate y
-                {
-                    ApplyEffect((ms) =>
+                    ApplyEffect(ms =>
                     {
-                        Vector newRotation = ms.Rotation;
+                        var newRotation = ms.Rotation;
                         newRotation.y += Utils.DeltaChange001(deltaTime);
                         ms.Rotation = newRotation;
                     });
-                }
 
                 if (Input.IsKeyDown(Keys.Z))
                     // increase rotate z
-                {
-                    ApplyEffect((ms) =>
+                    ApplyEffect(ms =>
                     {
-                        Vector newRotation = ms.Rotation;
+                        var newRotation = ms.Rotation;
                         newRotation.z += Utils.DeltaChange001(deltaTime);
                         ms.Rotation = newRotation;
                     });
-                }
 
                 if (Input.IsKeyDown(Keys.C))
                 {
@@ -226,88 +183,70 @@ namespace CubeAssignment.Gui.Scene
                     Camera.Reset();
 
                     // reset to default
-                    foreach (IAnimationFiniteStateMachine animationFiniteStateMachine in _animationStateMachines)
-                    {
+                    foreach (var animationFiniteStateMachine in _animationStateMachines)
                         animationFiniteStateMachine.ProcessEvent(Events.Stop);
-                    }
                 }
 
                 if (Input.IsKeyDown(Keys.A))
-                {
                     // reset to default
-                    foreach (IAnimationFiniteStateMachine animationFiniteStateMachine in _animationStateMachines)
-                    {
+                    foreach (var animationFiniteStateMachine in _animationStateMachines)
                         animationFiniteStateMachine.Start();
-                    }
-                }
 
                 // Translation
 
                 // Translate Y+
                 if (Input.IsKeyDown(Keys.Up))
-                {
-                    ApplyEffect((ms) =>
+                    ApplyEffect(ms =>
                     {
-                        Vector newPosition = ms.Position;
+                        var newPosition = ms.Position;
                         newPosition.y += Utils.DeltaChange001(deltaTime);
                         ms.Position = newPosition;
                     });
-                }
 
                 // Translate X-
                 if (Input.IsKeyDown(Keys.Left))
-                {
-                    ApplyEffect((ms) =>
+                    ApplyEffect(ms =>
                     {
-                        Vector newPosition = ms.Position;
+                        var newPosition = ms.Position;
                         newPosition.x -= Utils.DeltaChange001(deltaTime);
                         ms.Position = newPosition;
                     });
-                }
 
                 // Translate X+
                 if (Input.IsKeyDown(Keys.Right))
-                {
-                    ApplyEffect((ms) =>
+                    ApplyEffect(ms =>
                     {
-                        Vector newPosition = ms.Position;
+                        var newPosition = ms.Position;
                         newPosition.x += Utils.DeltaChange001(deltaTime);
                         ms.Position = newPosition;
                     });
-                }
 
                 // Translate Y-
                 if (Input.IsKeyDown(Keys.Down))
-                {
-                    ApplyEffect((ms) =>
+                    ApplyEffect(ms =>
                     {
-                        Vector newPosition = ms.Position;
+                        var newPosition = ms.Position;
                         newPosition.y -= Utils.DeltaChange001(deltaTime);
                         ms.Position = newPosition;
                     });
-                }
 
                 // Translate Z-
                 if (Input.IsKeyDown(Keys.PageUp))
-                {
-                    ApplyEffect((ms) =>
+                    ApplyEffect(ms =>
                     {
-                        Vector newPosition = ms.Position;
+                        var newPosition = ms.Position;
                         newPosition.z -= Utils.DeltaChange001(deltaTime);
                         ms.Position = newPosition;
                     });
-                }
 
                 // Translate Z+
                 if (Input.IsKeyDown(Keys.PageDown))
-                {
-                    ApplyEffect((ms) =>
+                    ApplyEffect(ms =>
                     {
-                        Vector newPosition = ms.Position;
+                        var newPosition = ms.Position;
                         newPosition.z += Utils.DeltaChange001(deltaTime);
                         ms.Position = newPosition;
                     });
-                }
             }
         }
     }

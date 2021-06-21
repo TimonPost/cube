@@ -3,16 +3,16 @@
 namespace CubeAssignment.Gui.Scene.CoordinateSystem
 {
     /// <summary>
-    /// Drawable axis from a coordinate system. 
+    ///     Drawable axis from a coordinate system.
     /// </summary>
     public class Axis
     {
-        private readonly Renderer _renderer;
-        private readonly string _label;
         private readonly Vector _baseVector;
         private readonly Color _color;
+        private readonly string _label;
         private readonly Mesh _lineMesh;
-        
+        private readonly Renderer _renderer;
+
         public Axis(Renderer renderer, string label, Vector baseVector, Color color)
         {
             _renderer = renderer;

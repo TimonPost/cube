@@ -3,21 +3,17 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using CubeAssignment.Gui.Scene;
-using Matrix = CubeAssignment.Gui.Matrix;
 
 namespace CubeAssignment.Gui
 {
     /// <summary>
-    /// Used for rendering scene elements to the screen.
+    ///     Used for rendering scene elements to the screen.
     /// </summary>
     public class Renderer
     {
-        private Pen _pen;
-        private SolidBrush _fontBrush;
         private readonly Font _font = new Font("Arial", 15);
-
-        public int ScreenWidth { get; set; }
-        public int ScreenHeight { get; set; }
+        private SolidBrush _fontBrush;
+        private Pen _pen;
 
         public Renderer(int screenWidth, int screenHeight)
         {
@@ -25,8 +21,11 @@ namespace CubeAssignment.Gui
             ScreenHeight = screenHeight;
         }
 
+        public int ScreenWidth { get; set; }
+        public int ScreenHeight { get; set; }
+
         /// <summary>
-        /// Get an orthographic projection matrix for the given camera. 
+        ///     Get an orthographic projection matrix for the given camera.
         /// </summary>
         /// <param name="camera"></param>
         /// <param name="z"></param>
@@ -43,7 +42,7 @@ namespace CubeAssignment.Gui
         }
 
         /// <summary>
-        /// Transforms a vector with camera view matrix, model matrix.
+        ///     Transforms a vector with camera view matrix, model matrix.
         /// </summary>
         /// <param name="camera"></param>
         /// <param name="inputVector"></param>
@@ -59,79 +58,70 @@ namespace CubeAssignment.Gui
             var newVector = viewSpace * projection;
 
             //Scale to screen
-            newVector.x =  ScreenWidth / 2f + newVector.x;
+            newVector.x = ScreenWidth / 2f + newVector.x;
             newVector.y = ScreenHeight / 2f - newVector.y;
 
             return newVector;
         }
 
         /// <summary>
-        /// Draws text on graphics
+        ///     Draws text on graphics
         /// </summary>
         /// <param name="graphics"></param>
         /// <param name="text"></param>
         /// <param name="color"></param>
         /// <param name="position"></param>
         /// <param name="modelViewMatrix"></param>
-        public void DrawText(Graphics graphics, string text, Color color, Vector position, Camera camera, Matrix modeViewMatrix = null)
+        public void DrawText(Graphics graphics, string text, Color color, Vector position, Camera camera,
+            Matrix modeViewMatrix = null)
         {
             if (_fontBrush == null)
-            {
                 _fontBrush = new SolidBrush(color);
-            }
             else
-            {
                 _fontBrush.Color = color;
-            }
 
             if (modeViewMatrix is null)
                 modeViewMatrix = Matrix.Identity();
-            
+
             position = Transform(camera, position, modeViewMatrix);
             graphics.DrawString(text, _font, _fontBrush, new PointF(position.x, position.y));
         }
 
         /// <summary>
-        /// Draws vertices
+        ///     Draws vertices
         /// </summary>
         /// <param name="graphics"></param>
         /// <param name="vertexes"></param>
         /// <param name="indexes"></param>
         /// <param name="modelViewMatrix"></param>
-        public void Draw(Graphics graphics, IReadOnlyList<Vertex> vertexes, IReadOnlyList<int> indexes, Camera camera, Matrix modelMatrix)
+        public void Draw(Graphics graphics, IReadOnlyList<Vertex> vertexes, IReadOnlyList<int> indexes, Camera camera,
+            Matrix modelMatrix)
         {
-            using (IEnumerator<int> indexEnumerator = indexes.GetEnumerator())
+            using (var indexEnumerator = indexes.GetEnumerator())
             {
                 while (indexEnumerator.MoveNext())
                 {
-                    Vertex firstVertex = vertexes[indexEnumerator.Current];
-                    Vector firstVector = Transform(camera, firstVertex.Position, modelMatrix);
+                    var firstVertex = vertexes[indexEnumerator.Current];
+                    var firstVector = Transform(camera, firstVertex.Position, modelMatrix);
 
                     indexEnumerator.MoveNext();
-                    Vertex secondVertex = vertexes[indexEnumerator.Current];
-                    Vector secondVector = Transform(camera, secondVertex.Position, modelMatrix);
+                    var secondVertex = vertexes[indexEnumerator.Current];
+                    var secondVector = Transform(camera, secondVertex.Position, modelMatrix);
 
                     var point1 = new PointF(firstVector.x, firstVector.y);
                     var point2 = new PointF(secondVector.x, secondVector.y);
-                    
+
                     // Avoid drawing zero line, because that results in an out of memory exception.
-                    if (Math.Abs(point1.X - point2.X) < 1f && Math.Abs(point1.Y - point2.Y) < 1f)
-                    {
-                        continue;
-                    }
+                    if (Math.Abs(point1.X - point2.X) < 1f && Math.Abs(point1.Y - point2.Y) < 1f) continue;
 
                     try
                     {
                         using var linearGradientBrush =
                             new LinearGradientBrush(point1, point2, firstVertex.Color, secondVertex.Color);
                         if (_pen == null)
-                        {
                             _pen = new Pen(linearGradientBrush, 1f);
-                        }
                         else
-                        {
                             _pen.Brush = linearGradientBrush;
-                        }
 
                         graphics.DrawLine(_pen, point1, point2);
                     }

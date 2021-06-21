@@ -3,7 +3,8 @@
 namespace CubeAssignment.Gui.Animation.Phases
 {
     /// <summary>
-    /// Animation phase that increases the rotation along the X up to 45 degrees and meanwhile decreases the camera 'THETA'.  
+    ///     Animation phase that increases the rotation along the X up to 45 degrees and meanwhile decreases the camera
+    ///     'THETA'.
     /// </summary>
     public class SecondPhaseRotationXIncrease : IState
     {
@@ -27,12 +28,12 @@ namespace CubeAssignment.Gui.Animation.Phases
 
         public static double ToRadians(double val)
         {
-            return System.Math.PI / 180 * val;
+            return Math.PI / 180 * val;
         }
 
         protected void PerformAction(CubeAnimationData cubeAnimationData, float deltaTime)
         {
-            Vector newRotation = cubeAnimationData.MeshSceneObject.Rotation;
+            var newRotation = cubeAnimationData.MeshSceneObject.Rotation;
             newRotation.x += Utils.DeltaChange001(deltaTime);
             cubeAnimationData.MeshSceneObject.Rotation = newRotation;
             cubeAnimationData.Camera.Theta -= Utils.DeltaChangeStepSize1(deltaTime);

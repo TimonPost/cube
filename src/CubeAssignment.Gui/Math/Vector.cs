@@ -1,17 +1,19 @@
-﻿namespace CubeAssignment.Gui
+﻿using System;
+
+namespace CubeAssignment.Gui
 {
     /// <summary>
-    /// Vector with 4 floats.
+    ///     Vector with 4 floats.
     /// </summary>
     public struct Vector
     {
         /// <summary>
-        /// Float values.
+        ///     Float values.
         /// </summary>
         public float x, y, z, w;
-        
+
         /// <summary>
-        /// Creates a vector with 4 floats. 
+        ///     Creates a vector with 4 floats.
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -26,12 +28,12 @@
         }
 
         /// <summary>
-        /// Vector with the values 0.
+        ///     Vector with the values 0.
         /// </summary>
-        public static Vector NullVector { get; } = new Vector(0, 0, 0, 1);
+        public static Vector NullVector { get; } = new Vector(0);
 
         /// <summary>
-        /// Adds two vectors and returns a new vector. 
+        ///     Adds two vectors and returns a new vector.
         /// </summary>
         /// <param name="v1"></param>
         /// <param name="v2"></param>
@@ -42,7 +44,7 @@
         }
 
         /// <summary>
-        /// Subtracts two vectors and returns a new vector. 
+        ///     Subtracts two vectors and returns a new vector.
         /// </summary>
         /// <param name="v1"></param>
         /// <param name="v2"></param>
@@ -53,7 +55,7 @@
         }
 
         /// <summary>
-        /// Multiplies two vectors and returns a new vector. 
+        ///     Multiplies two vectors and returns a new vector.
         /// </summary>
         /// <param name="v1"></param>
         /// <param name="v2"></param>
@@ -64,7 +66,7 @@
         }
 
         /// <summary>
-        /// Returns the dot product of two vectors.
+        ///     Returns the dot product of two vectors.
         /// </summary>
         /// <param name="v1"></param>
         /// <param name="v2"></param>
@@ -75,19 +77,19 @@
         }
 
         /// <summary>
-        /// Returns the normalized vector. 
+        ///     Returns the normalized vector.
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
         public static Vector Normalize(Vector value)
         {
-            var factor = (float) System.Math.Sqrt(value.x * value.x + value.y * value.y + value.z * value.z);
+            var factor = (float) Math.Sqrt(value.x * value.x + value.y * value.y + value.z * value.z);
             factor = 1f / factor;
             return new Vector(value.x * factor, value.y * factor, value.z * factor);
         }
 
         /// <summary>
-        /// Transforms a given vector with the given matrix. 
+        ///     Transforms a given vector with the given matrix.
         /// </summary>
         /// <param name="vector"></param>
         /// <param name="matrix"></param>
@@ -102,7 +104,7 @@
         }
 
         /// <summary>
-        /// Returns the cross product of the two given vectors. 
+        ///     Returns the cross product of the two given vectors.
         /// </summary>
         /// <param name="vector1"></param>
         /// <param name="vector2"></param>

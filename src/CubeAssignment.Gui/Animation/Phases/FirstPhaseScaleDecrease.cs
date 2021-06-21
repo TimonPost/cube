@@ -3,7 +3,7 @@
 namespace CubeAssignment.Gui.Animation.Phases
 {
     /// <summary>
-    /// Animation phase that decreases the scale and meanwhile decreases the camera 'theta'.  
+    ///     Animation phase that decreases the scale and meanwhile decreases the camera 'theta'.
     /// </summary>
     public class FirstPhaseScaleDecrease : IState
     {
@@ -27,14 +27,14 @@ namespace CubeAssignment.Gui.Animation.Phases
 
         protected void PerformAction(CubeAnimationData cubeAnimationData, float deltaTime)
         {
-            Vector newScale = cubeAnimationData.MeshSceneObject.Scale;
+            var newScale = cubeAnimationData.MeshSceneObject.Scale;
             newScale.x -= Utils.DeltaChange001(deltaTime);
             newScale.y -= Utils.DeltaChange001(deltaTime);
             newScale.z -= Utils.DeltaChange001(deltaTime);
 
             cubeAnimationData.MeshSceneObject.Scale = newScale;
 
-           cubeAnimationData.Camera.Theta -= Utils.DeltaChangeStepSize1(deltaTime);
+            cubeAnimationData.Camera.Theta -= Utils.DeltaChangeStepSize1(deltaTime);
         }
     }
 }

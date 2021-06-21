@@ -4,12 +4,12 @@ using CubeAssignment.Gui.Scene;
 namespace CubeAssignment.Gui.Animation.Phases
 {
     /// <summary>
-    /// Animation phase that inverts the animation from other phases.  
+    ///     Animation phase that inverts the animation from other phases.
     /// </summary>
     public class InvertAnimationState : IState
     {
-        private bool ThetaReverted;
         private bool PHIReverted;
+        private bool ThetaReverted;
 
         public AnimationStates AnimationState => AnimationStates.InvertAnimation;
 
