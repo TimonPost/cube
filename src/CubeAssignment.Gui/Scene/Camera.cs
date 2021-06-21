@@ -12,38 +12,52 @@ namespace CubeAssignment.Gui.Scene
     public class Camera : INotifyPropertyChanged
     {
         /// <summary>
-        /// Default value for theta. 
+        /// Default value for <see cref="Theta"/>. 
         /// </summary>
-        public static float DEFAULT_THETA = -100;
+        public static float DefaultTheta = -100;
 
         /// <summary>
-        /// Default value for PHI.
+        /// Default value for <see cref="Phi"/>.
         /// </summary>
+        public static float DefaultPhi = -10;
 
-        public static float DEFAULT_PHI = -10;
+        /// <summary>
+        /// Default value for <see cref="Position"/>
+        /// </summary>
+        public static Vector DefaultPosition = new Vector(0, 0, 3);
+
+        /// <summary>
+        /// Default value for <see cref="D"/>
+        /// </summary>
+        public static float DefaultD = 5;
+
+        /// <summary>
+        /// Default value for <see cref="R"/>
+        /// </summary>
+        public static float DefaultR = 10;
 
         /// <summary>
         /// The position of the camera in world space. 
         /// </summary>
-        public Vector Position { get; set; } = new Vector(0, 0, 3);
+        public Vector Position { get; set; } = DefaultPosition;
 
         /// <summary>
         /// The distance from origin to the camera lens.
         /// </summary>
-        public float D { get; set; } = 5;
+        public float D { get; set; } = DefaultD;
         
-        public float R { get; set; } = 10;
+        public float R { get; set; } = DefaultR;
 
         /// <summary>
         /// The theta value of the camera. 
         /// </summary>
-        public float Theta { get; set; } = -DEFAULT_THETA;
+        public float Theta { get; set; } = DefaultTheta;
 
         /// <summary>
         /// The PHI value of the camera. 
         /// </summary>
 
-        public float Phi { get; set; } = -DEFAULT_PHI;
+        public float Phi { get; set; } = DefaultPhi;
         
         /// <summary>
         /// Returns the view matrix of this camera.
@@ -69,11 +83,11 @@ namespace CubeAssignment.Gui.Scene
         /// </summary>
         public void Reset()
         {
-            Position = new Vector(0, 0, 3);
-            Theta = DEFAULT_THETA;
-            Phi = DEFAULT_PHI;
-            R = 10;
-            D = 5;
+            Position = DefaultPosition;
+            Theta = DefaultTheta;
+            Phi = DefaultPhi;
+            R = DefaultR;
+            D = DefaultD;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
