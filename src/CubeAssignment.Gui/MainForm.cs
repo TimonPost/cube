@@ -25,7 +25,7 @@ namespace CubeAssignment.Gui
 
             _renderer = new Renderer(Canvas.Width, Canvas.Height);
             var cube = new VertexLabeledMeshSceneObject(Mesh.Cube, _renderer);
-            var ape = new MeshSceneObject(Mesh.FromObj("Models/Suzanne.obj", Color.FromArgb(77, 77, 77)), _renderer);
+            var ape = new MeshSceneObject(Mesh.FromObj("Models/Suzanne.obj", Color.FromArgb(244, 154, 56)), _renderer);
 
             // Camera UI property bindings
             theValuetaLabel.DataBindings.Add(new Binding(nameof(Label.Text), _mainScene.Camera, nameof(Camera.Theta)));
