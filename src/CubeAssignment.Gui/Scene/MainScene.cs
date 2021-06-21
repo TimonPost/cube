@@ -49,8 +49,6 @@ namespace CubeAssignment.Gui.Scene
 
         private void UpdateInput(float deltaTime)
         {
-          
-
             if (Input.IsKeyDown(Keys.PageUp))
                 // decrease z
             {
@@ -89,7 +87,7 @@ namespace CubeAssignment.Gui.Scene
                 }
 
                 if (Input.IsKeyDown(Keys.T))
-                    // decrease Thetea
+                     // decrease Theta
                 {
                     ApplyEffect((ms) => Camera.Theta -= Utils.DeltaChange001(deltaTime) * 100);
                 }
