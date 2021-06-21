@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace CubeAssignment.Gui
 {
-    public static class Keyboard
+    public static class Input
     {
         [Flags]
         private enum KeyStates
@@ -41,6 +41,7 @@ namespace CubeAssignment.Gui
 
         public static bool IsKeyDown(Keys key)
         {
+            // Avoid logging keys when application is not active.
             if (Form.ActiveForm == MainForm.Instance)
             {
                 return KeyStates.Down == (GetKeyState(key) & KeyStates.Down);

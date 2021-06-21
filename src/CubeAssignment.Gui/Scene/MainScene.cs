@@ -38,19 +38,19 @@ namespace CubeAssignment.Gui.Scene
 
         private void UpdateInput()
         {
-            if (Keyboard.IsKeyDown(Keys.Q))
+            if (Input.IsKeyDown(Keys.Q))
                 // decrease scale
             {
                 ApplyEffect((ms) => Camera.D += 1);
             }
-            if (Keyboard.IsKeyDown(Keys.W))
+            if (Input.IsKeyDown(Keys.W))
                 // decrease scale
             {
                 ApplyEffect((ms) => Camera.D -= 1);
             }
 
 
-            if (Keyboard.IsKeyDown(Keys.PageUp))
+            if (Input.IsKeyDown(Keys.PageUp))
                 // decrease z
             {
                 ApplyEffect((ms) =>
@@ -61,7 +61,7 @@ namespace CubeAssignment.Gui.Scene
                 });
             }
 
-            if (Keyboard.IsKeyDown(Keys.PageUp))
+            if (Input.IsKeyDown(Keys.PageUp))
                 // increase z
             {
                 ApplyEffect((ms) =>
@@ -72,15 +72,16 @@ namespace CubeAssignment.Gui.Scene
                 });
             }
 
+            // If shift is pressed
             if ((Control.ModifierKeys & Keys.Shift) != 0)
             {
-                if (Keyboard.IsKeyDown(Keys.S))
+                if (Input.IsKeyDown(Keys.S))
                     // decrease scale
                 {
                     ApplyEffect((ms) => ms.Scale = ms.Scale * 0.9f);
                 }
 
-                if (Keyboard.IsKeyDown(Keys.X))
+                if (Input.IsKeyDown(Keys.X))
                     // decrease rotate x
                 {
                     ApplyEffect((ms) =>
@@ -91,7 +92,7 @@ namespace CubeAssignment.Gui.Scene
                     });
                 }
 
-                if (Keyboard.IsKeyDown(Keys.Y))
+                if (Input.IsKeyDown(Keys.Y))
                     // decrease rotate y
                 {
                     ApplyEffect((ms) =>
@@ -102,7 +103,7 @@ namespace CubeAssignment.Gui.Scene
                     });
                 }
 
-                if (Keyboard.IsKeyDown(Keys.Z))
+                if (Input.IsKeyDown(Keys.Z))
                     // decrease rotate z
                 {
                     ApplyEffect((ms) =>
@@ -115,13 +116,13 @@ namespace CubeAssignment.Gui.Scene
             }
             else
             {
-                if (Keyboard.IsKeyDown(Keys.S))
+                if (Input.IsKeyDown(Keys.S))
                     // increase scale
                 {
                     ApplyEffect((ms) => ms.Scale = ms.Scale * 1.1f);
                 }
 
-                if (Keyboard.IsKeyDown(Keys.X))
+                if (Input.IsKeyDown(Keys.X))
                     // increase rotate x
                 {
                     ApplyEffect((ms) =>
@@ -132,7 +133,7 @@ namespace CubeAssignment.Gui.Scene
                     });
                 }
 
-                if (Keyboard.IsKeyDown(Keys.Y))
+                if (Input.IsKeyDown(Keys.Y))
                     // increase rotate y
                 {
                     ApplyEffect((ms) =>
@@ -143,7 +144,7 @@ namespace CubeAssignment.Gui.Scene
                     });
                 }
 
-                if (Keyboard.IsKeyDown(Keys.Z))
+                if (Input.IsKeyDown(Keys.Z))
                     // increase rotate z
                 {
                     ApplyEffect((ms) =>
@@ -154,7 +155,7 @@ namespace CubeAssignment.Gui.Scene
                     });
                 }
 
-                if (Keyboard.IsKeyDown(Keys.C))
+                if (Input.IsKeyDown(Keys.C))
                 {
                     ApplyEffect(ms =>
                     {
@@ -172,13 +173,81 @@ namespace CubeAssignment.Gui.Scene
                     }
                 }
 
-                if (Keyboard.IsKeyDown(Keys.A))
+                if (Input.IsKeyDown(Keys.A))
                 {
                     // reset to default
                     foreach (IAnimationFiniteStateMachine animationFiniteStateMachine in _animationStateMachines)
                     {
                         animationFiniteStateMachine.Start();
                     }
+                }
+
+                // Translation
+
+                // Translate Y+
+                if (Input.IsKeyDown(Keys.Up))
+                {
+                    ApplyEffect((ms) =>
+                    {
+                        Vector newPosition = ms.Position;
+                        newPosition.y += Settings.TranslationSpeed;
+                        ms.Position = newPosition;
+                    });
+                }
+
+                // Translate X-
+                if (Input.IsKeyDown(Keys.Left))
+                {
+                    ApplyEffect((ms) =>
+                    {
+                        Vector newPosition = ms.Position;
+                        newPosition.x -= Settings.TranslationSpeed;
+                        ms.Position = newPosition;
+                    });
+                }
+
+                // Translate X+
+                if (Input.IsKeyDown(Keys.Right))
+                {
+                    ApplyEffect((ms) =>
+                    {
+                        Vector newPosition = ms.Position;
+                        newPosition.x += Settings.TranslationSpeed;
+                        ms.Position = newPosition;
+                    });
+                }
+
+                // Translate Y-
+                if (Input.IsKeyDown(Keys.Down))
+                {
+                    ApplyEffect((ms) =>
+                    {
+                        Vector newPosition = ms.Position;
+                        newPosition.y -= Settings.TranslationSpeed;
+                        ms.Position = newPosition;
+                    });
+                }
+
+                // Translate Z-
+                if (Input.IsKeyDown(Keys.PageUp))
+                {
+                    ApplyEffect((ms) =>
+                    {
+                        Vector newPosition = ms.Position;
+                        newPosition.z -= Settings.TranslationSpeed;
+                        ms.Position = newPosition;
+                    });
+                }
+
+                // Translate Z+
+                if (Input.IsKeyDown(Keys.PageDown))
+                {
+                    ApplyEffect((ms) =>
+                    {
+                        Vector newPosition = ms.Position;
+                        newPosition.z += Settings.TranslationSpeed;
+                        ms.Position = newPosition;
+                    });
                 }
             }
         }

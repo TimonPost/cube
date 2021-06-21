@@ -37,7 +37,7 @@ namespace CubeAssignment.Gui.Animation.Phases
             Vector newRotation = cubeAnimationData.MeshSceneObject.Rotation;
             newRotation.x += StepSize;
             cubeAnimationData.MeshSceneObject.Rotation = newRotation;
-            cubeAnimationData.Camera.Theta -= Program.THETA_STEP_SIZE;
+            cubeAnimationData.Camera.Theta -= Settings.THETA_STEP_SIZE;
         }
     }
 }

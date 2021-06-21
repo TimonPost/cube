@@ -34,7 +34,7 @@ namespace CubeAssignment.Gui.Animation.Phases
             newScale.y -= StepSize;
             newScale.z -= StepSize;
             cubeAnimationData.MeshSceneObject.Scale = newScale;
-           cubeAnimationData.Camera.Theta -= Program.THETA_STEP_SIZE;
+           cubeAnimationData.Camera.Theta -= Settings.THETA_STEP_SIZE;
         }
     }
 }
