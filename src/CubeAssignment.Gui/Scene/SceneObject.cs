@@ -17,6 +17,6 @@ namespace CubeAssignment.Gui.Scene
         /// <summary>
         /// Updates the given scene object.
         /// </summary>
-        public abstract void Update();
+        public abstract void Update(float deltaTime);
     }
 }

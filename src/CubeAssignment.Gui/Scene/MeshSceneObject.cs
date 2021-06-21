@@ -23,7 +23,7 @@ namespace CubeAssignment.Gui.Scene
             Renderer.Draw(graphics, Mesh.VertexBuffer, Mesh.IndexBuffer, camera, modelMatrix);
         }
 
-        public override void Update()
+        public override void Update(float deltaTime)
         {
         }
 

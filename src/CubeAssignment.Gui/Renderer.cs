@@ -134,7 +134,7 @@ namespace CubeAssignment.Gui
                     var point2 = new PointF(secondVector.x, secondVector.y);
                     
                     // Avoid drawing zero line, because that results in an out of memory exception.
-                    if (Math.Abs(point1.X - point2.X) < 10f && Math.Abs(point1.Y - point2.Y) < 10f)
+                    if (Math.Abs(point1.X - point2.X) < 2f && Math.Abs(point1.Y - point2.Y) < 2f)
                     {
                         continue;
                     }

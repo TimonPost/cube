@@ -9,7 +9,7 @@ namespace CubeAssignment.Gui.Scene
     /// An basic camera.
     /// </summary>
     [AddINotifyPropertyChangedInterface]
-    public class Camera : INotifyPropertyChanged
+    public class Camera
     {
         /// <summary>
         /// Default value for <see cref="Theta"/>. 
@@ -88,15 +88,6 @@ namespace CubeAssignment.Gui.Scene
             Phi = DefaultPhi;
             R = DefaultR;
             D = DefaultD;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
