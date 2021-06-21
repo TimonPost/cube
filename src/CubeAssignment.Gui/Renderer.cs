@@ -31,12 +31,11 @@ namespace CubeAssignment.Gui
         /// <param name="camera"></param>
         /// <param name="z"></param>
         /// <returns></returns>
-        public Matrix ProjectionTransformation(Camera camera, float z)
+        public static Matrix ProjectionTransformation(float d, float z)
         {
-            var projectedZ = 1 / (camera.D - z);
             var projectionMatrix = new Matrix(
-                projectedZ, 0, 0, 0,
-                0, projectedZ, 0, 0,
+                -d / z, 0, 0, 0,
+                0, -d / z, 0, 0,
                 0, 0, 1, 0,
                 0, 0, 0, 1
             );
@@ -52,16 +51,22 @@ namespace CubeAssignment.Gui
         /// <returns></returns>
         private Vector Transform(Camera camera, Vector inputVector, Matrix modelMatrix)
         {
-            var viewMatrix = camera.GetMatrix();
-            var projectionMatrix = ProjectionTransformation(camera, inputVector.z);
-
+            var modelView = modelMatrix * camera.GetMatrix();
             
+            Vector vector = inputVector;
+            vector.w = 1;
+
+            Vector transformed = Vector.Transform(vector, modelView);
+
+            Matrix projection = ProjectionTransformation(camera.Distance, transformed.z);
+            Vector projected = Vector.Transform(transformed, projection);
+
             //Scale to screen
-            projected.x = (projected.x + 1f) * ScreenWidth * 0.5f;
-            projected.y = (1f - projected.y) * ScreenHeight * 0.5f;
+            projected.x =  ScreenWidth / 2f + projected.x;
+            projected.y = ScreenHeight / 2f - projected.y;
             return projected;
         }
-        
+
         /// <summary>
         /// Draws text on graphics
         /// </summary>
@@ -112,7 +117,7 @@ namespace CubeAssignment.Gui
                     var point2 = new PointF(secondVector.x, secondVector.y);
                     
                     // Avoid drawing zero line, because that results in an out of memory exception.
-                    if (Math.Abs(point1.X - point2.X) < 2f && Math.Abs(point1.Y - point2.Y) < 2f)
+                    if (Math.Abs(point1.X - point2.X) < 1f && Math.Abs(point1.Y - point2.Y) < 1f)
                     {
                         continue;
                     }
