@@ -229,10 +229,9 @@
         public static Matrix CreateTranslation(Vector position)
         {
             var result = new Matrix();
-            
-            result[3, 0] = position.x;
-            result[3, 1] = position.y;
-            result[3, 2] = position.z;
+            result.mat[0, 3] = position.x;
+            result.mat[1, 3] = position.y;
+            result.mat[2, 3] = position.z;
 
             return result;
         }
