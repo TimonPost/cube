@@ -27,7 +27,7 @@ namespace CubeAssignment.Gui.Animation.Phases
         {
             if (cubeAnimationData.Camera.Theta < Camera.DEFAULT_THETA)
             {
-                cubeAnimationData.Camera.Theta += Program.THETA_STEP_SIZE;
+                cubeAnimationData.Camera.Theta += Settings.THETA_STEP_SIZE;
             }
             else
             {
@@ -37,7 +37,7 @@ namespace CubeAssignment.Gui.Animation.Phases
 
             if (cubeAnimationData.Camera.Phi > Camera.DEFAULT_PHI)
             {
-                cubeAnimationData.Camera.Phi -= Program.PHI_STEP_SIZE;
+                cubeAnimationData.Camera.Phi -= Settings.PHI_STEP_SIZE;
             }
             else
             {

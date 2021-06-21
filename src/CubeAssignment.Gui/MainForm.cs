@@ -24,24 +24,22 @@ namespace CubeAssignment.Gui
 
             var renderer = new Renderer(Canvas.Width, Canvas.Height);
             var cube = new VertexLabeledMeshSceneObject(Mesh.Cube, renderer);
-            var ape = new MeshSceneObject(Mesh.FromObj("Models/Suzanne.obj", Color.Chocolate), renderer);
+            var ape = new MeshSceneObject(Mesh.FromObj("Models/Suzanne.obj", Color.Orange), renderer);
 
-            // Camera bindings
+            // Camera UI property bindings
             theValuetaLabel.DataBindings.Add(new Binding(nameof(Label.Text), _mainScene.Camera, nameof(Camera.Theta)));
             dValueLabel.DataBindings.Add(new Binding(nameof(Label.Text), _mainScene.Camera, nameof(Camera.D)));
             rValueLabel.DataBindings.Add(new Binding(nameof(Label.Text), _mainScene.Camera, nameof(Camera.R)));
             phiValueLabel.DataBindings.Add(new Binding(nameof(Label.Text), _mainScene.Camera, nameof(Camera.Phi)));
             
-            // Mesh bindings
+            // Mesh UI property bindings
             Binding rotationBinding = new Binding(nameof(Label.Text), cube, nameof(MeshSceneObject.Rotation));
             rotationBinding.Format += FormatRotationVectorToDegrees;
-
 
             RotateValueLabel.DataBindings.Add(rotationBinding);
             ScaleValueLabel.DataBindings.Add(new Binding(nameof(Label.Text), cube, nameof(MeshSceneObject.Scale)));
             TranslateValueLabel.DataBindings.Add(new Binding(nameof(Label.Text), cube, nameof(MeshSceneObject.Position)));
-           
-
+            
             _mainScene.Add(new CoordinateSystem(renderer));
             _mainScene.Add(cube);
             _mainScene.Add(ape);

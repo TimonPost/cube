@@ -37,7 +37,7 @@ namespace CubeAssignment.Gui.Animation.Phases
             Vector newRotation = cubeAnimationData.MeshSceneObject.Rotation;
             newRotation.y += StepSize;
             cubeAnimationData.MeshSceneObject.Rotation = newRotation;
-            cubeAnimationData.Camera.Phi += Program.PHI_STEP_SIZE;
+            cubeAnimationData.Camera.Phi += Settings.PHI_STEP_SIZE;
         }
     }
 }
