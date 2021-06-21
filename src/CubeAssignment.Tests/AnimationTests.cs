@@ -19,7 +19,7 @@ namespace CubeAssignment.Tests
         private MeshSceneObject meshObject;
         private Camera camera;
         private CubeAnimationData animationState;
-      
+
         [TestInitialize]
         public void Setup()
         {
@@ -33,6 +33,23 @@ namespace CubeAssignment.Tests
         [TestMethod]
         public void FirstPhase_Theta_Decrease_Test_1()
         {
+            FirstPhaseScaleIncrease phase = new FirstPhaseScaleIncrease();
+
+            int timesToTick = 20;
+
+            float deltaTime = 1f / 60f;
+
+            for (int i = 0; i < timesToTick; i++)
+            {
+                phase.Tick(animationState, deltaTime);
+            }
+
+            Assert.AreEqual(camera.Theta, Camera.DefaultTheta - (Utils.DeltaChange(deltaTime) * timesToTick), 0.01f);
+        }
+
+        [TestMethod]
+        public void FirstPhase_Theta_Decrease_Test_2()
+        {
             FirstPhaseScaleDecrease phase = new FirstPhaseScaleDecrease();
 
             int timesToTick = 20;
@@ -40,24 +57,11 @@ namespace CubeAssignment.Tests
             float deltaTime = 1f / 60f;
 
             for (int i = 0; i < timesToTick; i++)
-                phase.Tick(animationState);
-
-            Assert.AreEqual(Math.Round(camera.Theta, 4), Math.Round(Camera.DefaultTheta - (Settings.StepSize * timesToTick+1)), 4);
-        }
-
-
-        [TestMethod]
-        public void FirstPhase_Theta_Decrease_Test_2()
-        {
-            FirstPhaseScaleIncrease phase = new FirstPhaseScaleIncrease();
-
-            int timesToTick = 20;
-
-            for (int i = 0; i < timesToTick; i++)
-                phase.Tick(animationState);
+            {
                 phase.Tick(animationState, deltaTime);
+            }
 
-            Assert.AreEqual(Math.Round(camera.Theta, 4), Math.Round(Camera.DefaultTheta - (Settings.StepSize * timesToTick + 1)), 4);
+            Assert.AreEqual(camera.Theta, Camera.DefaultTheta - (Utils.DeltaChange(deltaTime) * timesToTick), 0.01f);
         }
 
         [TestMethod]
@@ -66,14 +70,14 @@ namespace CubeAssignment.Tests
             FirstPhaseScaleDecrease phase = new FirstPhaseScaleDecrease();
 
             int timesToTick = 500;
+            float deltaTime = 1f / 60f;
 
             for (int i = 0; i < timesToTick; i++)
-                phase.Tick(animationState);
+                phase.Tick(animationState, deltaTime);
 
             Assert.IsTrue(meshObject.Scale.x <= 1.0);
             Assert.IsTrue(meshObject.Scale.y <= 1.0);
             Assert.IsTrue(meshObject.Scale.z <= 1.0);
-            Assert.AreEqual(camera.Theta, Camera.DefaultTheta - (Utils.DeltaChange(deltaTime) * timesToTick), 0.01f);
         }
 
 
@@ -83,9 +87,10 @@ namespace CubeAssignment.Tests
             FirstPhaseScaleIncrease phase = new FirstPhaseScaleIncrease();
 
             int timesToTick = 500;
+            float deltaTime = 1f / 60f;
 
             for (int i = 0; i < timesToTick; i++)
-                phase.Tick(animationState);
+                phase.Tick(animationState, deltaTime);
 
             Assert.IsTrue(meshObject.Scale.x >= 1.5);
             Assert.IsTrue(meshObject.Scale.y >= 1.5);
@@ -99,10 +104,14 @@ namespace CubeAssignment.Tests
 
             int timesToTick = 20;
 
-            for (int i = 0; i < timesToTick; i++)
-                phase.Tick(animationState);
+            float deltaTime = 1f / 60f;
 
-            Assert.AreEqual(Math.Round(camera.Theta, 4), Math.Round(Camera.DefaultTheta - (Settings.StepSize * timesToTick + 1)), 4);
+            for (int i = 0; i < timesToTick; i++)
+            {
+                phase.Tick(animationState, deltaTime);
+            }
+
+            Assert.AreEqual(camera.Theta, Camera.DefaultTheta - (Utils.DeltaChange(deltaTime) * timesToTick), 0.01f);
         }
 
         [TestMethod]
@@ -122,5 +131,123 @@ namespace CubeAssignment.Tests
             Assert.AreEqual(camera.Theta, Camera.DefaultTheta - (Utils.DeltaChange(deltaTime) * timesToTick), 0.01f);
         }
 
+        [TestMethod]
+        public void SecondPhase_Rotation_45_degrees_Test()
+        {
+            SecondPhaseRotationXIncrease phase = new SecondPhaseRotationXIncrease();
+
+            int timesToTick = 500;
+            float deltaTime = 1f / 60f;
+
+            for (int i = 0; i < timesToTick; i++)
+                phase.Tick(animationState, deltaTime);
+
+            Assert.IsTrue(meshObject.Rotation.x >= (Utils.DeltaChange(deltaTime) * timesToTick));
+        }
+
+        [TestMethod]
+        public void SecondPhase_Rotation_Minus_45_degrees_Test()
+        {
+            SecondPhaseRotationXDecrease phase = new SecondPhaseRotationXDecrease();
+
+            int timesToTick = 500;
+            float deltaTime = 1f / 60f;
+
+            for (int i = 0; i < timesToTick; i++)
+                phase.Tick(animationState, deltaTime);
+
+            Assert.AreEqual(meshObject.Rotation.x + (Utils.DeltaChange(deltaTime) * timesToTick), 0, 0.01f);
+        }
+
+        [TestMethod]
+        public void ThirdPhasePhase_PHI_Decrease_Test_1()
+        {
+            ThirdPhaseRotationYDecrease phase = new ThirdPhaseRotationYDecrease();
+
+            int timesToTick = 20;
+
+            float deltaTime = 1f / 60f;
+
+            for (int i = 0; i < timesToTick; i++)
+            {
+                phase.Tick(animationState, deltaTime);
+            }
+
+            Assert.AreEqual(camera.Phi, Camera.DefaultPhi +  (Utils.DeltaChange(deltaTime) * timesToTick), 0.00001f);
+        }
+
+        [TestMethod]
+        public void ThirdPhasePhase_PHI_Decrease_Test_2()
+        {
+            ThirdPhaseRotationYIncrease phase = new ThirdPhaseRotationYIncrease();
+
+            int timesToTick = 20;
+
+            float deltaTime = 1f / 60f;
+
+            for (int i = 0; i < timesToTick; i++)
+            {
+                phase.Tick(animationState, deltaTime);
+            }
+
+            Assert.AreEqual(camera.Phi, Camera.DefaultPhi + (Utils.DeltaChange(deltaTime) * timesToTick), 0.00001f);
+        }
+
+        [TestMethod]
+        public void ThirdPhase_Rotation_Y_45_degrees_Test()
+        {
+            ThirdPhaseRotationYIncrease phase = new ThirdPhaseRotationYIncrease();
+
+            int timesToTick = 500;
+            float deltaTime = 1f / 60f;
+
+            for (int i = 0; i < timesToTick; i++)
+                phase.Tick(animationState, deltaTime);
+
+            Assert.IsTrue(meshObject.Rotation.y >= (Utils.DeltaChange(deltaTime) * timesToTick));
+        }
+
+        [TestMethod]
+        public void ThirdPhase_Rotation_Y_Minus_45_degrees_Test()
+        {
+            ThirdPhaseRotationYDecrease phase = new ThirdPhaseRotationYDecrease();
+
+            int timesToTick = 500;
+            float deltaTime = 1f / 60f;
+
+            for (int i = 0; i < timesToTick; i++)
+                phase.Tick(animationState, deltaTime);
+
+            Assert.AreEqual(meshObject.Rotation.y + (Utils.DeltaChange(deltaTime) * timesToTick), 0, 0.01f);
+        }
+
+        [TestMethod]
+        public void InvertPhase_Inverts_PHI_THETA_TEST()
+        {
+            var phase1 = new FirstPhaseScaleIncrease();
+            var phase2 = new SecondPhaseRotationXIncrease();
+            var phase3 = new ThirdPhaseRotationYIncrease();
+            
+            InvertAnimationState phase4 = new InvertAnimationState();
+
+            int timesToTick = 500;
+            float deltaTime = 1f / 60f;
+
+            for (int i = 0; i < timesToTick; i++)
+            {
+                phase1.Tick(animationState, deltaTime);
+                phase2.Tick(animationState, deltaTime);
+                phase3.Tick(animationState, deltaTime);
+            }
+
+            int count = 0;
+            while (!phase4.Tick(animationState, deltaTime))
+            {
+                count++;
+            }
+
+            Assert.AreEqual(camera.Phi, Camera.DefaultPhi);
+            Assert.AreEqual(camera.Theta, Camera.DefaultTheta);
+        }
     }
 }
