@@ -25,23 +25,23 @@ namespace CubeAssignment.Gui.Animation.Phases
 
         public virtual bool Tick(CubeAnimationData cubeAnimationData)
         {
-            if (cubeAnimationData.Camera.Theta < Camera.DEFAULT_THETA)
+            if (cubeAnimationData.Camera.Theta < Camera.DefaultTheta)
             {
                 cubeAnimationData.Camera.Theta += Settings.THETA_STEP_SIZE;
             }
             else
             {
-                cubeAnimationData.Camera.Theta = Camera.DEFAULT_THETA;
+                cubeAnimationData.Camera.Theta = Camera.DefaultTheta;
                 ThetaReverted = true;
             }
 
-            if (cubeAnimationData.Camera.Phi > Camera.DEFAULT_PHI)
+            if (cubeAnimationData.Camera.Phi > Camera.DefaultPhi)
             {
                 cubeAnimationData.Camera.Phi -= Settings.PHI_STEP_SIZE;
             }
             else
             {
-                cubeAnimationData.Camera.Phi = Camera.DEFAULT_PHI;
+                cubeAnimationData.Camera.Phi = Camera.DefaultPhi;
                 PHIReverted = true;
             }
 
