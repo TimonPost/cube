@@ -51,20 +51,17 @@ namespace CubeAssignment.Gui
         /// <returns></returns>
         private Vector Transform(Camera camera, Vector inputVector, Matrix modelMatrix)
         {
-            var modelView = modelMatrix * camera.GetMatrix();
-            
-            Vector vector = inputVector;
-            vector.w = 1;
+            var worldspace = camera.GetMatrix() * modelMatrix;
 
-            Vector transformed = Vector.Transform(vector, modelView);
+            var viewSpace = inputVector * worldspace;
+            var projection = ProjectionTransformation(camera.Distance, viewSpace.z);
 
-            Matrix projection = ProjectionTransformation(camera.Distance, transformed.z);
-            Vector projected = Vector.Transform(transformed, projection);
+            var newVector = viewSpace * projection;
 
             //Scale to screen
-            projected.x =  ScreenWidth / 2f + projected.x;
-            projected.y = ScreenHeight / 2f - projected.y;
-            return projected;
+            newVector.x =  ScreenWidth / 2f + newVector.x;
+            newVector.y = ScreenHeight / 2f - newVector.y;
+            return newVector;
         }
 
         /// <summary>
