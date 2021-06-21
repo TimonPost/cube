@@ -25,6 +25,12 @@ namespace CubeAssignment.Gui
             ScreenHeight = screenHeight;
         }
 
+        /// <summary>
+        /// Get an orthographic projection matrix for the given camera. 
+        /// </summary>
+        /// <param name="camera"></param>
+        /// <param name="z"></param>
+        /// <returns></returns>
         public Matrix ProjectionTransformation(Camera camera, float z)
         {
             var projectedZ = 1 / (camera.D - z);
@@ -37,6 +43,13 @@ namespace CubeAssignment.Gui
             return projectionMatrix;
         }
 
+        /// <summary>
+        /// Transforms a vector with camera view matrix, model matrix.
+        /// </summary>
+        /// <param name="camera"></param>
+        /// <param name="inputVector"></param>
+        /// <param name="modelMatrix"></param>
+        /// <returns></returns>
         private Vector Transform(Camera camera, Vector inputVector, Matrix modelMatrix)
         {
             var modelView = modelMatrix * camera.GetMatrix();

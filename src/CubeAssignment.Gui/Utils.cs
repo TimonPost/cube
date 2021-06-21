@@ -2,6 +2,9 @@
 
 namespace CubeAssignment.Gui
 {
+    /// <summary>
+    /// Helper utilities. 
+    /// </summary>
     internal static class Utils
     {
         /// <summary>

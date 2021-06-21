@@ -2,6 +2,9 @@
 
 namespace CubeAssignment.Gui.Scene
 {
+    /// <summary>
+    /// A text label mesh object. 
+    /// </summary>
     public class VertexLabeledMeshSceneObject : MeshSceneObject
     {
         public VertexLabeledMeshSceneObject(Mesh mesh, Renderer renderer) : base(mesh, renderer)

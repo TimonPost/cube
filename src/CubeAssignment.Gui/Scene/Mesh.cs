@@ -19,7 +19,14 @@ namespace CubeAssignment.Gui.Scene
             IndexBuffer = indexBuffer;
         }
 
+        /// <summary>
+        /// Vertex buffer containing information about each vertex for this mesh. 
+        /// </summary>
         public IReadOnlyList<Vertex> VertexBuffer { get; }
+
+        /// <summary>
+        /// Index buffer into the vertexbuffer. 
+        /// </summary>
         public IReadOnlyList<int> IndexBuffer { get; }
 
         #region Cube
@@ -120,6 +127,14 @@ namespace CubeAssignment.Gui.Scene
 
         #endregion
 
+        /// <summary>
+        /// Creates a line mesh.
+        /// </summary>
+        /// <param name="position1"></param>
+        /// <param name="color1"></param>
+        /// <param name="position2"></param>
+        /// <param name="color2"></param>
+        /// <returns></returns>
         public static Mesh CreateLine(Vector position1, Color color1, Vector position2, Color color2)
         {
             IReadOnlyList<Vertex> vertexbuffer = new List<Vertex>
