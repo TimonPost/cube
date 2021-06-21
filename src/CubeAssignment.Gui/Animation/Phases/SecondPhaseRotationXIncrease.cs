@@ -7,8 +7,6 @@ namespace CubeAssignment.Gui.Animation.Phases
     /// </summary>
     public class SecondPhaseRotationXIncrease : IState
     {
-        public float StepSize { get; set; } = (float) System.Math.PI / 60;
-
         public virtual AnimationStates AnimationState => AnimationStates.Phase2RotationXIncrease;
 
         public void Enter()
@@ -35,7 +33,7 @@ namespace CubeAssignment.Gui.Animation.Phases
         protected void PerformAction(CubeAnimationData cubeAnimationData, float deltaTime)
         {
             Vector newRotation = cubeAnimationData.MeshSceneObject.Rotation;
-            newRotation.x += StepSize;
+            newRotation.x += Utils.DeltaChange(deltaTime);
             cubeAnimationData.MeshSceneObject.Rotation = newRotation;
             cubeAnimationData.Camera.Theta -= Utils.DeltaChange(deltaTime);
         }

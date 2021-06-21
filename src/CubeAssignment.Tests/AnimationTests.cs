@@ -36,9 +36,9 @@ namespace CubeAssignment.Tests
             int timesToTick = 20;
             
             for (int i = 0; i < timesToTick; i++)
-                phase.Tick(animationState);
+                phase.Tick(animationState, 1f/60);
 
-            Assert.AreEqual(Math.Round(camera.Theta, 4), Math.Round(Camera.DefaultTheta - (Settings.THETA_STEP_SIZE * timesToTick+1)), 4);
+            Assert.AreEqual(Math.Round(camera.Theta, 4), Math.Round(Camera.DefaultTheta - (Settings.StepSize * timesToTick+1)), 4);
         }
 
 
@@ -50,9 +50,9 @@ namespace CubeAssignment.Tests
             int timesToTick = 20;
 
             for (int i = 0; i < timesToTick; i++)
-                phase.Tick(animationState);
+                phase.Tick(animationState, 1f / 60f);
 
-            Assert.AreEqual(Math.Round(camera.Theta, 4), Math.Round(Camera.DefaultTheta - (Settings.THETA_STEP_SIZE * timesToTick + 1)), 4);
+            Assert.AreEqual(Math.Round(camera.Theta, 4), Math.Round(Camera.DefaultTheta - (Settings.StepSize * timesToTick + 1)), 4);
         }
     }
 }

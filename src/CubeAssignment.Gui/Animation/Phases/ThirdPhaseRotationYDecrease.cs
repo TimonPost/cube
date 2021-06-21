@@ -7,8 +7,6 @@ namespace CubeAssignment.Gui.Animation.Phases
     /// </summary>
     public class ThirdPhaseRotationYDecrease : IState
     {
-        public float StepSize { get; set; } = (float)System.Math.PI / 60;
-
         public static double ToRadians(double val)
         {
             return System.Math.PI / 180 * val;
@@ -35,7 +33,7 @@ namespace CubeAssignment.Gui.Animation.Phases
         protected void PerformAction(CubeAnimationData cubeAnimationData, float deltaTime)
         {
             Vector newRotation = cubeAnimationData.MeshSceneObject.Rotation;
-            newRotation.y -= StepSize;
+            newRotation.y -= Utils.DeltaChange(deltaTime);
             cubeAnimationData.MeshSceneObject.Rotation = newRotation;
 
             cubeAnimationData.Camera.Phi += Utils.DeltaChange(deltaTime);
